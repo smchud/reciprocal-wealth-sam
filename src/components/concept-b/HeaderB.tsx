@@ -11,7 +11,7 @@ export default function HeaderB() {
   return (
     <header className="sticky top-0 z-50 bg-deep-forest/95 backdrop-blur-sm">
       <div className="mx-auto max-w-[1200px] px-6 flex items-center justify-between h-[72px]">
-        <Logo variant="horizontal" theme="dark" href="/concept-b" showTagline />
+        <Logo variant="horizontal" theme="dark" href="/concept-b" />
 
         <nav className="hidden md:flex items-center gap-8">
           {navLinksB.map((link) => (

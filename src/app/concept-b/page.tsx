@@ -34,35 +34,44 @@ export default function ConceptBHome() {
         </video>
         <div className="absolute inset-0 bg-deep-forest/55" />
         <div className="relative mx-auto max-w-[1200px] px-6">
-          <div className="max-w-[720px]">
-            <h1 className="text-[36px] md:text-[42px] font-light leading-[1.15] tracking-[-1.5px] text-white">
-              Spend less time worrying about finances.
-              <br />
-              More time on what matters most to you.
-            </h1>
-            <p className="mt-6 text-base md:text-lg text-white/60 leading-relaxed max-w-[540px]">
-              Reciprocal Wealth offers personalized wealth management for
-              time-pressed working professionals.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a
-                href={siteConfig.clientPortalUrl}
-                className="inline-flex items-center rounded-sm bg-white px-7 py-3 text-sm font-medium text-deep-forest transition-colors hover:bg-warm-gray"
-              >
-                Client Portal
-              </a>
-              <Link
-                href="/concept-b/why-reciprocal"
-                className="inline-flex items-center rounded-sm border border-white/35 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/55 hover:bg-white/5"
-              >
-                Why Reciprocal
-              </Link>
+          <div className="flex items-center gap-12">
+            <div className="flex-1 max-w-[720px]">
+              <h1 className="text-[28px] md:text-[34px] font-light leading-[1.15] tracking-[-1.5px] text-white">
+                Spend less time worrying about finances.
+                <br />
+                More time on what matters most to you.
+              </h1>
+              <p className="mt-6 text-base md:text-lg text-white/60 leading-relaxed max-w-[540px]">
+                Reciprocal Wealth offers personalized wealth management for
+                time-pressed working professionals.
+              </p>
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <a
+                  href={siteConfig.clientPortalUrl}
+                  className="inline-flex items-center rounded-sm bg-white px-7 py-3 text-sm font-medium text-deep-forest transition-colors hover:bg-warm-gray"
+                >
+                  Client Portal
+                </a>
+                <Link
+                  href="/concept-b/why-reciprocal"
+                  className="inline-flex items-center rounded-sm border border-white/35 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/55 hover:bg-white/5"
+                >
+                  Why Reciprocal
+                </Link>
+              </div>
+            </div>
+            <div className="hidden md:block flex-shrink-0">
+              <img
+                src="/images/logo-vertical-dark.png"
+                alt="Reciprocal Wealth"
+                className="h-64 w-auto object-contain opacity-85"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Our Mission Ã¢ÂÂ centered */}
+      {/* Our Mission — centered */}
       <section className="py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
           <FadeIn className="max-w-[640px] mx-auto text-center">
@@ -105,10 +114,10 @@ export default function ConceptBHome() {
         </div>
       </section>
 
-      {/* Why Reciprocal */}
+      {/* Why Reciprocal — centered */}
       <section className="bg-deep-forest py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
-          <FadeIn>
+          <FadeIn className="text-center">
             <span className="inline-block text-base md:text-lg font-semibold uppercase tracking-[0.1em] text-forest-50 mb-4">
               Why Reciprocal
             </span>
@@ -202,9 +211,6 @@ export default function ConceptBHome() {
           <FadeIn className="max-w-[640px] mx-auto">
             <div className="text-center mb-10">
               <SectionLabel>Talk to Us</SectionLabel>
-              <h2 className="mt-4 text-3xl md:text-[36px] font-medium tracking-[-0.4px] text-near-black">
-                Contact us
-              </h2>
               <p className="mt-3 text-sm text-stone">
                 If you have a question or would like to learn more, send us a
                 message. We will respond as soon as we can.

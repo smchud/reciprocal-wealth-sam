@@ -21,6 +21,7 @@ export const navLinks = [
 export const navLinksB = [
   { label: "Why Reciprocal", href: "/why-reciprocal" },
   { label: "Who We Are", href: "/who-we-are" },
+  { label: "FAQs", href: "/faqs" },
   { label: "Disclosures", href: "/disclosures" },
   { label: "Talk to Us", href: "/talk-to-us" },
 ] as const;
