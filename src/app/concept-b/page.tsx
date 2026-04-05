@@ -2,10 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import FadeIn from "@/components/shared/FadeIn";
 import SectionLabel from "@/components/shared/SectionLabel";
+import FAQAccordion from "@/components/shared/FAQAccordion";
 import ContactForm from "@/components/shared/ContactForm";
 import { values } from "@/data/values";
 import { differentiators } from "@/data/differentiators";
 import { founders, ourStory } from "@/data/founders";
+import { faqs } from "@/data/faqs";
 import { siteConfig } from "@/data/siteConfig";
 
 export default function ConceptBHome() {
@@ -62,9 +64,9 @@ export default function ConceptBHome() {
             </div>
             <div className="hidden md:block flex-shrink-0">
               <img
-                src="/images/logo-vertical-dark.png"
+                src="/images/logo-vertical-dark-transparent.png"
                 alt="Reciprocal Wealth"
-                className="h-64 w-auto object-contain opacity-85"
+                className="h-64 w-auto object-contain"
               />
             </div>
           </div>
@@ -81,9 +83,8 @@ export default function ConceptBHome() {
               present while creating a safe and secure future.&rdquo;
             </p>
             <p className="mt-6 text-sm text-stone leading-relaxed">
-              Reciprocal Wealth is a fee-only wealth management firm serving
-              time-pressed working professionals. We keep our approach
-              straightforward, transparent, and focused on what matters to you.
+              Our approach is straightforward, transparent, and focused on what
+              matters to you.
             </p>
           </FadeIn>
         </div>
@@ -202,6 +203,28 @@ export default function ConceptBHome() {
               ))}
             </div>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* FAQs */}
+      <section className="py-20 md:py-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <div className="max-w-[720px] mx-auto">
+            <FadeIn className="text-center">
+              <SectionLabel>Frequently Asked Questions</SectionLabel>
+            </FadeIn>
+            <FadeIn className="mt-10">
+              <FAQAccordion faqs={faqs.slice(0, 6)} />
+            </FadeIn>
+            <FadeIn className="mt-8 text-center">
+              <Link
+                href="/concept-b/faqs"
+                className="text-sm text-forest font-medium hover:text-deep-forest transition-colors"
+              >
+                View all FAQs &rarr;
+              </Link>
+            </FadeIn>
+          </div>
         </div>
       </section>
 

@@ -31,7 +31,7 @@ export default function WhyReciprocalB() {
                 delay={i * 80}
                 className={`bg-warm-gray p-8 md:p-10 ${
                   i === differentiators.length - 1 && differentiators.length % 2 !== 0
-                    ? "md:col-span-2 md:max-w-[calc(50%-12px)]"
+                    ? "md:col-span-2 md:max-w-[calc(50%-12px)] md:mx-auto"
                     : ""
                 }`}
               >

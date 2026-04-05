@@ -12,7 +12,7 @@ export default function FAQsB() {
               FAQs
             </span>
             <h1 className="text-[32px] md:text-[36px] font-light tracking-[-1px] text-white leading-tight">
-              Questions we hear often
+              Answers to questions we hear often
             </h1>
           </div>
         </div>

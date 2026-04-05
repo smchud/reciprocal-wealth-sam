@@ -23,7 +23,7 @@ Since graduation, Sam has ascended from Analyst to Director at Keurig Dr Pepper,
 
 Sam is also currently enrolled in the Executive Masters of Business Administration (EMBA) program at Northwestern University's Kellogg School of Management from which he is scheduled to graduate in May 2027.
 
-Sam is a proud resident of Newton, MA, where he was raised by his parents, Larry and Deborah, and currently resides with his wife, Abby, and his children, Max and Emma. When not working, Sam coaches youth sports teams and enjoys golf, paddle tennis, exercise, cooking, and live music.`,
+Sam was born and raised in Newton, MA where he currently resides with his wife, Abby, and children, Max and Emma. When not working, Sam coaches youth sports teams and enjoys golf, paddle tennis, exercise, cooking, and live music.`,
   },
   {
     name: "Jake Lynch",
