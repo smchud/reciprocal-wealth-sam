@@ -19,6 +19,7 @@ export const navLinks = [
 
 /** Concept B top nav: Disclosures after FAQs, before Talk to Us */
 export const navLinksB = [
+  { label: "Home", href: "" },
   { label: "Why Reciprocal", href: "/why-reciprocal" },
   { label: "Who We Are", href: "/who-we-are" },
   { label: "FAQs", href: "/faqs" },

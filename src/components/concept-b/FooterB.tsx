@@ -20,7 +20,7 @@ export default function FooterB() {
                 <Link
                   key={`${link.label}-${link.href}`}
                   href={
-                    link.href.startsWith("/")
+                    link.href.startsWith("/") || link.href === ""
                       ? `/concept-b${link.href}`
                       : link.href
                   }

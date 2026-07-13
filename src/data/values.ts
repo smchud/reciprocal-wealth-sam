@@ -12,7 +12,7 @@ export const values: Value[] = [
   {
     title: "Customer first",
     description:
-      "We invest alongside our clients and treat each one as we would want to be treated. Your interests come before ours — always.",
+      "We treat each client with thought and care. When clients speak, we listen. Your interests come before our own — always.",
   },
   {
     title: "Deliver value",

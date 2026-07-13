@@ -12,7 +12,7 @@ export const differentiators: Differentiator[] = [
   {
     title: "Investing together",
     description:
-      "We are clients number one and two. Our assets are managed by the firm with the same duty, thought, and care as your own — and we pay fees just like everyone else. When your portfolio does well, so does ours.",
+      "We are clients number one and two. Our assets are managed by the firm with the same duty, thought, and care as your own — and we pay fees just like everyone else.",
   },
   {
     title: "Modern technology",
