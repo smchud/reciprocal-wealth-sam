@@ -20,7 +20,7 @@ export const faqs: FAQ[] = [
       "We have a transparent fee structure that bills monthly at a percentage of assets under management. We use a sliding scale so that there are no sudden changes resulting from shifts in tiers.",
   },
   {
-    question: "What is the assignment provision?",
+    question: "What is the Client Pool?",
     answer:
       "If we sell our interests in the firm to another party, you will receive compensation in line with your share of our assets under management once you assign your assets to the new ownership. It acts like a \"trade kicker\" in sports — when a player is traded to another team, he receives a bump in salary in exchange for making the transition.",
   },

@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Invested Together",
   email: "info@reciprocalwealth.com",
   phone: "617-947-4749",
-  address: "3 Edgefield Road, Waban, MA 02468",
+  address: "Medfield, MA | Waban, MA",
   clientPortalUrl: "#",
   disclosure:
     "Reciprocal Wealth Management LLC is a Registered Investment Advisor. This website is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any security or investment product. Past performance is not indicative of future results.",

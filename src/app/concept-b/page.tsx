@@ -5,7 +5,7 @@ import SectionLabel from "@/components/shared/SectionLabel";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import ContactForm from "@/components/shared/ContactForm";
 import { values } from "@/data/values";
-import { differentiators } from "@/data/differentiators";
+import { differentiators, clientPool } from "@/data/differentiators";
 import { founders, ourStory } from "@/data/founders";
 import { faqs } from "@/data/faqs";
 import { siteConfig } from "@/data/siteConfig";
@@ -126,16 +126,55 @@ export default function ConceptBHome() {
               What makes us different
             </h2>
           </FadeIn>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {differentiators.map((diff, i) => (
+
+          {/* The Client Pool — lead differentiator */}
+          <div className="mt-12 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-14 items-center">
+            <FadeIn>
+              <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.1em] text-forest-50">
+                {clientPool.label}
+              </span>
+              <h3 className="mt-3 text-2xl md:text-[28px] font-medium tracking-[-0.4px] text-white">
+                {clientPool.heading}
+              </h3>
+              <p className="mt-3 text-sm md:text-base text-white/55 leading-relaxed">
+                {clientPool.tagline}
+              </p>
+              <div className="mt-8 space-y-4">
+                {clientPool.points.map((point) => (
+                  <div key={point.title} className="border border-white/10 bg-white/[0.04] p-6">
+                    <h4 className="text-base font-medium text-white">
+                      {point.title}
+                    </h4>
+                    <p className="mt-1.5 text-sm text-white/55 leading-relaxed">
+                      {point.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+            <FadeIn delay={150}>
+              <div className="bg-forest-10 p-10 md:p-12 text-center">
+                <p className="text-[64px] md:text-[72px] font-bold tracking-[-2px] text-deep-forest leading-none">
+                  {clientPool.stat}
+                </p>
+                <p className="mt-5 text-base font-bold text-deep-forest leading-relaxed max-w-[240px] mx-auto">
+                  {clientPool.statDescription}
+                </p>
+                <p className="mt-4 text-xs font-bold uppercase tracking-[0.1em] text-forest">
+                  {clientPool.statLabel}
+                </p>
+              </div>
+            </FadeIn>
+          </div>
+
+          <div className="mt-14 pt-12 border-t border-white/10 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {differentiators
+              .filter((diff) => diff.title !== clientPool.label)
+              .map((diff, i) => (
               <FadeIn
                 key={diff.title}
                 delay={i * 80}
-                className={`border border-white/10 p-8 ${
-                  i === differentiators.length - 1 && differentiators.length % 3 !== 0
-                    ? "md:col-span-2 lg:col-span-1"
-                    : ""
-                }`}
+                className="border border-white/10 p-8"
               >
                 <h3 className="text-base font-medium text-white mb-3">
                   {diff.title}

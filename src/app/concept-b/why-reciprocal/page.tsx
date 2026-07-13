@@ -1,28 +1,10 @@
 import FadeIn from "@/components/shared/FadeIn";
 import SectionLabel from "@/components/shared/SectionLabel";
-import { differentiators } from "@/data/differentiators";
-
-const assignmentPoints = [
-  {
-    title: "True reciprocity",
-    description:
-      "Sam and Jake are the firm\u2019s first two paying clients. \u201CInvested together\u201D means just that.",
-  },
-  {
-    title: "Participation right",
-    description:
-      "A codified, contractual entitlement \u2014 specific to each client \u2014 to a share of proceeds if Reciprocal undergoes a sale transaction.",
-  },
-  {
-    title: "No strings attached",
-    description:
-      "No additional investment. No minimum AUM or account size. No penalty for declining consent. A benefit exclusively for clients.",
-  },
-];
+import { differentiators, clientPool } from "@/data/differentiators";
 
 export default function WhyReciprocalB() {
   const otherDifferentiators = differentiators.filter(
-    (diff) => diff.title !== "The assignment provision"
+    (diff) => diff.title !== clientPool.label
   );
 
   return (
@@ -44,25 +26,25 @@ export default function WhyReciprocalB() {
         </div>
       </section>
 
-      {/* The Assignment Provision — dedicated section */}
+      {/* The Client Pool — dedicated section */}
       <section className="py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 lg:gap-16 items-center">
             <FadeIn>
-              <SectionLabel>The Assignment Provision</SectionLabel>
+              <SectionLabel>{clientPool.label}</SectionLabel>
               <h2 className="mt-4 text-2xl md:text-[28px] font-medium tracking-[-0.4px] text-near-black">
-                Invested, literally.
+                {clientPool.heading}
               </h2>
               <p className="mt-4 text-sm md:text-base text-stone leading-relaxed">
-                The first framework of its kind in wealth management.
+                {clientPool.tagline}
               </p>
-              <div className="mt-8 space-y-6">
-                {assignmentPoints.map((point) => (
-                  <div key={point.title}>
-                    <h3 className="text-base font-medium text-near-black">
+              <div className="mt-8 grid grid-cols-1 gap-4">
+                {clientPool.points.map((point) => (
+                  <div key={point.title} className="bg-forest-10 p-6">
+                    <h3 className="text-base font-medium text-deep-forest">
                       {point.title}
                     </h3>
-                    <p className="mt-1.5 text-sm text-stone leading-relaxed">
+                    <p className="mt-1.5 text-sm text-near-black/70 leading-relaxed">
                       {point.description}
                     </p>
                   </div>
@@ -71,14 +53,14 @@ export default function WhyReciprocalB() {
             </FadeIn>
             <FadeIn delay={150}>
               <div className="bg-deep-forest p-10 md:p-14 text-center">
-                <p className="text-[56px] md:text-[64px] font-light tracking-[-2px] text-white leading-none">
-                  20%
+                <p className="text-[64px] md:text-[72px] font-bold tracking-[-2px] text-white leading-none">
+                  {clientPool.stat}
                 </p>
-                <p className="mt-5 text-sm text-white/70 leading-relaxed max-w-[240px] mx-auto">
-                  of the net cash proceeds from a sale of the firm
+                <p className="mt-5 text-base font-bold text-white leading-relaxed max-w-[260px] mx-auto">
+                  {clientPool.statDescription}
                 </p>
-                <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.1em] text-forest-50">
-                  Reserved for clients
+                <p className="mt-4 text-xs font-bold uppercase tracking-[0.1em] text-forest-50">
+                  {clientPool.statLabel}
                 </p>
               </div>
             </FadeIn>

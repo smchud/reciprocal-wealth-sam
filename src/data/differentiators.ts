@@ -25,8 +25,40 @@ export const differentiators: Differentiator[] = [
       "Instead of the traditional tier-based billing construct, our unique sliding-scale fee structure ensures predictable changes in your fees and eliminates the risk of an unfair, abrupt rise caused by market under-performance. With us, there is only transparency: one fee to cover all services.",
   },
   {
-    title: "The assignment provision",
+    title: "The Client Pool",
     description:
-      "Our unique assignment provision acts like a \"trade kicker\" in sports. If we ever sell our interests in the firm to another party, you receive compensation in line with your share of our assets under management — a tangible way we put our money where our mouth is.",
+      "Our unique Client Pool acts like a \"trade kicker\" in sports. If we ever sell our interests in the firm to another party, you receive compensation in line with your share of our assets under management — a tangible way we put our money where our mouth is.",
   },
 ];
+
+export interface ClientPoolPoint {
+  title: string;
+  description: string;
+}
+
+/** Shared content for The Client Pool sections (home + Why Reciprocal). */
+export const clientPool = {
+  label: "The Client Pool",
+  heading: "Invested, literally.",
+  tagline: "The first framework of its kind in wealth management.",
+  stat: "20%",
+  statDescription: "of the net cash proceeds from a sale of the firm",
+  statLabel: "Reserved for clients",
+  points: [
+    {
+      title: "True reciprocity",
+      description:
+        "If the firm is ever sold, a pool of proceeds will be distributed to clients. Everyone reaps a share of the benefits.",
+    },
+    {
+      title: "Participation right",
+      description:
+        "A codified, contractual entitlement \u2014 specific to each client \u2014 to a share of proceeds if Reciprocal undergoes a sale transaction.",
+    },
+    {
+      title: "No strings attached",
+      description:
+        "No additional investment. No minimum AUM or account size. No penalty for declining consent. A benefit exclusively for clients.",
+    },
+  ] as ClientPoolPoint[],
+};
