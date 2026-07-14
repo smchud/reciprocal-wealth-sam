@@ -47,6 +47,6 @@ Jake resides in Medfield, MA with his wife Molly and his two children, Rhys (8) 
 
 export const ourStory = `Sam and Jake met while attending high school at Noble & Greenough School in Dedham, MA. They bonded during frequent hangs and poker games with their friends Matt, Brian, and Peter.
 
-Sam and Jake remained friends for the next 15 years, then, during the COVID-19 pandemic, the two of them began playing weekly pickleball matches, followed by the occasional beer and Caesar Salad. During these meetups, they uncovered a shared passion for entrepreneurship and interest in finance.
+Sam and Jake remained friends for the next 15 years, then, during the COVID-19 pandemic, the two of them began weekly meetups. During these meetups, they uncovered a shared passion for entrepreneurship and interest in finance.
 
 It was during these conversations that the concept for what would become Reciprocal Wealth was born.`;

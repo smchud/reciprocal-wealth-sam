@@ -1,5 +1,4 @@
 import FadeIn from "@/components/shared/FadeIn";
-import SectionLabel from "@/components/shared/SectionLabel";
 import { differentiators, clientPool } from "@/data/differentiators";
 
 export default function WhyReciprocalB() {
@@ -31,7 +30,9 @@ export default function WhyReciprocalB() {
         <div className="mx-auto max-w-[1200px] px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 lg:gap-16 items-center">
             <FadeIn>
-              <SectionLabel>{clientPool.label}</SectionLabel>
+              <span className="inline-block text-xl md:text-2xl font-semibold uppercase tracking-[0.1em] text-forest">
+                {clientPool.label}
+              </span>
               <h2 className="mt-4 text-2xl md:text-[28px] font-medium tracking-[-0.4px] text-near-black">
                 {clientPool.heading}
               </h2>

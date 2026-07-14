@@ -130,7 +130,7 @@ export default function ConceptBHome() {
           {/* The Client Pool — lead differentiator */}
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-14 items-center">
             <FadeIn>
-              <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.1em] text-forest-50">
+              <span className="inline-block text-xl md:text-2xl font-semibold uppercase tracking-[0.1em] text-forest-50">
                 {clientPool.label}
               </span>
               <h3 className="mt-3 text-2xl md:text-[28px] font-medium tracking-[-0.4px] text-white">
@@ -167,7 +167,13 @@ export default function ConceptBHome() {
             </FadeIn>
           </div>
 
-          <div className="mt-14 pt-12 border-t border-white/10 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="mt-14 pt-12 border-t border-white/10">
+            <FadeIn className="text-center mb-10">
+              <h3 className="text-2xl md:text-[28px] font-medium tracking-[-0.4px] text-white">
+                More ways we&rsquo;re different
+              </h3>
+            </FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {differentiators
               .filter((diff) => diff.title !== clientPool.label)
               .map((diff, i) => (
@@ -184,6 +190,7 @@ export default function ConceptBHome() {
                 </p>
               </FadeIn>
             ))}
+            </div>
           </div>
         </div>
       </section>

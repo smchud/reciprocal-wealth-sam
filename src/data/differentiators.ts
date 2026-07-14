@@ -22,7 +22,7 @@ export const differentiators: Differentiator[] = [
   {
     title: "Fair & transparent fees",
     description:
-      "Instead of the traditional tier-based billing construct, our unique sliding-scale fee structure ensures predictable changes in your fees and eliminates the risk of an unfair, abrupt rise caused by market under-performance. With us, there is only transparency: one fee to cover all services.",
+      "Unlike other firms with opaque, convoluted fee structures, we make things transparent and simple: you pay one fee to cover all services.",
   },
   {
     title: "The Client Pool",

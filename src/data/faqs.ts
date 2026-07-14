@@ -17,12 +17,12 @@ export const faqs: FAQ[] = [
   {
     question: "What is your fee structure?",
     answer:
-      "We have a transparent fee structure that bills monthly at a percentage of assets under management. We use a sliding scale so that there are no sudden changes resulting from shifts in tiers.",
+      "We have a transparent fee structure that bills monthly at a percentage of assets under management.",
   },
   {
     question: "What is the Client Pool?",
     answer:
-      "If we sell our interests in the firm to another party, you will receive compensation in line with your share of our assets under management once you assign your assets to the new ownership. It acts like a \"trade kicker\" in sports — when a player is traded to another team, he receives a bump in salary in exchange for making the transition.",
+      "If we sell our interests in the firm to another party and you are a client at that time, you will receive a share of a pool of net proceeds reserved exclusively for clients.",
   },
   {
     question: "How often do you meet with clients?",
