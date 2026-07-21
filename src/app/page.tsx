@@ -63,9 +63,11 @@ export default function Home() {
               </div>
             </div>
             <div className="hidden md:block flex-shrink-0">
-              <img
+              <Image
                 src="/images/logo-vertical-dark-transparent.png"
                 alt="Reciprocal Wealth"
+                width={1418}
+                height={1898}
                 className="h-64 w-auto object-contain"
               />
             </div>
