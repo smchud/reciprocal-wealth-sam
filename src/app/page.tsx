@@ -105,9 +105,9 @@ export default function Home() {
                 delay={i * 100}
                 className="bg-white p-8 md:p-10"
               >
-                <h3 className="text-lg font-medium text-near-black tracking-[-0.2px]">
+                <h2 className="text-lg font-medium text-near-black tracking-[-0.2px]">
                   {value.title}
-                </h3>
+                </h2>
                 <p className="mt-3 text-sm text-stone leading-relaxed">
                   {value.description}
                 </p>
