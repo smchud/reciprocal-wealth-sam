@@ -6,19 +6,12 @@ export const siteConfig = {
   address: "Medfield, MA | Waban, MA",
   clientPortalUrl: "#",
   disclosure:
-    "Reciprocal Wealth Management LLC is a Registered Investment Advisor. This website is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any security or investment product. Past performance is not indicative of future results.",
-  copyright: `© ${new Date().getFullYear()} Reciprocal Wealth Management LLC. All rights reserved.`,
+    "Reciprocal Wealth, LLC is a Registered Investment Advisor. This website is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any security or investment product. Past performance is not indicative of future results.",
+  copyright: `© ${new Date().getFullYear()} Reciprocal Wealth, LLC. All rights reserved.`,
 };
 
+/** Top nav: Disclosures after FAQs, before Talk to Us */
 export const navLinks = [
-  { label: "Why Reciprocal", href: "/why-reciprocal" },
-  { label: "Who We Are", href: "/who-we-are" },
-  { label: "FAQs", href: "/faqs" },
-  { label: "Talk to Us", href: "/talk-to-us" },
-] as const;
-
-/** Concept B top nav: Disclosures after FAQs, before Talk to Us */
-export const navLinksB = [
   { label: "Home", href: "" },
   { label: "Why Reciprocal", href: "/why-reciprocal" },
   { label: "Who We Are", href: "/who-we-are" },
@@ -27,21 +20,7 @@ export const navLinksB = [
   { label: "Talk to Us", href: "/talk-to-us" },
 ] as const;
 
-export const footerLinksB = [
-  ...navLinksB,
-  { label: "Client Portal", href: "#" },
-] as const;
-
-export const utilityLinks = [
-  { label: "Client Portal", href: "#" },
-  { label: "Disclosures", href: "/disclosures" },
-] as const;
-
 export const footerLinks = [
-  { label: "Why Reciprocal", href: "/why-reciprocal" },
-  { label: "Who We Are", href: "/who-we-are" },
-  { label: "FAQs", href: "/faqs" },
-  { label: "Talk to Us", href: "/talk-to-us" },
-  { label: "Disclosures", href: "/disclosures" },
+  ...navLinks,
   { label: "Client Portal", href: "#" },
 ] as const;
