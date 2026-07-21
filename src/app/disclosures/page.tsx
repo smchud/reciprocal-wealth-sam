@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import { siteConfig } from "@/data/siteConfig";
+
+const description =
+  "Legal disclosures and important information about Reciprocal Wealth, LLC.";
+
+export const metadata: Metadata = {
+  title: "Disclosures",
+  description,
+  openGraph: { title: "Disclosures", description, images: ["/images/og-default.png"] },
+};
 
 export default function DisclosuresB() {
   return (
@@ -21,7 +31,7 @@ export default function DisclosuresB() {
           <div className="max-w-[640px] space-y-6 text-sm text-stone leading-relaxed">
             <p>{siteConfig.disclosure}</p>
             <p>
-              Reciprocal Wealth Management LLC (&ldquo;Reciprocal Wealth&rdquo;)
+              Reciprocal Wealth, LLC (&ldquo;Reciprocal Wealth&rdquo;)
               is a registered investment advisor. Registration does not imply a
               certain level of skill or training. The information contained
               herein is for informational purposes only and should not be

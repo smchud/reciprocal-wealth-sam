@@ -1,7 +1,17 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import FadeIn from "@/components/shared/FadeIn";
 import SectionLabel from "@/components/shared/SectionLabel";
 import { founders, ourStory } from "@/data/founders";
+
+const description =
+  "Built by two friends with a shared purpose. Meet the founders of Reciprocal Wealth.";
+
+export const metadata: Metadata = {
+  title: "Who We Are",
+  description,
+  openGraph: { title: "Who We Are", description, images: ["/images/og-default.png"] },
+};
 
 export default function WhoWeAreB() {
   return (

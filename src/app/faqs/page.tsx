@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
 import FadeIn from "@/components/shared/FadeIn";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import { faqs } from "@/data/faqs";
+
+const description =
+  "Answers to the questions we hear most often about working with Reciprocal Wealth.";
+
+export const metadata: Metadata = {
+  title: "FAQs",
+  description,
+  openGraph: { title: "FAQs", description, images: ["/images/og-default.png"] },
+};
 
 export default function FAQsB() {
   return (

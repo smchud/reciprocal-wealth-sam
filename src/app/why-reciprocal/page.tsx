@@ -1,5 +1,15 @@
+import type { Metadata } from "next";
 import FadeIn from "@/components/shared/FadeIn";
 import { differentiators, clientPool } from "@/data/differentiators";
+
+const description =
+  "We believe wealth management should be straightforward, honest, and centered on your goals and priorities — including The Client Pool, our unique way of sharing in the firm's success.";
+
+export const metadata: Metadata = {
+  title: "Why Reciprocal",
+  description,
+  openGraph: { title: "Why Reciprocal", description, images: ["/images/og-default.png"] },
+};
 
 export default function WhyReciprocalB() {
   const otherDifferentiators = differentiators.filter(

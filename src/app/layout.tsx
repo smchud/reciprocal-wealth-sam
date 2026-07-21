@@ -11,10 +11,34 @@ const inter = Inter({
   display: "swap",
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
+const defaultTitle = "Reciprocal Wealth | Personalized Wealth Management";
+const defaultDescription =
+  "Reciprocal Wealth offers personalized wealth management for affluent individuals and families.";
+
 export const metadata: Metadata = {
-  title: "Reciprocal Wealth | Wealth Management for Working Professionals",
-  description:
-    "Fee-only wealth management for time-pressed working professionals. Clear financial guidance so you can spend less time worrying and more time on what matters.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: defaultTitle,
+    template: "%s | Reciprocal Wealth",
+  },
+  description: defaultDescription,
+  openGraph: {
+    title: defaultTitle,
+    description: defaultDescription,
+    siteName: "Reciprocal Wealth",
+    type: "website",
+    images: [{ url: "/images/og-default.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: defaultTitle,
+    description: defaultDescription,
+    images: ["/images/og-default.png"],
+  },
 };
 
 export default function RootLayout({
