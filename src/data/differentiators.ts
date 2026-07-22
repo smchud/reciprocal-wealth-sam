@@ -39,7 +39,7 @@ export interface ClientPoolPoint {
 /** Shared content for The Client Pool sections (home + Why Reciprocal). */
 export const clientPool = {
   label: "The Client Pool",
-  heading: "Invested, literally.",
+  heading: "20% for our clients",
   tagline: "The first framework of its kind in wealth management.",
   stat: "20%",
   statDescription: "of the net cash proceeds from a sale of the firm",
@@ -53,12 +53,12 @@ export const clientPool = {
     {
       title: "Participation right",
       description:
-        "A codified, contractual entitlement \u2014 specific to each client \u2014 to a share of proceeds if Reciprocal undergoes a sale transaction.",
+        "A codified, contractual entitlement awarded to each client that sticks with Reciprocal until the sale.",
     },
     {
       title: "No strings attached",
       description:
-        "No additional investment. No minimum AUM or account size. No penalty for declining consent. A benefit exclusively for clients.",
+        "No additional investment. No minimum AUM or account size. A benefit exclusively for clients.",
     },
   ] as ClientPoolPoint[],
 };

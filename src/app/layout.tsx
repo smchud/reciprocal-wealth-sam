@@ -14,7 +14,7 @@ const inter = localFont({
 
 const defaultTitle = "Reciprocal Wealth | Personalized Wealth Management";
 const defaultDescription =
-  "Reciprocal Wealth offers personalized wealth management for affluent individuals and families.";
+  "Reciprocal Wealth offers personalized wealth management for individuals and families.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
