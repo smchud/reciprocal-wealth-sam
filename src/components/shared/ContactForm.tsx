@@ -26,20 +26,22 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label className={`block text-xs font-medium mb-1.5 ${labelClasses}`}>
+          <label htmlFor="contact-name" className={`block text-xs font-medium mb-1.5 ${labelClasses}`}>
             Name
           </label>
           <input
+            id="contact-name"
             type="text"
             placeholder="Your name"
             className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none transition-colors ${inputClasses}`}
           />
         </div>
         <div>
-          <label className={`block text-xs font-medium mb-1.5 ${labelClasses}`}>
+          <label htmlFor="contact-email" className={`block text-xs font-medium mb-1.5 ${labelClasses}`}>
             Email
           </label>
           <input
+            id="contact-email"
             type="email"
             placeholder="you@example.com"
             className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none transition-colors ${inputClasses}`}
@@ -49,20 +51,22 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label className={`block text-xs font-medium mb-1.5 ${labelClasses}`}>
+          <label htmlFor="contact-phone" className={`block text-xs font-medium mb-1.5 ${labelClasses}`}>
             Phone
           </label>
           <input
+            id="contact-phone"
             type="tel"
             placeholder="(617) 555-0000"
             className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none transition-colors ${inputClasses}`}
           />
         </div>
         <div>
-          <label className={`block text-xs font-medium mb-1.5 ${labelClasses}`}>
+          <label htmlFor="contact-client-type" className={`block text-xs font-medium mb-1.5 ${labelClasses}`}>
             New or Existing Client
           </label>
           <select
+            id="contact-client-type"
             value={clientType}
             onChange={(e) => setClientType(e.target.value)}
             className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none transition-colors cursor-pointer ${inputClasses}`}
@@ -77,10 +81,11 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
       {clientType === "new" && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
-            <label className={`block text-xs font-medium mb-1.5 ${labelClasses}`}>
+            <label htmlFor="contact-hear-about" className={`block text-xs font-medium mb-1.5 ${labelClasses}`}>
               How did you hear about us?
             </label>
             <select
+              id="contact-hear-about"
               value={hearAbout}
               onChange={(e) => setHearAbout(e.target.value)}
               className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none transition-colors cursor-pointer ${inputClasses}`}
@@ -93,10 +98,11 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
           </div>
           {hearAbout === "referral" && (
             <div>
-              <label className={`block text-xs font-medium mb-1.5 ${labelClasses}`}>
+              <label htmlFor="contact-referral" className={`block text-xs font-medium mb-1.5 ${labelClasses}`}>
                 Who referred you?
               </label>
               <input
+                id="contact-referral"
                 type="text"
                 placeholder="Referral name"
                 className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none transition-colors ${inputClasses}`}
@@ -107,10 +113,11 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
       )}
 
       <div>
-        <label className={`block text-xs font-medium mb-1.5 ${labelClasses}`}>
+        <label htmlFor="contact-message" className={`block text-xs font-medium mb-1.5 ${labelClasses}`}>
           Question or Comment
         </label>
         <textarea
+          id="contact-message"
           rows={4}
           placeholder="How can we help?"
           className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none transition-colors resize-none ${inputClasses}`}

@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
 import FadeIn from "@/components/shared/FadeIn";
 import ContactForm from "@/components/shared/ContactForm";
 import { siteConfig } from "@/data/siteConfig";
+
+const description =
+  "Have a question or want to learn more? Send Reciprocal Wealth a message and we'll respond as soon as we can.";
+
+export const metadata: Metadata = {
+  title: "Talk to Us",
+  description,
+  openGraph: { title: "Talk to Us", description, images: ["/images/og-default.png"] },
+};
 
 export default function TalkToUsB() {
   return (

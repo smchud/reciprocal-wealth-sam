@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Logo from "@/components/shared/Logo";
-import { siteConfig, footerLinksB } from "@/data/siteConfig";
+import { siteConfig, footerLinks } from "@/data/siteConfig";
 
-export default function FooterB() {
+export default function Footer() {
   return (
     <footer className="bg-deep-forest text-white">
       <div className="mx-auto max-w-[1200px] px-6 py-16">
@@ -16,14 +16,10 @@ export default function FooterB() {
               Navigation
             </h4>
             <nav className="flex flex-col gap-2.5">
-              {footerLinksB.map((link) => (
+              {footerLinks.map((link) => (
                 <Link
                   key={`${link.label}-${link.href}`}
-                  href={
-                    link.href.startsWith("/") || link.href === ""
-                      ? `/concept-b${link.href}`
-                      : link.href
-                  }
+                  href={link.href.startsWith("/") || link.href === "" ? link.href || "/" : link.href}
                   className="text-sm text-white/65 hover:text-white transition-colors"
                 >
                   {link.label}

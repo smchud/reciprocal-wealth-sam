@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 interface LogoProps {
   variant?: "horizontal" | "vertical";
@@ -11,10 +12,26 @@ interface LogoProps {
 }
 
 const logoSrc = {
-  "horizontal-light": "/images/logo-horizontal-white.png",
-  "horizontal-dark": "/images/logo-horizontal-dark.png",
-  "vertical-light": "/images/logo-vertical-white.png",
-  "vertical-dark": "/images/logo-vertical-dark.png",
+  "horizontal-light": {
+    src: "/images/logo-horizontal-white.png",
+    width: 1800,
+    height: 563,
+  },
+  "horizontal-dark": {
+    src: "/images/logo-horizontal-dark.png",
+    width: 1800,
+    height: 563,
+  },
+  "vertical-light": {
+    src: "/images/logo-vertical-white.png",
+    width: 1418,
+    height: 1898,
+  },
+  "vertical-dark": {
+    src: "/images/logo-vertical-dark.png",
+    width: 1418,
+    height: 1898,
+  },
 } as const;
 
 export default function Logo({
@@ -24,15 +41,17 @@ export default function Logo({
   href,
   showTagline = false,
 }: LogoProps) {
-  const src = logoSrc[`${variant}-${theme}`];
+  const logo = logoSrc[`${variant}-${theme}`];
 
   const sizeClass =
     variant === "horizontal" ? "h-10 w-auto" : "h-28 w-auto";
 
   const img = (
     <div className={`inline-flex flex-col items-start ${className}`}>
-      <img
-        src={src}
+      <Image
+        src={logo.src}
+        width={logo.width}
+        height={logo.height}
         alt="Reciprocal Wealth"
         className={`${sizeClass} object-contain`}
       />

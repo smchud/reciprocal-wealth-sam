@@ -1,60 +1,320 @@
 import Link from "next/link";
-import Logo from "@/components/shared/Logo";
+import Image from "next/image";
+import FadeIn from "@/components/shared/FadeIn";
+import SectionLabel from "@/components/shared/SectionLabel";
+import FAQAccordion from "@/components/shared/FAQAccordion";
+import ContactForm from "@/components/shared/ContactForm";
+import { values } from "@/data/values";
+import { differentiators, clientPool } from "@/data/differentiators";
+import { founders, ourStory } from "@/data/founders";
+import { faqs } from "@/data/faqs";
+import { siteConfig } from "@/data/siteConfig";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-warm-gray">
-      <div className="mx-auto max-w-[800px] px-6 py-20 text-center">
-        <Logo variant="vertical" theme="light" className="mx-auto mb-10" />
-
-        <h1 className="text-2xl md:text-[28px] font-medium tracking-[-0.4px] text-near-black">
-          Website Design Review
-        </h1>
-        <p className="mt-3 text-sm text-stone max-w-[400px] mx-auto">
-          Two homepage concepts for Reciprocal Wealth. Click into each to
-          explore the full site.
-        </p>
-
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[560px] mx-auto">
-          <Link
-            href="/concept-a"
-            className="group block bg-white p-8 text-left transition-shadow hover:shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
-          >
-            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-forest">
-              Concept A
-            </span>
-            <h2 className="mt-2 text-lg font-medium text-near-black">
-              Classic Trust
-            </h2>
-            <p className="mt-2 text-xs text-stone leading-relaxed">
-              Editorial boutique. White backgrounds, restrained green accents,
-              strong typographic hierarchy, formal tone.
-            </p>
-            <span className="inline-block mt-4 text-sm text-forest font-medium group-hover:translate-x-1 transition-transform">
-              View &rarr;
-            </span>
-          </Link>
-
-          <Link
-            href="/concept-b"
-            className="group block bg-deep-forest p-8 text-left transition-shadow hover:shadow-[0_2px_12px_rgba(0,0,0,0.15)]"
-          >
-            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-forest-50">
-              Concept B
-            </span>
-            <h2 className="mt-2 text-lg font-medium text-white">
-              Modern Relationship
-            </h2>
-            <p className="mt-2 text-xs text-white/50 leading-relaxed">
-              Warmer, more personal. Bold dark sections, prominent founder
-              presence, conversational and accessible.
-            </p>
-            <span className="inline-block mt-4 text-sm text-forest-50 font-medium group-hover:translate-x-1 transition-transform">
-              View &rarr;
-            </span>
-          </Link>
+    <>
+      {/* Hero */}
+      <section className="relative bg-deep-forest py-24 md:py-32 lg:py-40 overflow-hidden">
+        <Image
+          src="/images/stock/harbor-morning.jpg"
+          alt=""
+          fill
+          className="absolute inset-0 object-cover opacity-35 md:hidden motion-reduce:md:block pointer-events-none"
+          sizes="100vw"
+          priority
+          aria-hidden
+        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-35 hidden md:block motion-reduce:hidden pointer-events-none"
+          poster="/images/stock/harbor-morning.jpg"
+        >
+          <source src="/video/hero-ambient.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-deep-forest/55" />
+        <div className="relative mx-auto max-w-[1200px] px-6">
+          <div className="flex items-center gap-12">
+            <div className="flex-1 max-w-[720px]">
+              <h1 className="text-[28px] md:text-[34px] font-light leading-[1.15] tracking-[-1.5px] text-white">
+                Spend less time worrying about finances.
+                <br />
+                More time on what matters most to you.
+              </h1>
+              <p className="mt-6 text-base md:text-lg text-white/60 leading-relaxed max-w-[540px]">
+                Reciprocal Wealth offers personalized wealth management for
+                affluent individuals and families.
+              </p>
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <a
+                  href={siteConfig.clientPortalUrl}
+                  className="inline-flex items-center rounded-sm bg-white px-7 py-3 text-sm font-medium text-deep-forest transition-colors hover:bg-warm-gray"
+                >
+                  Client Portal
+                </a>
+                <Link
+                  href="/why-reciprocal"
+                  className="inline-flex items-center rounded-sm border border-white/35 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/55 hover:bg-white/5"
+                >
+                  Why Reciprocal
+                </Link>
+              </div>
+            </div>
+            <div className="hidden md:block flex-shrink-0">
+              <Image
+                src="/images/logo-vertical-dark-transparent.png"
+                alt="Reciprocal Wealth"
+                width={1418}
+                height={1898}
+                className="h-64 w-auto object-contain"
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* Our Mission — centered */}
+      <section className="py-20 md:py-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <FadeIn className="max-w-[640px] mx-auto text-center">
+            <SectionLabel>Our Mission</SectionLabel>
+            <p className="mt-6 text-xl md:text-2xl font-light text-near-black leading-relaxed tracking-[-0.3px]">
+              &ldquo;Help you provide for yourself and your loved ones in the
+              present while creating a safe and secure future.&rdquo;
+            </p>
+            <p className="mt-6 text-sm text-stone leading-relaxed">
+              Our approach is straightforward, transparent, and focused on what
+              matters to you.
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Values */}
+      <section className="bg-warm-gray py-20 md:py-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <FadeIn className="text-center mb-12">
+            <SectionLabel>Our Values</SectionLabel>
+          </FadeIn>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {values.map((value, i) => (
+              <FadeIn
+                key={value.title}
+                delay={i * 100}
+                className="bg-white p-8 md:p-10"
+              >
+                <h2 className="text-lg font-medium text-near-black tracking-[-0.2px]">
+                  {value.title}
+                </h2>
+                <p className="mt-3 text-sm text-stone leading-relaxed">
+                  {value.description}
+                </p>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Reciprocal — centered */}
+      <section className="bg-deep-forest py-20 md:py-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <FadeIn className="text-center">
+            <span className="inline-block text-base md:text-lg font-semibold uppercase tracking-[0.1em] text-forest-50 mb-4">
+              Why Reciprocal
+            </span>
+            <h2 className="text-3xl md:text-[36px] font-medium tracking-[-0.4px] text-white">
+              What makes us different
+            </h2>
+          </FadeIn>
+
+          {/* The Client Pool — lead differentiator */}
+          <div className="mt-12 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-14 items-center">
+            <FadeIn>
+              <span className="inline-block text-xl md:text-2xl font-semibold uppercase tracking-[0.1em] text-forest-50">
+                {clientPool.label}
+              </span>
+              <h3 className="mt-3 text-2xl md:text-[28px] font-medium tracking-[-0.4px] text-white">
+                {clientPool.heading}
+              </h3>
+              <p className="mt-3 text-sm md:text-base text-white/55 leading-relaxed">
+                {clientPool.tagline}
+              </p>
+              <div className="mt-8 space-y-4">
+                {clientPool.points.map((point) => (
+                  <div key={point.title} className="border border-white/10 bg-white/[0.04] p-6">
+                    <h4 className="text-base font-medium text-white">
+                      {point.title}
+                    </h4>
+                    <p className="mt-1.5 text-sm text-white/55 leading-relaxed">
+                      {point.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+            <FadeIn delay={150}>
+              <div className="bg-forest-10 p-10 md:p-12 text-center">
+                <p className="text-[64px] md:text-[72px] font-bold tracking-[-2px] text-deep-forest leading-none">
+                  {clientPool.stat}
+                </p>
+                <p className="mt-5 text-base font-bold text-deep-forest leading-relaxed max-w-[240px] mx-auto">
+                  {clientPool.statDescription}
+                </p>
+                <p className="mt-4 text-xs font-bold uppercase tracking-[0.1em] text-forest">
+                  {clientPool.statLabel}
+                </p>
+              </div>
+            </FadeIn>
+          </div>
+
+          <div className="mt-14 pt-12 border-t border-white/10">
+            <FadeIn className="text-center mb-10">
+              <h3 className="text-2xl md:text-[28px] font-medium tracking-[-0.4px] text-white">
+                More ways we&rsquo;re different
+              </h3>
+            </FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {differentiators
+              .filter((diff) => diff.title !== clientPool.label)
+              .map((diff, i) => (
+              <FadeIn
+                key={diff.title}
+                delay={i * 80}
+                className="border border-white/10 p-8"
+              >
+                <h3 className="text-base font-medium text-white mb-3">
+                  {diff.title}
+                </h3>
+                <p className="text-sm text-white/55 leading-relaxed">
+                  {diff.description}
+                </p>
+              </FadeIn>
+            ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Story + Meet the Founders */}
+      <section className="py-20 md:py-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <FadeIn className="mx-auto max-w-[40rem]">
+            <div className="text-center">
+              <SectionLabel>Our Story</SectionLabel>
+            </div>
+            <div className="mt-8 space-y-5 text-left text-[15px] md:text-base text-near-black/85 leading-[1.65] text-pretty">
+              {ourStory.split("\n\n").map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </div>
+          </FadeIn>
+
+          <FadeIn className="mt-16">
+            <h2 className="text-center text-3xl md:text-[36px] font-medium tracking-[-0.4px] text-near-black mb-12">
+              Meet the Founders
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+              {founders.map((founder, i) => (
+                <FadeIn key={founder.name} delay={i * 150}>
+                  <div className="bg-warm-gray p-6 md:p-8">
+                    <div className="flex flex-col sm:flex-row gap-6">
+                      <div className="w-full sm:w-40 aspect-square relative flex-shrink-0 overflow-hidden">
+                        <Image
+                          src={founder.image}
+                          alt={founder.name}
+                          fill
+                          className="object-cover object-top"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-medium text-near-black">
+                          {founder.name}
+                        </h3>
+                        <p className="text-xs font-semibold uppercase tracking-[0.1em] text-forest mt-1">
+                          {founder.title}
+                        </p>
+                        <p className="mt-4 text-sm text-stone leading-relaxed">
+                          {founder.shortBio}
+                        </p>
+                        <a
+                          href={`mailto:${founder.email}`}
+                          className="inline-block mt-3 text-sm text-forest hover:text-deep-forest transition-colors"
+                        >
+                          {founder.email}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* FAQs */}
+      <section className="py-20 md:py-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <div className="max-w-[720px] mx-auto">
+            <FadeIn className="text-center">
+              <SectionLabel>Frequently Asked Questions</SectionLabel>
+            </FadeIn>
+            <FadeIn className="mt-10">
+              <FAQAccordion faqs={faqs.slice(0, 6)} />
+            </FadeIn>
+            <FadeIn className="mt-8 text-center">
+              <Link
+                href="/faqs"
+                className="text-sm text-forest font-medium hover:text-deep-forest transition-colors"
+              >
+                View all FAQs &rarr;
+              </Link>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section className="bg-warm-gray py-20 md:py-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <FadeIn className="max-w-[640px] mx-auto">
+            <div className="text-center mb-10">
+              <SectionLabel>Talk to Us</SectionLabel>
+              <p className="mt-3 text-sm text-stone">
+                If you have a question or would like to learn more, send us a
+                message. We will respond as soon as we can.
+              </p>
+            </div>
+            <ContactForm />
+            <div className="mt-10 pt-8 border-t border-near-black/8 flex flex-col sm:flex-row justify-center gap-8 text-center">
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-[0.1em] text-stone mb-1">
+                  Email
+                </h4>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="text-sm text-near-black hover:text-forest transition-colors"
+                >
+                  {siteConfig.email}
+                </a>
+              </div>
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-[0.1em] text-stone mb-1">
+                  Phone
+                </h4>
+                <a
+                  href={`tel:${siteConfig.phone}`}
+                  className="text-sm text-near-black hover:text-forest transition-colors"
+                >
+                  {siteConfig.phone}
+                </a>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+    </>
   );
 }

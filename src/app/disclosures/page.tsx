@@ -1,19 +1,37 @@
-import SectionLabel from "@/components/shared/SectionLabel";
+import type { Metadata } from "next";
 import { siteConfig } from "@/data/siteConfig";
 
-export default function DisclosuresA() {
+const description =
+  "Legal disclosures and important information about Reciprocal Wealth, LLC.";
+
+export const metadata: Metadata = {
+  title: "Disclosures",
+  description,
+  openGraph: { title: "Disclosures", description, images: ["/images/og-default.png"] },
+};
+
+export default function DisclosuresB() {
   return (
-    <section className="py-20 md:py-28">
-      <div className="mx-auto max-w-[1200px] px-6">
-        <div className="max-w-[640px]">
-          <SectionLabel>Legal</SectionLabel>
-          <h1 className="mt-4 text-[32px] md:text-[36px] font-light tracking-[-1px] text-near-black leading-tight mb-10">
-            Disclosures
-          </h1>
-          <div className="space-y-6 text-sm text-stone leading-relaxed">
+    <>
+      <section className="bg-deep-forest py-20 md:py-28">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <div className="max-w-[640px]">
+            <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.1em] text-forest-50 mb-4">
+              Legal
+            </span>
+            <h1 className="text-[32px] md:text-[36px] font-light tracking-[-1px] text-white leading-tight">
+              Disclosures
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <div className="max-w-[640px] space-y-6 text-sm text-stone leading-relaxed">
             <p>{siteConfig.disclosure}</p>
             <p>
-              Reciprocal Wealth Management LLC (&ldquo;Reciprocal Wealth&rdquo;)
+              Reciprocal Wealth, LLC (&ldquo;Reciprocal Wealth&rdquo;)
               is a registered investment advisor. Registration does not imply a
               certain level of skill or training. The information contained
               herein is for informational purposes only and should not be
@@ -38,7 +56,7 @@ export default function DisclosuresA() {
             </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

@@ -1,21 +1,20 @@
 # Reciprocal Wealth Website
 
-Two homepage design concepts for Reciprocal Wealth, a boutique fee-only wealth management firm.
-
-- **Concept A** — Classic Trust / Editorial Boutique: clean, conservative, premium. White backgrounds, restrained Forest Green, editorial typography.
-- **Concept B** — Modern Relationship-Driven Advisory: warmer, more personal. Deep Forest hero sections, ambient video background, stronger contrast, more prominent founder presence.
+The public website for Reciprocal Wealth, LLC, a boutique fee-only wealth
+management firm.
 
 ## Live Preview
 
-**https://reciprocal-wealth.vercel.app**
+**https://reciprocal-wealth-sam.vercel.app**
 
 | Page | URL |
 |---|---|
-| Concept Chooser | [/](https://reciprocal-wealth.vercel.app) |
-| Concept A Homepage | [/concept-a](https://reciprocal-wealth.vercel.app/concept-a) |
-| Concept B Homepage | [/concept-b](https://reciprocal-wealth.vercel.app/concept-b) |
-
-Both concepts include inner pages: Why Reciprocal, Who We Are, FAQs, Talk to Us, and Disclosures.
+| Home | [/](https://reciprocal-wealth-sam.vercel.app) |
+| Why Reciprocal | [/why-reciprocal](https://reciprocal-wealth-sam.vercel.app/why-reciprocal) |
+| Who We Are | [/who-we-are](https://reciprocal-wealth-sam.vercel.app/who-we-are) |
+| FAQs | [/faqs](https://reciprocal-wealth-sam.vercel.app/faqs) |
+| Talk to Us | [/talk-to-us](https://reciprocal-wealth-sam.vercel.app/talk-to-us) |
+| Disclosures | [/disclosures](https://reciprocal-wealth-sam.vercel.app/disclosures) |
 
 ## Getting Started (Local Development)
 
@@ -31,40 +30,46 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the concept chooser. Click into Concept A or Concept B.
+Open [http://localhost:3000](http://localhost:3000) to see the site.
 
 ### Build for Production
 
 ```bash
 npm run build
+npm run start
 ```
 
-This generates a fully static site in the `out/` directory — plain HTML, CSS, and JS files that can be hosted anywhere.
+This runs a standard Next.js production build (App Router, Node runtime) —
+not a static export. Server-side features like the permanent redirects in
+`next.config.ts` and on-demand image optimization depend on running on a
+Node.js host (Vercel, in our case) rather than a static file server.
 
 ## Hosting
 
-The site is currently deployed on **Vercel** (free tier) via direct CLI deploy.
+The site is deployed on **Vercel** (project: `reciprocal-wealth-sam`).
 
 ### To redeploy after local changes:
 
 ```bash
-npx vercel --yes
+npx vercel        # preview deployment
+npx vercel --prod  # production deployment
 ```
 
 ### To connect a GitHub repo for auto-deploy:
 
-1. Push this project to a GitHub repository
-2. Go to [vercel.com](https://vercel.com) and import the repo
-3. Vercel auto-detects Next.js — no configuration needed
-4. Every push to `main` auto-deploys (about 60 seconds)
+1. Go to [vercel.com](https://vercel.com), open the `reciprocal-wealth-sam`
+   project, and connect it to this GitHub repository under Settings → Git
+2. Every push to `main` will then auto-deploy (about 60 seconds); other
+   branches get their own preview deployment URL
 
 ### Custom domain:
 
-Once a concept is chosen and finalized, point the domain's DNS to Vercel. They handle SSL automatically.
+Once ready, point the domain's DNS to Vercel. They handle SSL automatically.
 
 ## How to Update Content
 
-All website copy lives in simple TypeScript files under `src/data/`. You can edit these directly in GitHub's web editor — no terminal required.
+All website copy lives in simple TypeScript files under `src/data/`. You can
+edit these directly in GitHub's web editor — no terminal required.
 
 | What to change | File to edit |
 |---|---|
@@ -93,64 +98,61 @@ All website copy lives in simple TypeScript files under `src/data/`. You can edi
 ```
 src/
   app/
-    page.tsx                    # Concept chooser (root page)
-    layout.tsx                  # Root layout (font, metadata)
+    page.tsx                    # Homepage
+    layout.tsx                  # Root layout (font, header/footer, metadata)
     globals.css                 # Tailwind config, brand tokens, typography
-    concept-a/                  # Concept A (Classic Trust)
-      layout.tsx                # Header + Footer wrapper
-      page.tsx                  # Homepage
-      why-reciprocal/page.tsx
-      who-we-are/page.tsx
-      faqs/page.tsx
-      talk-to-us/page.tsx
-      disclosures/page.tsx
-    concept-b/                  # Concept B (Modern Relationship)
-      (same structure)
+    sitemap.ts                  # /sitemap.xml
+    robots.ts                   # /robots.txt
+    not-found.tsx                # Branded 404
+    why-reciprocal/page.tsx
+    who-we-are/page.tsx
+    faqs/page.tsx
+    talk-to-us/page.tsx
+    disclosures/page.tsx
   components/
-    shared/                     # Reusable across both concepts
-      Logo.tsx                  # Logo with variant/theme support
+    Header.tsx                  # Site header/nav
+    Footer.tsx                  # Site footer
+    shared/                     # Reusable components
+      Logo.tsx                  # Logo with variant/theme support (next/image)
       FadeIn.tsx                # Scroll-triggered fade animation
       SectionLabel.tsx          # Styled section headings
       FAQAccordion.tsx          # Expandable FAQ items
       ContactForm.tsx           # Contact form with validation
-    concept-a/                  # Concept A specific (HeaderA, FooterA)
-    concept-b/                  # Concept B specific (HeaderB, FooterB)
   data/                         # All website copy (edit these!)
-    siteConfig.ts               # Name, contact info, nav links, disclosures
-    founders.ts                 # Founder bios and headshots
-    values.ts                   # Brand values
-    differentiators.ts          # "Why Reciprocal" points
-    faqs.ts                     # FAQ content
+    siteConfig.ts                # Name, contact info, nav links, disclosures
+    founders.ts                  # Founder bios and headshots
+    values.ts                    # Brand values
+    differentiators.ts           # "Why Reciprocal" points, incl. The Client Pool
+    faqs.ts                       # FAQ content
+  fonts/
+    Inter-Variable-latin.woff2   # Self-hosted variable Inter (latin subset)
+  lib/
+    site-url.ts                  # Resolves the canonical site URL for metadata
 public/
-  images/                       # Logos and founder headshots
-    stock/                      # New England landscape & lifestyle photos
+  images/                       # Logos, founder headshots, OG image, favicons
+    stock/                       # New England landscape & lifestyle photos
   video/
-    hero-ambient.mp4            # Ambient background video (Concept B hero)
+    hero-ambient.mp4             # Ambient background video (hero)
+scripts/
+  generate-images.mjs           # Regenerates favicon set + OG image from logo art
 ```
+
+See [CLAUDE.md](CLAUDE.md) for brand colors, typography rules, approved
+terminology, and compliance guardrails.
 
 ## Tech Stack
 
-- **Next.js 16** (App Router, static export)
+- **Next.js 16** (App Router, standard Node.js build)
 - **Tailwind CSS v4** with custom brand design tokens
 - **TypeScript**
-- **Inter** typeface (Google Fonts)
+- **Inter** typeface, self-hosted (see [CLAUDE.md](CLAUDE.md))
 
 ## Brand Colors
 
 | Color | Hex | Usage |
 |---|---|---|
 | Forest Green | `#0F6E56` | Primary brand, CTAs, accents |
-| Deep Forest | `#04342C` | Dark sections, footer, Concept B hero |
+| Deep Forest | `#04342C` | Dark sections, footer, hero |
 | Warm Gray | `#F0EFED` | Alternating section backgrounds |
 | Stone | `#888780` | Secondary text, captions |
 | Near Black | `#1A1A18` | Body text, headlines |
-
-## Next Steps
-
-Once the client picks a concept direction:
-
-1. Remove the unchosen concept directory and components
-2. Promote the chosen concept's routes to the root (`/` instead of `/concept-a` or `/concept-b`)
-3. Remove the concept chooser page
-4. Connect a GitHub repo for automatic deploys
-5. Point the custom domain to Vercel

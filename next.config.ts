@@ -1,9 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
-  images: {
-    unoptimized: true,
+  async redirects() {
+    return [
+      { source: "/concept-b", destination: "/", permanent: true },
+      { source: "/concept-b/:path*", destination: "/:path*", permanent: true },
+      { source: "/concept-a/:path*", destination: "/", permanent: true },
+    ];
   },
 };
 

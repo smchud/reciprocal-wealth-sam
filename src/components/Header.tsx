@@ -3,21 +3,21 @@
 import { useState } from "react";
 import Link from "next/link";
 import Logo from "@/components/shared/Logo";
-import { navLinksB, siteConfig } from "@/data/siteConfig";
+import { navLinks, siteConfig } from "@/data/siteConfig";
 
-export default function HeaderB() {
+export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-deep-forest/95 backdrop-blur-sm">
       <div className="mx-auto max-w-[1200px] px-6 flex items-center justify-between h-[72px]">
-        <Logo variant="horizontal" theme="dark" href="/concept-b" />
+        <Logo variant="horizontal" theme="dark" href="/" />
 
         <nav className="hidden md:flex items-center gap-8">
-          {navLinksB.map((link) => (
+          {navLinks.map((link) => (
             <Link
               key={link.href}
-              href={`/concept-b${link.href}`}
+              href={link.href || "/"}
               className="text-sm font-medium text-white/65 hover:text-white transition-colors"
             >
               {link.label}
@@ -57,10 +57,10 @@ export default function HeaderB() {
       {mobileOpen && (
         <div className="md:hidden border-t border-white/10 bg-deep-forest">
           <nav className="flex flex-col px-6 py-4 gap-1">
-            {navLinksB.map((link) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
-                href={`/concept-b${link.href}`}
+                href={link.href || "/"}
                 onClick={() => setMobileOpen(false)}
                 className="text-sm font-medium text-white/65 py-2.5 hover:text-white transition-colors"
               >
