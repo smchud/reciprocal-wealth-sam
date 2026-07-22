@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import FadeIn from "@/components/shared/FadeIn";
+import HeroMedia from "@/components/shared/HeroMedia";
 import SectionLabel from "@/components/shared/SectionLabel";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import ContactForm from "@/components/shared/ContactForm";
@@ -15,25 +16,7 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="relative bg-deep-forest py-24 md:py-32 lg:py-40 overflow-hidden">
-        <Image
-          src="/images/stock/harbor-morning.jpg"
-          alt=""
-          fill
-          className="absolute inset-0 object-cover opacity-35 md:hidden motion-reduce:md:block pointer-events-none"
-          sizes="100vw"
-          priority
-          aria-hidden
-        />
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-35 hidden md:block motion-reduce:hidden pointer-events-none"
-          poster="/images/stock/harbor-morning.jpg"
-        >
-          <source src="/video/hero-ambient.mp4" type="video/mp4" />
-        </video>
+        <HeroMedia poster="/images/stock/harbor-morning.jpg" video="/video/hero-ambient.mp4" />
         <div className="absolute inset-0 bg-deep-forest/55" />
         <div className="relative mx-auto max-w-[1200px] px-6">
           <div className="flex items-center gap-12">
@@ -217,7 +200,7 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
               {founders.map((founder, i) => (
-                <FadeIn key={founder.name} delay={i * 150}>
+                <FadeIn key={founder.name} delay={i * 150} className="min-w-0">
                   <div className="bg-warm-gray p-6 md:p-8">
                     <div className="flex flex-col sm:flex-row gap-6">
                       <div className="w-full sm:w-40 aspect-square relative flex-shrink-0 overflow-hidden">
@@ -228,7 +211,7 @@ export default function Home() {
                           className="object-cover object-top"
                         />
                       </div>
-                      <div className="flex-1">
+                      <div className="flex-1 min-w-0">
                         <h3 className="text-lg font-medium text-near-black">
                           {founder.name}
                         </h3>
@@ -240,7 +223,7 @@ export default function Home() {
                         </p>
                         <a
                           href={`mailto:${founder.email}`}
-                          className="inline-block mt-3 text-sm text-forest hover:text-deep-forest transition-colors"
+                          className="flex items-center min-h-11 w-full mt-3 text-sm text-forest hover:text-deep-forest transition-colors break-words"
                         >
                           {founder.email}
                         </a>
@@ -267,7 +250,7 @@ export default function Home() {
             <FadeIn className="mt-8 text-center">
               <Link
                 href="/faqs"
-                className="text-sm text-forest font-medium hover:text-deep-forest transition-colors"
+                className="inline-flex items-center min-h-11 text-sm text-forest font-medium hover:text-deep-forest transition-colors"
               >
                 View all FAQs &rarr;
               </Link>
@@ -295,7 +278,7 @@ export default function Home() {
                 </h4>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="text-sm text-near-black hover:text-forest transition-colors"
+                  className="inline-flex items-center min-h-11 text-sm text-near-black hover:text-forest transition-colors"
                 >
                   {siteConfig.email}
                 </a>
@@ -306,7 +289,7 @@ export default function Home() {
                 </h4>
                 <a
                   href={`tel:${siteConfig.phone}`}
-                  className="text-sm text-near-black hover:text-forest transition-colors"
+                  className="inline-flex items-center min-h-11 text-sm text-near-black hover:text-forest transition-colors"
                 >
                   {siteConfig.phone}
                 </a>

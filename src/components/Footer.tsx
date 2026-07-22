@@ -15,12 +15,12 @@ export default function Footer() {
             <h4 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/40 mb-4">
               Navigation
             </h4>
-            <nav className="flex flex-col gap-2.5">
+            <nav className="flex flex-col">
               {footerLinks.map((link) => (
                 <Link
                   key={`${link.label}-${link.href}`}
                   href={link.href.startsWith("/") || link.href === "" ? link.href || "/" : link.href}
-                  className="text-sm text-white/65 hover:text-white transition-colors"
+                  className="flex items-center min-h-11 text-sm text-white/65 hover:text-white transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -32,24 +32,20 @@ export default function Footer() {
             <h4 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/40 mb-4">
               Contact
             </h4>
-            <div className="space-y-2.5 text-sm text-white/65">
-              <p>
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="hover:text-white transition-colors"
-                >
-                  {siteConfig.email}
-                </a>
-              </p>
-              <p>
-                <a
-                  href={`tel:${siteConfig.phone}`}
-                  className="hover:text-white transition-colors"
-                >
-                  {siteConfig.phone}
-                </a>
-              </p>
-              <p>{siteConfig.address}</p>
+            <div className="text-sm text-white/65">
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="flex items-center min-h-11 hover:text-white transition-colors"
+              >
+                {siteConfig.email}
+              </a>
+              <a
+                href={`tel:${siteConfig.phone}`}
+                className="flex items-center min-h-11 hover:text-white transition-colors"
+              >
+                {siteConfig.phone}
+              </a>
+              <p className="py-2.5">{siteConfig.address}</p>
             </div>
           </div>
         </div>

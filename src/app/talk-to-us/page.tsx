@@ -45,7 +45,7 @@ export default function TalkToUsB() {
                 </h4>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="text-sm text-near-black hover:text-forest transition-colors"
+                  className="inline-flex items-center min-h-11 text-sm text-near-black hover:text-forest transition-colors"
                 >
                   {siteConfig.email}
                 </a>
@@ -56,7 +56,7 @@ export default function TalkToUsB() {
                 </h4>
                 <a
                   href={`tel:${siteConfig.phone}`}
-                  className="text-sm text-near-black hover:text-forest transition-colors"
+                  className="inline-flex items-center min-h-11 text-sm text-near-black hover:text-forest transition-colors"
                 >
                   {siteConfig.phone}
                 </a>

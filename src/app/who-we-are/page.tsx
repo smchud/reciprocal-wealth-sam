@@ -72,7 +72,7 @@ export default function WhoWeAreB() {
                   ))}
                   <a
                     href={`mailto:${founder.email}`}
-                    className="inline-block mt-2 text-sm text-forest hover:text-deep-forest transition-colors"
+                    className="inline-flex items-center min-h-11 mt-2 text-sm text-forest hover:text-deep-forest transition-colors"
                   >
                     {founder.email}
                   </a>
