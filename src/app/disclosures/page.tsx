@@ -194,8 +194,14 @@ export default function DisclosuresB() {
               on those sites.
             </p>
             <p>
-              For a copy of the Reciprocal Wealth Privacy Policy, please click
-              here.
+              For a copy of the Reciprocal Wealth Privacy Policy, please{" "}
+              <Link
+                href="/privacy-policy"
+                className="text-forest hover:text-deep-forest transition-colors underline"
+              >
+                click here
+              </Link>
+              .
             </p>
           </div>
 
