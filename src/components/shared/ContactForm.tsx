@@ -111,6 +111,7 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
       {(status === "error" || status === "rate-limited") && (
         <div
           role="alert"
+          data-testid="form-error"
           className={`rounded-sm border p-4 text-sm ${
             isDark
               ? "border-red-400/30 bg-red-400/5 text-white/80"
