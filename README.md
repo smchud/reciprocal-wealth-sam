@@ -5,16 +5,16 @@ management firm.
 
 ## Live Preview
 
-**https://reciprocal-wealth.vercel.app**
+**https://reciprocal-wealth-sam.vercel.app**
 
 | Page | URL |
 |---|---|
-| Home | [/](https://reciprocal-wealth.vercel.app) |
-| Why Reciprocal | [/why-reciprocal](https://reciprocal-wealth.vercel.app/why-reciprocal) |
-| Who We Are | [/who-we-are](https://reciprocal-wealth.vercel.app/who-we-are) |
-| FAQs | [/faqs](https://reciprocal-wealth.vercel.app/faqs) |
-| Talk to Us | [/talk-to-us](https://reciprocal-wealth.vercel.app/talk-to-us) |
-| Disclosures | [/disclosures](https://reciprocal-wealth.vercel.app/disclosures) |
+| Home | [/](https://reciprocal-wealth-sam.vercel.app) |
+| Why Reciprocal | [/why-reciprocal](https://reciprocal-wealth-sam.vercel.app/why-reciprocal) |
+| Who We Are | [/who-we-are](https://reciprocal-wealth-sam.vercel.app/who-we-are) |
+| FAQs | [/faqs](https://reciprocal-wealth-sam.vercel.app/faqs) |
+| Talk to Us | [/talk-to-us](https://reciprocal-wealth-sam.vercel.app/talk-to-us) |
+| Disclosures | [/disclosures](https://reciprocal-wealth-sam.vercel.app/disclosures) |
 
 ## Getting Started (Local Development)
 
@@ -46,7 +46,7 @@ Node.js host (Vercel, in our case) rather than a static file server.
 
 ## Hosting
 
-The site is deployed on **Vercel** (project: `reciprocal-wealth`).
+The site is deployed on **Vercel** (project: `reciprocal-wealth-sam`).
 
 ### To redeploy after local changes:
 
@@ -57,7 +57,7 @@ npx vercel --prod  # production deployment
 
 ### To connect a GitHub repo for auto-deploy:
 
-1. Go to [vercel.com](https://vercel.com), open the `reciprocal-wealth`
+1. Go to [vercel.com](https://vercel.com), open the `reciprocal-wealth-sam`
    project, and connect it to this GitHub repository under Settings → Git
 2. Every push to `main` will then auto-deploy (about 60 seconds); other
    branches get their own preview deployment URL
