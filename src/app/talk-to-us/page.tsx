@@ -71,30 +71,21 @@ export default function TalkToUsB() {
       </section>
 
       <section className="bg-warm-gray py-20 md:py-24">
-        <div className="mx-auto max-w-[900px] px-6">
-          <FadeIn className="text-center mb-10">
+        <div className="mx-auto max-w-[640px] px-6 text-center">
+          <FadeIn>
             <SectionLabel>Schedule a Time</SectionLabel>
             <p className="mt-3 text-sm text-stone max-w-[480px] mx-auto">
-              Prefer to pick a time directly? Book a call below, or{" "}
-              <a
-                href={BOOKINGS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center min-h-11 text-forest font-medium hover:text-deep-forest transition-colors underline"
-              >
-                schedule online
-              </a>{" "}
-              if the calendar below doesn&rsquo;t load.
+              Prefer to pick a time directly? Book a call at a time that
+              works for you.
             </p>
-          </FadeIn>
-          <FadeIn delay={100}>
-            <iframe
-              src={BOOKINGS_URL}
-              title="Schedule a meeting with Reciprocal Wealth"
-              className="w-full border border-near-black/10 bg-white"
-              style={{ height: 700 }}
-              loading="lazy"
-            />
+            <a
+              href={BOOKINGS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center min-h-11 mt-8 rounded-sm bg-forest px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-deep-forest"
+            >
+              Schedule a Call
+            </a>
           </FadeIn>
         </div>
       </section>
