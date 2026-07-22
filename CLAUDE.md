@@ -2,6 +2,19 @@
 
 # Reciprocal Wealth — Brand & Content Guardrails
 
+## ⚠️ SITE IS NOINDEXED — DO NOT REMOVE WITHOUT SIGN-OFF
+
+The site is **intentionally blocked from search engine indexing** until
+compliance review clears it for public launch: `robots: { index: false,
+follow: false }` in `src/app/layout.tsx`, and `disallow: "/"` in
+`src/app/robots.ts`.
+
+**This MUST be reversed before public launch** (metadata `robots` block
+removed, `robots.ts` reverted to `allow: "/"`) — and Google Search Console
+registration (skipped for now) completed at that time. Do not touch either
+of these as a "fix" or cleanup unless the launch has been explicitly
+approved.
+
 ## Legal entity
 
 The firm's legal name is **Reciprocal Wealth, LLC**. Use this exact form in
