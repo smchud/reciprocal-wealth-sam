@@ -32,8 +32,10 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
           <input
             id="contact-name"
             type="text"
+            inputMode="text"
+            autoComplete="name"
             placeholder="Your name"
-            className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none transition-colors ${inputClasses}`}
+            className={`w-full rounded-sm border px-3 py-2.5 min-h-11 text-sm outline-none transition-colors ${inputClasses}`}
           />
         </div>
         <div>
@@ -43,8 +45,10 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
           <input
             id="contact-email"
             type="email"
+            inputMode="email"
+            autoComplete="email"
             placeholder="you@example.com"
-            className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none transition-colors ${inputClasses}`}
+            className={`w-full rounded-sm border px-3 py-2.5 min-h-11 text-sm outline-none transition-colors ${inputClasses}`}
           />
         </div>
       </div>
@@ -57,8 +61,10 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
           <input
             id="contact-phone"
             type="tel"
+            inputMode="tel"
+            autoComplete="tel"
             placeholder="(617) 555-0000"
-            className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none transition-colors ${inputClasses}`}
+            className={`w-full rounded-sm border px-3 py-2.5 min-h-11 text-sm outline-none transition-colors ${inputClasses}`}
           />
         </div>
         <div>
@@ -69,7 +75,7 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
             id="contact-client-type"
             value={clientType}
             onChange={(e) => setClientType(e.target.value)}
-            className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none transition-colors cursor-pointer ${inputClasses}`}
+            className={`w-full rounded-sm border px-3 py-2.5 min-h-11 text-sm outline-none transition-colors cursor-pointer ${inputClasses}`}
           >
             <option value="">Select one</option>
             <option value="new">New Client</option>
@@ -88,7 +94,7 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
               id="contact-hear-about"
               value={hearAbout}
               onChange={(e) => setHearAbout(e.target.value)}
-              className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none transition-colors cursor-pointer ${inputClasses}`}
+              className={`w-full rounded-sm border px-3 py-2.5 min-h-11 text-sm outline-none transition-colors cursor-pointer ${inputClasses}`}
             >
               <option value="">Select one</option>
               <option value="search">Internet search</option>
@@ -104,8 +110,10 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
               <input
                 id="contact-referral"
                 type="text"
+                inputMode="text"
+                autoComplete="off"
                 placeholder="Referral name"
-                className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none transition-colors ${inputClasses}`}
+                className={`w-full rounded-sm border px-3 py-2.5 min-h-11 text-sm outline-none transition-colors ${inputClasses}`}
               />
             </div>
           )}
@@ -120,7 +128,7 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
           id="contact-message"
           rows={4}
           placeholder="How can we help?"
-          className={`w-full rounded-sm border px-3 py-2.5 text-sm outline-none transition-colors resize-none ${inputClasses}`}
+          className={`w-full rounded-sm border px-3 py-2.5 min-h-11 text-sm outline-none transition-colors resize-none ${inputClasses}`}
         />
       </div>
 

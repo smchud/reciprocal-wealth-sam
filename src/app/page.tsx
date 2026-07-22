@@ -223,7 +223,7 @@ export default function Home() {
                         </p>
                         <a
                           href={`mailto:${founder.email}`}
-                          className="block w-full mt-3 text-sm text-forest hover:text-deep-forest transition-colors break-words"
+                          className="flex items-center min-h-11 w-full mt-3 text-sm text-forest hover:text-deep-forest transition-colors break-words"
                         >
                           {founder.email}
                         </a>
@@ -250,7 +250,7 @@ export default function Home() {
             <FadeIn className="mt-8 text-center">
               <Link
                 href="/faqs"
-                className="text-sm text-forest font-medium hover:text-deep-forest transition-colors"
+                className="inline-flex items-center min-h-11 text-sm text-forest font-medium hover:text-deep-forest transition-colors"
               >
                 View all FAQs &rarr;
               </Link>
@@ -278,7 +278,7 @@ export default function Home() {
                 </h4>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="text-sm text-near-black hover:text-forest transition-colors"
+                  className="inline-flex items-center min-h-11 text-sm text-near-black hover:text-forest transition-colors"
                 >
                   {siteConfig.email}
                 </a>
@@ -289,7 +289,7 @@ export default function Home() {
                 </h4>
                 <a
                   href={`tel:${siteConfig.phone}`}
-                  className="text-sm text-near-black hover:text-forest transition-colors"
+                  className="inline-flex items-center min-h-11 text-sm text-near-black hover:text-forest transition-colors"
                 >
                   {siteConfig.phone}
                 </a>
