@@ -28,7 +28,7 @@ export default function Home() {
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/60 leading-relaxed max-w-[540px]">
                 Reciprocal Wealth offers personalized wealth management for
-                affluent individuals and families.
+                individuals and families.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <a
