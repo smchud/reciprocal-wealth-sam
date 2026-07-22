@@ -12,6 +12,11 @@ const contentSecurityPolicy = [
   "font-src 'self'",
   "media-src 'self'",
   "connect-src 'self'",
+  // Talk to Us embeds Microsoft Bookings in an iframe. The booking link is
+  // an outlook.office.com URL, but it redirects to bookings.cloud.microsoft
+  // (the actual origin that serves the calendar UI) - both are needed or
+  // the frame silently ends up blank.
+  "frame-src 'self' https://outlook.office.com https://outlook.office365.com https://bookings.cloud.microsoft",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

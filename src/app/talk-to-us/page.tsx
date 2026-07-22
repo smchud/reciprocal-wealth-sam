@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import FadeIn from "@/components/shared/FadeIn";
+import SectionLabel from "@/components/shared/SectionLabel";
 import ContactForm from "@/components/shared/ContactForm";
 import { siteConfig } from "@/data/siteConfig";
+
+const BOOKINGS_URL =
+  "https://outlook.office.com/book/ReciprocalWealth1@reciprocalwealth.com/?ismsaljsauthenabled";
 
 const description =
   "Have a question or want to learn more? Send Reciprocal Wealth a message and we'll respond as soon as we can.";
@@ -63,6 +67,35 @@ export default function TalkToUsB() {
               </div>
             </FadeIn>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-warm-gray py-20 md:py-24">
+        <div className="mx-auto max-w-[900px] px-6">
+          <FadeIn className="text-center mb-10">
+            <SectionLabel>Schedule a Time</SectionLabel>
+            <p className="mt-3 text-sm text-stone max-w-[480px] mx-auto">
+              Prefer to pick a time directly? Book a call below, or{" "}
+              <a
+                href={BOOKINGS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center min-h-11 text-forest font-medium hover:text-deep-forest transition-colors underline"
+              >
+                schedule online
+              </a>{" "}
+              if the calendar below doesn&rsquo;t load.
+            </p>
+          </FadeIn>
+          <FadeIn delay={100}>
+            <iframe
+              src={BOOKINGS_URL}
+              title="Schedule a meeting with Reciprocal Wealth"
+              className="w-full border border-near-black/10 bg-white"
+              style={{ height: 700 }}
+              loading="lazy"
+            />
+          </FadeIn>
         </div>
       </section>
     </>

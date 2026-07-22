@@ -55,14 +55,14 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href || "/"}
-              className="text-sm font-medium text-white/65 hover:text-white transition-colors"
+              className="flex items-center min-h-11 text-sm font-medium text-white/65 hover:text-white transition-colors"
             >
               {link.label}
             </Link>
           ))}
           <a
             href={siteConfig.clientPortalUrl}
-            className="text-sm font-medium bg-forest text-white px-5 py-2 rounded-sm hover:bg-forest-75 transition-colors"
+            className="flex items-center min-h-11 text-sm font-medium bg-forest text-white px-5 rounded-sm hover:bg-forest-75 transition-colors"
           >
             Client Portal
           </a>
