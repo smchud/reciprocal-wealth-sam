@@ -51,8 +51,20 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 pt-6 border-t border-white/10">
-          <p className="text-xs text-white/30 leading-relaxed">
-            {siteConfig.disclosure}
+          <p className="text-xs font-medium text-white/40">
+            Reciprocal Wealth, LLC · Registered Investment Advisor
+          </p>
+          <p className="mt-2 text-xs text-white/30 leading-relaxed">
+            {siteConfig.disclosure} Registration as an investment advisor
+            does not imply any certain level of skill or training. See our{" "}
+            <Link href="/disclosures" className="underline hover:text-white/50 transition-colors">
+              Disclosures
+            </Link>{" "}
+            and{" "}
+            <Link href="/privacy-policy" className="underline hover:text-white/50 transition-colors">
+              Privacy Policy
+            </Link>{" "}
+            for more information.
           </p>
           <p className="mt-3 text-xs text-white/25">{siteConfig.copyright}</p>
         </div>
