@@ -274,7 +274,7 @@ export default function GetStartedFlow() {
             <div className="text-[11px] font-semibold uppercase tracking-wide text-forest mb-2">
               Section {currentStep}
             </div>
-            <h2 className="text-[24px] sm:text-[28px] font-light tracking-[-0.5px] text-near-black">
+            <h2 className="text-[24px] sm:text-[28px] font-serif tracking-[-0.5px] text-near-black">
               {meta.title}
             </h2>
             <p className="mt-2 text-sm text-stone max-w-[60ch] mb-8">{meta.subtitle}</p>

@@ -22,7 +22,7 @@ export default function TermsOfUse() {
             <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.1em] text-forest-50 mb-4">
               Legal
             </span>
-            <h1 className="text-[32px] md:text-[36px] font-light tracking-[-1px] text-white leading-tight">
+            <h1 className="font-serif text-[32px] md:text-[36px] tracking-[-0.5px] text-white leading-tight">
               Terms of Use
             </h1>
             <p className="mt-5 text-sm text-white/55">Effective: July 9, 2026</p>
@@ -66,7 +66,7 @@ export default function TermsOfUse() {
           <h2 className={heading}>Not an Offer Where We&rsquo;re Not Registered or Exempt</h2>
           <div className="mt-4 space-y-4">
             <p>
-              Reciprocal Wealth, LLC is a registered investment advisor
+              Reciprocal Wealth, LLC is a registered investment adviser
               located in the Commonwealth of Massachusetts. We render
               individualized advice to residents of other states only after
               complying with that state&rsquo;s registration requirements, or

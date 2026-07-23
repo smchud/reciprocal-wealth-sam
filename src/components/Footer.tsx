@@ -52,10 +52,10 @@ export default function Footer() {
 
         <div className="mt-16 pt-6 border-t border-white/10">
           <p className="text-xs font-medium text-white/40">
-            Reciprocal Wealth, LLC · Registered Investment Advisor
+            Reciprocal Wealth, LLC · Registered Investment Adviser
           </p>
           <p className="mt-2 text-xs text-white/30 leading-relaxed">
-            {siteConfig.disclosure} Registration as an investment advisor
+            {siteConfig.disclosure} Registration as an investment adviser
             does not imply any certain level of skill or training. See our{" "}
             <Link href="/disclosures" className="underline hover:text-white/50 transition-colors">
               Disclosures

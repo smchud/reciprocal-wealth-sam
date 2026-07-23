@@ -53,7 +53,7 @@ export default function PrivacyPolicy() {
             <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.1em] text-forest-50 mb-4">
               Legal
             </span>
-            <h1 className="text-[32px] md:text-[36px] font-light tracking-[-1px] text-white leading-tight">
+            <h1 className="font-serif text-[32px] md:text-[36px] tracking-[-0.5px] text-white leading-tight">
               Privacy Policy
             </h1>
             <p className="mt-5 text-sm text-white/55">Effective: July 9, 2026</p>
@@ -67,10 +67,10 @@ export default function PrivacyPolicy() {
           <div className="mt-4 space-y-4">
             <p>
               Reciprocal Wealth, LLC (&ldquo;Reciprocal Wealth&rdquo; or the
-              &ldquo;Advisor&rdquo;) is committed to safeguarding the use of
+              &ldquo;Adviser&rdquo;) is committed to safeguarding the use of
               personal information of our Clients (also referred to as
               &ldquo;you&rdquo; and &ldquo;your&rdquo;) that we obtain as your
-              Investment Advisor, as described here in our Privacy Policy
+              Investment Adviser, as described here in our Privacy Policy
               (&ldquo;Policy&rdquo;). Our relationship with you is our most
               important asset. We understand that you have entrusted us with
               your private information, and we do everything that we can to
@@ -92,7 +92,7 @@ export default function PrivacyPolicy() {
               <strong className="text-near-black font-medium">
                 Why you need to know?
               </strong>{" "}
-              Registered Investment Advisors (&ldquo;RIAs&rdquo;) must share
+              Registered Investment Advisers (&ldquo;RIAs&rdquo;) must share
               some of your personal information in the course of servicing
               your account. Federal and State laws give you the right to
               limit some of this sharing and require RIAs to disclose how we

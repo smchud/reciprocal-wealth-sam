@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import type { FAQ } from "@/data/faqs";
 
 interface FAQAccordionProps {
@@ -46,6 +47,14 @@ export default function FAQAccordion({
               <p className={`text-sm leading-relaxed ${bodyColor}`}>
                 {faq.answer}
               </p>
+              {faq.cta && (
+                <Link
+                  href={faq.cta.href}
+                  className="mt-3 inline-flex items-center min-h-11 text-sm font-medium text-forest hover:text-deep-forest transition-colors"
+                >
+                  {faq.cta.label} &rarr;
+                </Link>
+              )}
             </div>
           </div>
         );

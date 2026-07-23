@@ -3,7 +3,7 @@
 export default function WelcomeStep() {
   return (
     <div>
-      <h1 className="text-[28px] sm:text-[32px] font-light tracking-[-0.5px] text-near-black leading-tight">
+      <h1 className="text-[28px] sm:text-[32px] font-serif tracking-[-0.5px] text-near-black leading-tight">
         About You
       </h1>
       <p className="mt-4 text-sm text-near-black leading-relaxed max-w-[56ch]">

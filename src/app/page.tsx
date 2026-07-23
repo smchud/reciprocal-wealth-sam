@@ -1,33 +1,49 @@
 import Link from "next/link";
 import Image from "next/image";
 import FadeIn from "@/components/shared/FadeIn";
-import HeroMedia from "@/components/shared/HeroMedia";
 import SectionLabel from "@/components/shared/SectionLabel";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import ContactForm from "@/components/shared/ContactForm";
 import { values } from "@/data/values";
-import { differentiators, clientPool } from "@/data/differentiators";
-import { founders, ourStory } from "@/data/founders";
+import { differentiators, reciprocityByContract } from "@/data/differentiators";
+import { founders } from "@/data/founders";
 import { faqs } from "@/data/faqs";
 import { siteConfig } from "@/data/siteConfig";
+
+const investmentPillars = [
+  {
+    number: "01",
+    title: "Asset Allocation",
+    description:
+      "Bespoke risk-weighted portfolios of low-cost ETFs. Diversified across proven asset classes to mirror your risk tolerance and stated investment objectives.",
+  },
+  {
+    number: "02",
+    title: "Regular Rebalancing",
+    description:
+      "Disciplined. Scheduled. We hold steady when the markets are not, rather than wagering on a fund manager's ability to predict the optimal points of entry and exit.",
+  },
+  {
+    number: "03",
+    title: "Tactical Taxation",
+    description:
+      "Strategic asset location across all of your accounts. Enhanced with opportunistic tax-loss capture. Lower fees and trading costs, so your return survives the tax bill.",
+  },
+];
 
 export default function Home() {
   return (
     <>
       {/* Hero */}
       <section className="relative bg-deep-forest py-24 md:py-32 lg:py-40 overflow-hidden">
-        <HeroMedia poster="/images/stock/harbor-morning.jpg" video="/video/hero-ambient.mp4" />
-        <div className="absolute inset-0 bg-deep-forest/55" />
         <div className="relative mx-auto max-w-[1200px] px-6">
           <div className="flex items-center gap-12">
             <div className="flex-1 max-w-[720px]">
-              <h1 className="text-[28px] md:text-[34px] font-light leading-[1.15] tracking-[-1.5px] text-white">
-                Spend less time worrying about finances.
-                <br />
-                More time on what matters most to you.
+              <h1 className="font-serif text-[40px] md:text-[56px] leading-[1.1] tracking-[-1px] text-white">
+                Invested <span className="italic">Together.</span>
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/60 leading-relaxed max-w-[540px]">
-                Reciprocal Wealth offers personalized wealth management for
+                An independent, fee-only investment adviser for affluent
                 individuals and families.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -40,10 +56,10 @@ export default function Home() {
                   Schedule A Call
                 </a>
                 <Link
-                  href="/why-reciprocal"
+                  href="/get-started"
                   className="inline-flex items-center rounded-sm border border-white/35 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/55 hover:bg-white/5"
                 >
-                  Why Reciprocal
+                  Become a Client
                 </Link>
               </div>
             </div>
@@ -60,20 +76,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Our Mission — centered */}
+      {/* What We Do */}
       <section className="py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
           <FadeIn className="max-w-[640px] mx-auto text-center">
-            <SectionLabel>Our Mission</SectionLabel>
-            <p className="mt-6 text-xl md:text-2xl font-light text-near-black leading-relaxed tracking-[-0.3px]">
-              &ldquo;Help you provide for yourself and your loved ones in the
-              present while creating a safe and secure future.&rdquo;
-            </p>
-            <p className="mt-6 text-sm text-stone leading-relaxed">
-              Our approach is straightforward, transparent, and focused on what
-              matters to you.
-            </p>
+            <SectionLabel>What We Do</SectionLabel>
+            <h2 className="mt-4 font-serif text-2xl md:text-[32px] tracking-[-0.3px] text-near-black">
+              An independent, <span className="italic">fee-only</span> adviser.
+            </h2>
           </FadeIn>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Fiduciary, First",
+                description:
+                  "Reciprocal Wealth is a fiduciary, electing to be held to the highest regulatory standard in financial services. We are legally obligated to prioritize clients' financial interests ahead of our own — without exception.",
+              },
+              {
+                title: "Who We Help",
+                description:
+                  "We provide holistic investment advice and financial-planning services to affluent individuals and families. Planning is scaled to each client's need. Whether working professional or retiree, we'll craft a plan for you.",
+              },
+              {
+                title: "Single Stream",
+                description:
+                  "We do not accept commissions. We do not sell product. We do not engage in any transactional business. We derive 100% of our revenue from a single, monthly fee on the assets that we manage for you.",
+              },
+            ].map((pillar, i) => (
+              <FadeIn key={pillar.title} delay={i * 100} className="border-t-2 border-forest pt-5">
+                <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-forest">
+                  {pillar.title}
+                </h3>
+                <p className="mt-3 text-sm text-stone leading-relaxed">
+                  {pillar.description}
+                </p>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -81,14 +120,14 @@ export default function Home() {
       <section className="bg-warm-gray py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
           <FadeIn className="text-center mb-12">
-            <SectionLabel>Our Values</SectionLabel>
+            <SectionLabel>Values</SectionLabel>
           </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {values.map((value, i) => (
               <FadeIn
                 key={value.title}
                 delay={i * 100}
-                className="bg-white p-8 md:p-10"
+                className="bg-white border border-near-black/8 shadow-sm p-8 md:p-10"
               >
                 <h2 className="text-lg font-medium text-near-black tracking-[-0.2px]">
                   {value.title}
@@ -102,32 +141,126 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Reciprocal — centered */}
+      {/* How We Invest */}
+      <section className="py-20 md:py-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <FadeIn className="max-w-[640px] mx-auto text-center">
+            <SectionLabel>How We Invest</SectionLabel>
+            <h2 className="mt-4 font-serif text-2xl md:text-[32px] tracking-[-0.3px] text-near-black">
+              <span className="italic">Simple,</span> by design.
+            </h2>
+          </FadeIn>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+            {investmentPillars.map((pillar, i) => (
+              <FadeIn
+                key={pillar.number}
+                delay={i * 100}
+                className={
+                  i > 0 ? "md:border-l md:border-near-black/10 md:pl-8" : ""
+                }
+              >
+                <span className="font-serif text-xl font-bold text-forest">
+                  {pillar.number}
+                </span>
+                <h3 className="mt-2 text-base font-medium text-near-black">
+                  {pillar.title}
+                </h3>
+                <p className="mt-3 text-sm text-stone leading-relaxed">
+                  {pillar.description}
+                </p>
+              </FadeIn>
+            ))}
+          </div>
+          <FadeIn className="mt-14 pt-10 border-t border-near-black/10 text-center">
+            <p className="text-lg md:text-xl text-near-black leading-relaxed max-w-[720px] mx-auto">
+              Investing, though rarely easy,{" "}
+              <strong className="font-semibold text-deep-forest">
+                does not need to be complicated.
+              </strong>
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Who We Are */}
+      <section className="bg-warm-gray py-20 md:py-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <FadeIn className="text-center max-w-[640px] mx-auto">
+            <SectionLabel>Who We Are</SectionLabel>
+            <h2 className="mt-4 font-serif text-2xl md:text-[32px] tracking-[-0.3px] text-near-black">
+              Built by <span className="italic">operators,</span> not salesmen.
+            </h2>
+          </FadeIn>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            {founders.map((founder, i) => (
+              <FadeIn key={founder.name} delay={i * 150} className="min-w-0">
+                <div className="bg-white p-6 md:p-8">
+                  <div className="flex flex-col sm:flex-row gap-6">
+                    <div className="w-full sm:w-40 aspect-square relative flex-shrink-0 overflow-hidden bg-warm-gray">
+                      <Image
+                        src={founder.image}
+                        alt={founder.name}
+                        fill
+                        sizes="160px"
+                        className="object-contain object-bottom"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg font-medium text-near-black">
+                        {founder.name}
+                      </h3>
+                      <p className="text-sm text-stone italic mt-0.5">
+                        &ldquo;{founder.nickname}&rdquo; &middot; {founder.title}
+                      </p>
+                      <p className="text-xs font-semibold uppercase tracking-[0.1em] text-forest mt-2">
+                        {founder.focus}
+                      </p>
+                      <p className="mt-4 text-sm text-stone leading-relaxed">
+                        {founder.bio}
+                      </p>
+                      <ul className="mt-4 space-y-1">
+                        {founder.education.map((line) => (
+                          <li key={line} className="text-xs text-stone/80 leading-relaxed">
+                            {line}
+                          </li>
+                        ))}
+                      </ul>
+                      <a
+                        href={`mailto:${founder.email}`}
+                        className="flex items-center min-h-11 w-full mt-3 text-sm text-forest hover:text-deep-forest transition-colors break-words"
+                      >
+                        {founder.email}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How We Differ */}
       <section className="bg-deep-forest py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
           <FadeIn className="text-center">
-            <span className="inline-block text-base md:text-lg font-semibold uppercase tracking-[0.1em] text-forest-50 mb-4">
-              Why Reciprocal
-            </span>
-            <h2 className="text-3xl md:text-[36px] font-medium tracking-[-0.4px] text-white">
-              What makes us different
+            <SectionLabel className="text-forest-50">How We Differ</SectionLabel>
+            <h2 className="mt-4 font-serif text-2xl md:text-[32px] tracking-[-0.3px] text-white">
+              Invested in <span className="italic">your success</span>.
             </h2>
           </FadeIn>
 
-          {/* The Client Pool — lead differentiator */}
+          {/* Reciprocity by Contract — lead differentiator */}
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-14 items-center">
             <FadeIn>
               <span className="inline-block text-xl md:text-2xl font-semibold uppercase tracking-[0.1em] text-forest-50">
-                {clientPool.label}
+                {reciprocityByContract.label}
               </span>
-              <h3 className="mt-3 text-2xl md:text-[28px] font-medium tracking-[-0.4px] text-white">
-                {clientPool.heading}
-              </h3>
               <p className="mt-3 text-sm md:text-base text-white/55 leading-relaxed">
-                {clientPool.tagline}
+                {reciprocityByContract.tagline}
               </p>
               <div className="mt-8 space-y-4">
-                {clientPool.points.map((point) => (
+                {reciprocityByContract.points.map((point) => (
                   <div key={point.title} className="border border-white/10 bg-white/[0.04] p-6">
                     <h4 className="text-base font-medium text-white">
                       {point.title}
@@ -141,14 +274,14 @@ export default function Home() {
             </FadeIn>
             <FadeIn delay={150}>
               <div className="bg-forest-10 p-10 md:p-12 text-center">
-                <p className="text-[64px] md:text-[72px] font-bold tracking-[-2px] text-deep-forest leading-none">
-                  {clientPool.stat}
+                <p className="font-serif lining-nums text-[64px] md:text-[72px] font-bold tracking-[-2px] text-deep-forest leading-none">
+                  {reciprocityByContract.stat}
                 </p>
                 <p className="mt-5 text-base font-bold text-deep-forest leading-relaxed max-w-[240px] mx-auto">
-                  {clientPool.statDescription}
+                  {reciprocityByContract.statDescription}
                 </p>
                 <p className="mt-4 text-xs font-bold uppercase tracking-[0.1em] text-forest">
-                  {clientPool.statLabel}
+                  {reciprocityByContract.statLabel}
                 </p>
               </div>
             </FadeIn>
@@ -156,86 +289,27 @@ export default function Home() {
 
           <div className="mt-14 pt-12 border-t border-white/10">
             <FadeIn className="text-center mb-10">
-              <h3 className="text-2xl md:text-[28px] font-medium tracking-[-0.4px] text-white">
+              <h3 className="font-serif text-2xl md:text-[28px] tracking-[-0.4px] text-white">
                 More ways we&rsquo;re different
               </h3>
             </FadeIn>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {differentiators
-              .filter((diff) => diff.title !== clientPool.label)
-              .map((diff, i) => (
-              <FadeIn
-                key={diff.title}
-                delay={i * 80}
-                className="border border-white/10 p-8"
-              >
-                <h3 className="text-base font-medium text-white mb-3">
-                  {diff.title}
-                </h3>
-                <p className="text-sm text-white/55 leading-relaxed">
-                  {diff.description}
-                </p>
-              </FadeIn>
-            ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Story + Meet the Founders */}
-      <section className="py-20 md:py-24">
-        <div className="mx-auto max-w-[1200px] px-6">
-          <FadeIn className="mx-auto max-w-[40rem]">
-            <div className="text-center">
-              <SectionLabel>Our Story</SectionLabel>
-            </div>
-            <div className="mt-8 space-y-5 text-left text-[15px] md:text-base text-near-black/85 leading-[1.65] text-pretty">
-              {ourStory.split("\n\n").map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
-              ))}
-            </div>
-          </FadeIn>
-
-          <FadeIn className="mt-16">
-            <h2 className="text-center text-3xl md:text-[36px] font-medium tracking-[-0.4px] text-near-black mb-12">
-              Meet the Founders
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-              {founders.map((founder, i) => (
-                <FadeIn key={founder.name} delay={i * 150} className="min-w-0">
-                  <div className="bg-warm-gray p-6 md:p-8">
-                    <div className="flex flex-col sm:flex-row gap-6">
-                      <div className="w-full sm:w-40 aspect-square relative flex-shrink-0 overflow-hidden">
-                        <Image
-                          src={founder.image}
-                          alt={founder.name}
-                          fill
-                          className="object-cover object-top"
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-lg font-medium text-near-black">
-                          {founder.name}
-                        </h3>
-                        <p className="text-xs font-semibold uppercase tracking-[0.1em] text-forest mt-1">
-                          {founder.title}
-                        </p>
-                        <p className="mt-4 text-sm text-stone leading-relaxed">
-                          {founder.shortBio}
-                        </p>
-                        <a
-                          href={`mailto:${founder.email}`}
-                          className="flex items-center min-h-11 w-full mt-3 text-sm text-forest hover:text-deep-forest transition-colors break-words"
-                        >
-                          {founder.email}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {differentiators.map((diff, i) => (
+                <FadeIn
+                  key={diff.title}
+                  delay={i * 80}
+                  className="border border-white/10 p-8"
+                >
+                  <h3 className="text-base font-medium text-white mb-3">
+                    {diff.title}
+                  </h3>
+                  <p className="text-sm text-white/55 leading-relaxed">
+                    {diff.description}
+                  </p>
                 </FadeIn>
               ))}
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 

@@ -21,7 +21,7 @@ export default function FAQsB() {
             <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.1em] text-forest-50 mb-4">
               FAQs
             </span>
-            <h1 className="text-[32px] md:text-[36px] font-light tracking-[-1px] text-white leading-tight">
+            <h1 className="font-serif text-[32px] md:text-[36px] tracking-[-0.5px] text-white leading-tight">
               Answers to questions we hear often
             </h1>
           </div>

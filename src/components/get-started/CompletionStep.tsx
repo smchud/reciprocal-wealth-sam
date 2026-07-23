@@ -18,7 +18,7 @@ export default function CompletionStep({ data }: { data: IntakeData }) {
 
   return (
     <div>
-      <h2 className="text-[26px] sm:text-[30px] font-light tracking-[-0.5px] text-near-black leading-tight">
+      <h2 className="text-[26px] sm:text-[30px] font-serif tracking-[-0.5px] text-near-black leading-tight">
         Thank you, {firstName}.
       </h2>
       <p className="mt-3 text-sm text-stone leading-relaxed max-w-[56ch]">

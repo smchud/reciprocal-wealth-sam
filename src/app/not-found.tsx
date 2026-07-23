@@ -9,7 +9,7 @@ export default function NotFound() {
         <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.1em] text-forest mb-4">
           404
         </span>
-        <h1 className="text-2xl md:text-[28px] font-medium tracking-[-0.4px] text-near-black">
+        <h1 className="font-serif text-2xl md:text-[28px] tracking-[-0.4px] text-near-black">
           Page not found
         </h1>
         <p className="mt-3 text-sm text-stone max-w-[360px] mx-auto leading-relaxed">
