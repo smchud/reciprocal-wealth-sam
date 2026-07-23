@@ -40,6 +40,10 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // pdfkit reads its standard-14 font metrics (.afm files) from disk via
+  // __dirname at runtime; bundling it rewrites that path and breaks font
+  // loading (ENOENT for Helvetica.afm). Keep it a real require() instead.
+  serverExternalPackages: ["pdfkit"],
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

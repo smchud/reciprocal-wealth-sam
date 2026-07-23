@@ -1,5 +1,6 @@
 const WEALTHBOX_API_BASE = "https://api.crmworkspace.com/v1";
 const SOURCE_TAG = "website — contact form";
+const QUESTIONNAIRE_SOURCE_TAG = "website — questionnaire";
 
 interface SyncContactInput {
   name: string;
@@ -86,6 +87,71 @@ export async function syncContact(input: SyncContactInput): Promise<{ id: number
       ...(phoneNumbers ? { phone_numbers: phoneNumbers } : {}),
       tags: [SOURCE_TAG],
       background_information: note,
+    }),
+  });
+
+  return { id: created.id, created: true };
+}
+
+interface SyncQuestionnaireContactInput {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  note: string;
+}
+
+/**
+ * Creates a new Wealthbox contact, or updates an existing one found by
+ * email, tagging it with the website-questionnaire source and appending a
+ * note summarizing the submission. Best-effort: callers should catch and
+ * log failures rather than let them block the visitor-facing response.
+ */
+export async function syncQuestionnaireContact(
+  input: SyncQuestionnaireContactInput
+): Promise<{ id: number; created: boolean }> {
+  const existing = await wealthboxFetch(`/contacts?email=${encodeURIComponent(input.email)}`, {
+    method: "GET",
+  });
+
+  const match = existing?.contacts?.[0];
+
+  const emailAddresses = [{ address: input.email, principal: true, kind: "Work" }];
+  const phoneNumbers = input.phone
+    ? [{ address: input.phone, principal: true, kind: "Mobile" }]
+    : undefined;
+
+  if (match) {
+    const existingTags: string[] = match.tags ?? [];
+    const tags = existingTags.includes(QUESTIONNAIRE_SOURCE_TAG)
+      ? existingTags
+      : [...existingTags, QUESTIONNAIRE_SOURCE_TAG];
+    const existingBackground: string = match.background_information ?? "";
+    const background_information = existingBackground
+      ? `${existingBackground}\n\n${input.note}`
+      : input.note;
+
+    await wealthboxFetch(`/contacts/${match.id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        tags,
+        background_information,
+        ...(phoneNumbers ? { phone_numbers: phoneNumbers } : {}),
+      }),
+    });
+
+    return { id: match.id, created: false };
+  }
+
+  const created = await wealthboxFetch("/contacts", {
+    method: "POST",
+    body: JSON.stringify({
+      first_name: input.firstName,
+      last_name: input.lastName,
+      email_addresses: emailAddresses,
+      ...(phoneNumbers ? { phone_numbers: phoneNumbers } : {}),
+      tags: [QUESTIONNAIRE_SOURCE_TAG],
+      background_information: input.note,
     }),
   });
 

@@ -61,6 +61,34 @@ export async function notifyFounders(input: NotifyInput): Promise<void> {
 }
 
 /**
+ * Emails the founders-only PDF summary of a completed questionnaire
+ * submission. Throws on failure - the caller treats this as best-effort and
+ * must not let it block the visitor-facing response.
+ */
+export async function sendSubmissionSummary(
+  clientName: string,
+  pdfBuffer: Buffer
+): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) throw new Error("RESEND_API_KEY is not configured");
+
+  const resend = new Resend(apiKey);
+  const to = founders.map((f) => f.email);
+  const filename = `${clientName.replace(/[^a-z0-9]+/gi, "-").toLowerCase() || "questionnaire"}-summary.pdf`;
+
+  const { error } = await resend.emails.send({
+    from: FROM_ADDRESS,
+    to,
+    subject: `New questionnaire submission — ${clientName}`,
+    text: `${clientName} completed the intake questionnaire. Summary attached.`,
+    html: `<p>${escapeHtml(clientName)} completed the intake questionnaire. Summary attached.</p>`,
+    attachments: [{ filename, content: pdfBuffer }],
+  });
+
+  if (error) throw new Error(`Resend send failed: ${error.message}`);
+}
+
+/**
  * Emails a single-use resume link for the /get-started questionnaire.
  * Throws on failure - callers decide how to respond to the visitor.
  */
