@@ -32,10 +32,12 @@ export default function Home() {
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <a
-                  href={siteConfig.clientPortalUrl}
+                  href={siteConfig.bookingsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center rounded-sm bg-white px-7 py-3 text-sm font-medium text-deep-forest transition-colors hover:bg-warm-gray"
                 >
-                  Client Portal
+                  Schedule A Call
                 </a>
                 <Link
                   href="/why-reciprocal"
