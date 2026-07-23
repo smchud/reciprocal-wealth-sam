@@ -194,7 +194,7 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
       <p className={`text-xs leading-relaxed ${disclaimerClasses}`}>
         Please don&rsquo;t include sensitive personal or account information in
         this message. See our{" "}
-        <Link href="/disclosures#privacy-disclosures" className={linkClasses}>
+        <Link href="/privacy-policy" className={linkClasses}>
           privacy policy
         </Link>
         .
