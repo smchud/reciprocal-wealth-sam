@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/talk-to-us",
     "/disclosures",
     "/privacy-policy",
+    "/terms-of-use",
   ];
 
   return routes.map((route) => ({

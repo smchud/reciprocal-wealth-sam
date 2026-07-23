@@ -47,6 +47,49 @@ export default function DisclosuresB() {
             </p>
           </div>
 
+          <h2 className={heading}>Form ADV Part 2A &amp; Part 2B</h2>
+          <div className="mt-4 space-y-4">
+            <p>
+              Form ADV is the official disclosure document every registered
+              investment advisor must file with regulators. It comes in two
+              parts, which Reciprocal Wealth provides together as a single
+              PDF for your convenience.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="border border-near-black/10 bg-warm-gray p-5">
+                <h3 className="text-sm font-medium text-near-black">
+                  Part 2A — Disclosure Brochure
+                </h3>
+                <p className="mt-2 text-sm text-stone leading-relaxed">
+                  Describes who we are, the services we offer, how we&rsquo;re
+                  compensated, and the conflicts of interest we manage —
+                  everything you need to evaluate whether to work with us.
+                </p>
+              </div>
+              <div className="border border-near-black/10 bg-warm-gray p-5">
+                <h3 className="text-sm font-medium text-near-black">
+                  Part 2B — Brochure Supplement
+                </h3>
+                <p className="mt-2 text-sm text-stone leading-relaxed">
+                  Background on the specific people who advise you — their
+                  education, work history, and disciplinary record —
+                  supplementing the firm-level information in Part 2A.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <a
+                href="/documents/reciprocal-wealth-form-adv-part-2a-2b.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center min-h-11 rounded-sm bg-forest px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-deep-forest"
+              >
+                Download Form ADV Part 2A &amp; 2B (PDF)
+              </a>
+              <p className="text-xs text-stone">Effective: July 9, 2026</p>
+            </div>
+          </div>
+
           <h2 className={heading}>Terms of Use</h2>
           <div className="mt-4 space-y-4">
             <p>
@@ -77,6 +120,18 @@ export default function DisclosuresB() {
               modified.
             </p>
             <p>These Terms were last updated on July 9, 2026.</p>
+            <p>
+              For the full terms governing use of this website, including
+              important disclaimers about the general-information nature of
+              its content, see our{" "}
+              <Link
+                href="/terms-of-use"
+                className="text-forest hover:text-deep-forest transition-colors underline"
+              >
+                Terms of Use
+              </Link>
+              .
+            </p>
           </div>
 
           <h2 className={heading}>Risk Disclosure</h2>
