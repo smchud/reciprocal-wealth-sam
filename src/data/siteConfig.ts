@@ -27,6 +27,6 @@ export const navLinks = [
 
 export const footerLinks = [
   ...navLinks,
-  { label: "Get Started", href: "/get-started" },
+  { label: "Become a Client", href: "/get-started" },
   { label: "Already a client? Access your portal", href: siteConfig.altruistPortalUrl },
 ] as const;

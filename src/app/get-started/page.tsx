@@ -6,9 +6,9 @@ const description =
   "Tell us about your goals, finances, and how you think about risk so we can prepare for your first meeting.";
 
 export const metadata: Metadata = {
-  title: "Get Started",
+  title: "Become a Client",
   description,
-  openGraph: { title: "Get Started", description, images: ["/images/og-default.png"] },
+  openGraph: { title: "Become a Client", description, images: ["/images/og-default.png"] },
 };
 
 export default function GetStartedPage() {

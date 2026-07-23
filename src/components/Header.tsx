@@ -70,7 +70,7 @@ export default function Header() {
             href="/get-started"
             className="flex items-center min-h-11 text-sm font-medium bg-forest text-white px-5 rounded-sm hover:bg-forest-75 transition-colors"
           >
-            Get Started
+            Become a Client
           </Link>
         </nav>
 
