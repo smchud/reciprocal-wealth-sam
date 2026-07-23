@@ -33,15 +33,15 @@ export default function WhoWeAreB() {
         <div className="mx-auto max-w-[1200px] px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {founders.map((founder, i) => (
-              <FadeIn key={founder.name} delay={i * 150}>
-                <div className="bg-warm-gray p-6 md:p-8">
-                  <div className="w-44 md:w-48 aspect-square relative overflow-hidden mb-6 bg-white">
+              <FadeIn key={founder.name} delay={i * 150} className="h-full">
+                <div className="bg-warm-gray p-6 md:p-8 h-full">
+                  <div className="w-44 md:w-48 aspect-[540/615] relative overflow-hidden mb-6 bg-white">
                     <Image
                       src={founder.image}
                       alt={founder.name}
                       fill
                       sizes="192px"
-                      className="object-contain object-bottom"
+                      className="object-cover object-top"
                     />
                   </div>
                   <h2 className="text-xl font-medium text-near-black">

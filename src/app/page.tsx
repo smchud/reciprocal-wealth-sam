@@ -95,19 +95,19 @@ export default function Home() {
               {
                 title: "Who We Help",
                 description:
-                  "We provide holistic investment advice and financial-planning services to affluent individuals and families. Planning is scaled to each client's need. Whether working professional or retiree, we'll craft a plan for you.",
+                  "We provide holistic investment advice and financial-planning services to affluent individuals and families. Planning is scaled to each client's need. Whether working professional or retiree, we'll craft a plan for you.",
               },
               {
                 title: "Single Stream",
                 description:
-                  "We do not accept commissions. We do not sell product. We do not engage in any transactional business. We derive 100% of our revenue from a single, monthly fee on the assets that we manage for you.",
+                  "We do not accept commissions. We do not sell product. We do not engage in any transactional business. We derive 100% of our revenue from a single, monthly fee on the assets that we manage for you.",
               },
             ].map((pillar, i) => (
-              <FadeIn key={pillar.title} delay={i * 100} className="border-t-2 border-forest pt-5">
+              <FadeIn key={pillar.title} delay={i * 100} className="border-t-2 border-forest pt-5 h-full flex flex-col">
                 <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-forest">
                   {pillar.title}
                 </h3>
-                <p className="mt-3 text-sm text-stone leading-relaxed">
+                <p className="mt-3 text-sm text-stone leading-relaxed min-h-[130px] md:min-h-[110px]">
                   {pillar.description}
                 </p>
               </FadeIn>
@@ -120,7 +120,7 @@ export default function Home() {
       <section className="bg-warm-gray py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
           <FadeIn className="text-center mb-12">
-            <SectionLabel>Values</SectionLabel>
+            <SectionLabel>Our Values</SectionLabel>
           </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {values.map((value, i) => (
@@ -193,16 +193,16 @@ export default function Home() {
           </FadeIn>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {founders.map((founder, i) => (
-              <FadeIn key={founder.name} delay={i * 150} className="min-w-0">
-                <div className="bg-white p-6 md:p-8">
+              <FadeIn key={founder.name} delay={i * 150} className="min-w-0 h-full">
+                <div className="bg-white p-6 md:p-8 h-full">
                   <div className="flex flex-col sm:flex-row gap-6">
-                    <div className="w-full sm:w-40 aspect-square relative flex-shrink-0 overflow-hidden bg-warm-gray">
+                    <div className="w-full sm:w-40 aspect-[540/615] relative flex-shrink-0 overflow-hidden bg-warm-gray">
                       <Image
                         src={founder.image}
                         alt={founder.name}
                         fill
                         sizes="160px"
-                        className="object-contain object-bottom"
+                        className="object-cover object-top"
                       />
                     </div>
                     <div className="flex-1 min-w-0">

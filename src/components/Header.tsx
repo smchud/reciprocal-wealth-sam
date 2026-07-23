@@ -47,31 +47,33 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-deep-forest/95 backdrop-blur-sm">
-      <div className="mx-auto max-w-[1200px] px-6 flex items-center justify-between h-[72px]">
+      <div className="mx-auto max-w-[1200px] px-6 flex items-center justify-between gap-8 h-[72px]">
         <Logo variant="horizontal" theme="dark" href="/" />
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-6 flex-shrink-0">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href || "/"}
-              className="flex items-center min-h-11 text-sm font-medium text-white/65 hover:text-white transition-colors"
+              className="flex items-center min-h-11 whitespace-nowrap text-sm font-medium text-white/65 hover:text-white transition-colors"
             >
               {link.label}
             </Link>
           ))}
-          <a
-            href={siteConfig.altruistPortalUrl}
-            className="flex items-center min-h-11 text-xs text-white/50 hover:text-white/80 transition-colors"
-          >
-            Already a client? Access your portal
-          </a>
-          <Link
-            href="/get-started"
-            className="flex items-center min-h-11 text-sm font-medium bg-forest text-white px-5 rounded-sm hover:bg-forest-75 transition-colors"
-          >
-            Become a Client
-          </Link>
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <a
+              href={siteConfig.altruistPortalUrl}
+              className="flex items-center min-h-11 whitespace-nowrap text-sm font-medium border border-white/30 text-white px-5 rounded-sm hover:border-white/55 hover:bg-white/5 transition-colors"
+            >
+              Client Portal
+            </a>
+            <Link
+              href="/get-started"
+              className="flex items-center min-h-11 whitespace-nowrap text-sm font-medium bg-forest text-white px-5 rounded-sm hover:bg-forest-75 transition-colors"
+            >
+              Become a Client
+            </Link>
+          </div>
         </nav>
 
         <button
@@ -120,16 +122,16 @@ export default function Header() {
             <a
               href={siteConfig.altruistPortalUrl}
               onClick={() => setMobileOpen(false)}
-              className="mt-3 flex items-center justify-center text-xs text-white/50 hover:text-white/80 min-h-11 transition-colors"
+              className="mt-3 flex items-center justify-center text-sm font-medium text-center min-h-11 border border-white/30 text-white px-5 rounded-sm hover:border-white/55 hover:bg-white/5 transition-colors"
             >
-              Already a client? Access your portal
+              Client Portal
             </a>
             <Link
               href="/get-started"
               onClick={() => setMobileOpen(false)}
-              className="mt-1 flex items-center justify-center text-sm font-medium text-center min-h-11 bg-forest text-white px-5 rounded-sm hover:bg-forest-75 transition-colors"
+              className="mt-2 flex items-center justify-center text-sm font-medium text-center min-h-11 bg-forest text-white px-5 rounded-sm hover:bg-forest-75 transition-colors"
             >
-              Get Started
+              Become a Client
             </Link>
           </nav>
         </div>
