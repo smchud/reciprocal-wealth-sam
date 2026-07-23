@@ -11,7 +11,7 @@ type Status = "idle" | "submitting" | "success" | "error" | "rate-limited";
 
 const FOUNDER_EMAILS = "sam@reciprocalwealth.com or jake@reciprocalwealth.com";
 const GENERIC_ERROR = `Something went wrong sending your message. Please email us directly at ${FOUNDER_EMAILS}.`;
-const RATE_LIMIT_ERROR = `You've submitted a few times recently. Please email us directly at ${FOUNDER_EMAILS} and we'll get right back to you.`;
+const RATE_LIMIT_ERROR = `We weren't able to submit your message just now. Please email us directly at ${FOUNDER_EMAILS} and we'll get right back to you.`;
 
 export default function ContactForm({ theme = "light" }: ContactFormProps) {
   const [status, setStatus] = useState<Status>("idle");

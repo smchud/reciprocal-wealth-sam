@@ -53,7 +53,7 @@ test.describe("Talk to Us form UI", () => {
     await expect(page.getByRole("button", { name: "Send Message" })).toBeVisible();
   });
 
-  test("rate-limited (429) submission shows the branded rate-limit message, not a raw error", async ({
+  test("rate-limited (429) submission visibly shows a clear, non-accusatory message with a direct-contact path", async ({
     page,
   }) => {
     await page.route("**/api/contact", async (route) => {
@@ -67,8 +67,16 @@ test.describe("Talk to Us form UI", () => {
     await page.waitForTimeout(1600);
     await page.getByRole("button", { name: "Send Message" }).click();
 
-    await expect(page.getByTestId("form-error")).toContainText("You've submitted a few times recently");
-    await expect(page.getByTestId("form-error")).toContainText("sam@reciprocalwealth.com");
+    const banner = page.getByTestId("form-error");
+    await expect(banner).toBeVisible();
+    // Must make clear the message did NOT go through, not read as an accusation.
+    await expect(banner).toHaveText(
+      "We weren't able to submit your message just now. Please email us directly at sam@reciprocalwealth.com or jake@reciprocalwealth.com and we'll get right back to you."
+    );
+    await expect(banner).not.toContainText("submitted a few times");
+    // The two emails must be joined by "or", never "and" - this isn't asking
+    // the visitor to email both founders, just giving two valid options.
+    await expect(banner).toContainText("sam@reciprocalwealth.com or jake@reciprocalwealth.com");
   });
 
   test("both Wealthbox and email failing shows a direct-contact fallback, never a silent failure", async ({
