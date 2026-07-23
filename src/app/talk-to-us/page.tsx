@@ -4,9 +4,6 @@ import SectionLabel from "@/components/shared/SectionLabel";
 import ContactForm from "@/components/shared/ContactForm";
 import { siteConfig } from "@/data/siteConfig";
 
-const BOOKINGS_URL =
-  "https://outlook.office.com/book/ReciprocalWealth1@reciprocalwealth.com/?ismsaljsauthenabled";
-
 const description =
   "Have a question or want to learn more? Send Reciprocal Wealth a message and we'll respond as soon as we can.";
 
@@ -79,7 +76,7 @@ export default function TalkToUsB() {
               works for you.
             </p>
             <a
-              href={BOOKINGS_URL}
+              href={siteConfig.bookingsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center min-h-11 mt-8 rounded-sm bg-forest px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-deep-forest"
