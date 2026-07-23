@@ -50,7 +50,7 @@ export default function Header() {
       <div className="mx-auto max-w-[1200px] px-6 flex items-center justify-between gap-8 h-[72px]">
         <Logo variant="horizontal" theme="dark" href="/" />
 
-        <nav className="hidden md:flex items-center gap-5 lg:gap-6 flex-shrink-0">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8 flex-shrink-0">
           {navLinks.map((link) => (
             <Link
               key={link.href}

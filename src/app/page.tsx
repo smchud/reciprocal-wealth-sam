@@ -95,7 +95,7 @@ export default function Home() {
               {
                 title: "Who We Help",
                 description:
-                  "We provide holistic investment advice and financial-planning services to affluent individuals and families. Planning is scaled to each client's need. Whether working professional or retiree, we'll craft a plan for you.",
+                  "We provide holistic investment advice and financial-planning services to affluent individuals and families. Planning is scaled to each client's need. Working professional or retiree, we'll craft a plan for you.",
               },
               {
                 title: "Single Stream",
@@ -196,12 +196,13 @@ export default function Home() {
               <FadeIn key={founder.name} delay={i * 150} className="min-w-0 h-full">
                 <div className="bg-white p-6 md:p-8 h-full">
                   <div className="flex flex-col sm:flex-row gap-6">
-                    <div className="w-full sm:w-40 aspect-[540/615] relative flex-shrink-0 overflow-hidden bg-warm-gray">
+                    <div className="w-full sm:w-56 aspect-[540/615] relative flex-shrink-0 overflow-hidden bg-warm-gray">
                       <Image
                         src={founder.image}
                         alt={founder.name}
                         fill
-                        sizes="160px"
+                        sizes="(min-width: 640px) 224px, 100vw"
+                        quality={95}
                         className="object-cover object-top"
                       />
                     </div>

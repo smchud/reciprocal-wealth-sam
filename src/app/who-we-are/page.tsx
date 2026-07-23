@@ -35,12 +35,13 @@ export default function WhoWeAreB() {
             {founders.map((founder, i) => (
               <FadeIn key={founder.name} delay={i * 150} className="h-full">
                 <div className="bg-warm-gray p-6 md:p-8 h-full">
-                  <div className="w-44 md:w-48 aspect-[540/615] relative overflow-hidden mb-6 bg-white">
+                  <div className="w-60 md:w-72 aspect-[540/615] relative overflow-hidden mb-6 bg-white">
                     <Image
                       src={founder.image}
                       alt={founder.name}
                       fill
-                      sizes="192px"
+                      sizes="(min-width: 768px) 288px, 240px"
+                      quality={95}
                       className="object-cover object-top"
                     />
                   </div>

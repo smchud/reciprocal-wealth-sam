@@ -5,8 +5,8 @@ export const siteConfig = {
   phone: "774-403-5105",
   address: "Medfield, MA | Waban, MA",
   // TODO(altruist): placeholder until Sam provides the real Altruist client-portal
-  // login / onboarding-invite URL. Used by the "Already a client?" nav link and
-  // the post-questionnaire onboarding handoff on /get-started.
+  // login / onboarding-invite URL. Used by the "Client Portal" nav/footer
+  // links and the post-questionnaire onboarding handoff on /get-started.
   altruistPortalUrl: "#altruist-portal-todo",
   bookingsUrl:
     "https://outlook.office.com/book/ReciprocalWealth1@reciprocalwealth.com/?ismsaljsauthenabled",
@@ -28,5 +28,5 @@ export const navLinks = [
 export const footerLinks = [
   ...navLinks,
   { label: "Become a Client", href: "/get-started" },
-  { label: "Already a client? Access your portal", href: siteConfig.altruistPortalUrl },
+  { label: "Client Portal", href: siteConfig.altruistPortalUrl },
 ] as const;
