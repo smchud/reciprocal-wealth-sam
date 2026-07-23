@@ -144,7 +144,9 @@ export default function DisclosuresB() {
             </p>
           </div>
 
-          <h2 className={heading}>Privacy Disclosures</h2>
+          <h2 id="privacy-disclosures" className={`${heading} scroll-mt-24`}>
+            Privacy Disclosures
+          </h2>
           <div className="mt-4 space-y-4">
             <p>
               Reciprocal Wealth is committed to safeguarding the use of

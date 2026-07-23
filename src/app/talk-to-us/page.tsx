@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import FadeIn from "@/components/shared/FadeIn";
+import SectionLabel from "@/components/shared/SectionLabel";
 import ContactForm from "@/components/shared/ContactForm";
 import { siteConfig } from "@/data/siteConfig";
+
+const BOOKINGS_URL =
+  "https://outlook.office.com/book/ReciprocalWealth1@reciprocalwealth.com/?ismsaljsauthenabled";
 
 const description =
   "Have a question or want to learn more? Send Reciprocal Wealth a message and we'll respond as soon as we can.";
@@ -63,6 +67,26 @@ export default function TalkToUsB() {
               </div>
             </FadeIn>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-warm-gray py-20 md:py-24">
+        <div className="mx-auto max-w-[640px] px-6 text-center">
+          <FadeIn>
+            <SectionLabel>Schedule a Time</SectionLabel>
+            <p className="mt-3 text-sm text-stone max-w-[480px] mx-auto">
+              Prefer to pick a time directly? Book a call at a time that
+              works for you.
+            </p>
+            <a
+              href={BOOKINGS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center min-h-11 mt-8 rounded-sm bg-forest px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-deep-forest"
+            >
+              Schedule a Call
+            </a>
+          </FadeIn>
         </div>
       </section>
     </>
