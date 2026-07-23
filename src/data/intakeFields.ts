@@ -100,6 +100,7 @@ export const MULTI_VALUE_FIELD_NAMES: readonly StaticFieldName[] = [
   "income_sources",
   "priorities",
   "instruments",
+  "prior_advisor",
   "prior_dissatisfaction",
   "contact_channel",
   "advisor_qualities",

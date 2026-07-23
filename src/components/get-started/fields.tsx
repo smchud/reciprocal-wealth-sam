@@ -326,46 +326,49 @@ export function LikertGrid({
 }) {
   return (
     <FieldWrap label={label} help={help}>
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse text-sm min-w-[560px]">
-          <thead>
-            <tr>
-              <th className="text-left pb-2 pr-2 font-medium text-near-black" />
-              {LIKERT_COLUMNS.map((col) => (
-                <th
-                  key={col}
-                  className="pb-2 px-1 text-center text-[11px] uppercase tracking-wide text-stone font-semibold"
-                >
-                  {col}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {statements.map((st) => (
-              <tr key={st.name} className="border-t border-near-black/10">
-                <td className="py-3 pr-3 text-near-black align-middle w-[40%]">{st.label}</td>
-                {LIKERT_COLUMNS.map((_, i) => {
-                  const v = String(i + 1);
-                  return (
-                    <td key={v} className="text-center align-middle">
-                      <input
-                        type="radio"
-                        name={st.name}
-                        value={v}
-                        checked={value[st.name] === v}
-                        onChange={() => onChange(st.name, v)}
-                        className="accent-deep-forest h-4 w-4"
-                        aria-label={`${st.label}: ${LIKERT_COLUMNS[i]}`}
-                      />
-                    </td>
-                  );
-                })}
-              </tr>
+      {/* No overflow-x-auto wrapper here on purpose: overflow-x:auto implicitly
+          makes overflow-y auto too, which turns this div into a scroll
+          container and breaks position:sticky against the page scroll.
+          table-fixed + narrow explicit column widths keep this within the
+          content column at any supported viewport instead. */}
+      <table className="w-full table-fixed border-collapse text-sm">
+        <thead>
+          <tr>
+            <th className="sticky top-[136px] z-10 bg-white text-left pb-2 pr-2 font-medium text-near-black border-b border-near-black/10" />
+            {LIKERT_COLUMNS.map((col) => (
+              <th
+                key={col}
+                className="sticky top-[136px] z-10 bg-white w-10 sm:w-16 pb-2 px-0.5 text-center text-[10px] sm:text-[11px] uppercase tracking-wide text-stone font-semibold border-b border-near-black/10"
+              >
+                {col}
+              </th>
             ))}
-          </tbody>
-        </table>
-      </div>
+          </tr>
+        </thead>
+        <tbody>
+          {statements.map((st) => (
+            <tr key={st.name} className="border-t border-near-black/10">
+              <td className="py-3 pr-2 text-near-black align-middle">{st.label}</td>
+              {LIKERT_COLUMNS.map((_, i) => {
+                const v = String(i + 1);
+                return (
+                  <td key={v} className="text-center align-middle">
+                    <input
+                      type="radio"
+                      name={st.name}
+                      value={v}
+                      checked={value[st.name] === v}
+                      onChange={() => onChange(st.name, v)}
+                      className="accent-deep-forest h-4 w-4"
+                      aria-label={`${st.label}: ${LIKERT_COLUMNS[i]}`}
+                    />
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </FieldWrap>
   );
 }

@@ -89,6 +89,13 @@ export default function GetStartedFlow() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Send the respondent back to the top of the page on every step change,
+  // so a long section (e.g. the asset table) doesn't leave them scrolled
+  // mid-page when the next section loads.
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [stepIndex, phase]);
+
   const saveNow = useCallback(async (step: StepId, payload: IntakeData) => {
     setSaveStatus("saving");
     try {

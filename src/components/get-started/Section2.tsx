@@ -183,7 +183,7 @@ export default function Section2({ data, setField }: SectionProps) {
       <QuestionBlock>
         <CheckboxGroup
           name="income_sources"
-          label="How would you describe your income source?"
+          label="How would you describe your household income source(s)?"
           help="Select all that apply."
           value={incomeSources}
           onChange={setField}

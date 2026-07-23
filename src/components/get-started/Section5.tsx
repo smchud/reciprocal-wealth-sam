@@ -77,7 +77,7 @@ interface SectionProps {
 
 export default function Section5({ data, setField }: SectionProps) {
   const selfConfidence = getStr(data, "self_confidence");
-  const priorAdvisor = getStr(data, "prior_advisor");
+  const priorAdvisor = getArr(data, "prior_advisor");
 
   return (
     <div>
@@ -142,14 +142,15 @@ export default function Section5({ data, setField }: SectionProps) {
       </QuestionBlock>
 
       <QuestionBlock>
-        <RadioGroup
+        <CheckboxGroup
           name="prior_advisor"
           label="Who was managing these assets before you decided to look at Reciprocal Wealth?"
+          help="Select all that apply."
           value={priorAdvisor}
           onChange={setField}
           options={PRIOR_ADVISOR_OPTIONS}
         />
-        <Conditional show={priorAdvisor === "another_advisor"}>
+        <Conditional show={priorAdvisor.includes("another_advisor")}>
           <TextField
             name="prior_advisor_name"
             label="What is the name of the advisor's business?"
@@ -157,7 +158,7 @@ export default function Section5({ data, setField }: SectionProps) {
             onChange={setField}
           />
         </Conditional>
-        <Conditional show={priorAdvisor === "other"}>
+        <Conditional show={priorAdvisor.includes("other")}>
           <TextField
             name="prior_advisor_other"
             label="Please specify"
