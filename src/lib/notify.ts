@@ -59,3 +59,38 @@ export async function notifyFounders(input: NotifyInput): Promise<void> {
 
   if (error) throw new Error(`Resend send failed: ${error.message}`);
 }
+
+/**
+ * Emails a single-use resume link for the /get-started questionnaire.
+ * Throws on failure - callers decide how to respond to the visitor.
+ */
+export async function sendResumeLink(email: string, resumeUrl: string): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) throw new Error("RESEND_API_KEY is not configured");
+
+  const resend = new Resend(apiKey);
+
+  const text = [
+    "Here's your link to pick up where you left off on the Reciprocal Wealth questionnaire:",
+    "",
+    resumeUrl,
+    "",
+    "This link is unique to you and expires in 14 days. If you didn't request it, you can ignore this email.",
+  ].join("\n");
+
+  const html = `
+    <p>Here's your link to pick up where you left off on the Reciprocal Wealth questionnaire:</p>
+    <p><a href="${escapeHtml(resumeUrl)}">${escapeHtml(resumeUrl)}</a></p>
+    <p style="color:#6b746f;font-size:13px;">This link is unique to you and expires in 14 days. If you didn't request it, you can ignore this email.</p>
+  `;
+
+  const { error } = await resend.emails.send({
+    from: FROM_ADDRESS,
+    to: [email],
+    subject: "Finish your Reciprocal Wealth questionnaire",
+    text,
+    html,
+  });
+
+  if (error) throw new Error(`Resend send failed: ${error.message}`);
+}

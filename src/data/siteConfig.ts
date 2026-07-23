@@ -4,7 +4,10 @@ export const siteConfig = {
   email: "info@reciprocalwealth.com",
   phone: "617-947-4749",
   address: "Medfield, MA | Waban, MA",
-  clientPortalUrl: "#",
+  // TODO(altruist): placeholder until Sam provides the real Altruist client-portal
+  // login / onboarding-invite URL. Used by the "Already a client?" nav link and
+  // the post-questionnaire onboarding handoff on /get-started.
+  altruistPortalUrl: "#altruist-portal-todo",
   bookingsUrl:
     "https://outlook.office.com/book/ReciprocalWealth1@reciprocalwealth.com/?ismsaljsauthenabled",
   disclosure:
@@ -24,5 +27,6 @@ export const navLinks = [
 
 export const footerLinks = [
   ...navLinks,
-  { label: "Client Portal", href: "#" },
+  { label: "Get Started", href: "/get-started" },
+  { label: "Already a client? Access your portal", href: siteConfig.altruistPortalUrl },
 ] as const;

@@ -61,11 +61,17 @@ export default function Header() {
             </Link>
           ))}
           <a
-            href={siteConfig.clientPortalUrl}
+            href={siteConfig.altruistPortalUrl}
+            className="flex items-center min-h-11 text-xs text-white/50 hover:text-white/80 transition-colors"
+          >
+            Already a client? Access your portal
+          </a>
+          <Link
+            href="/get-started"
             className="flex items-center min-h-11 text-sm font-medium bg-forest text-white px-5 rounded-sm hover:bg-forest-75 transition-colors"
           >
-            Client Portal
-          </a>
+            Get Started
+          </Link>
         </nav>
 
         <button
@@ -112,12 +118,19 @@ export default function Header() {
               </Link>
             ))}
             <a
-              href={siteConfig.clientPortalUrl}
+              href={siteConfig.altruistPortalUrl}
               onClick={() => setMobileOpen(false)}
-              className="mt-2 flex items-center justify-center text-sm font-medium text-center min-h-11 bg-forest text-white px-5 rounded-sm hover:bg-forest-75 transition-colors"
+              className="mt-3 flex items-center justify-center text-xs text-white/50 hover:text-white/80 min-h-11 transition-colors"
             >
-              Client Portal
+              Already a client? Access your portal
             </a>
+            <Link
+              href="/get-started"
+              onClick={() => setMobileOpen(false)}
+              className="mt-1 flex items-center justify-center text-sm font-medium text-center min-h-11 bg-forest text-white px-5 rounded-sm hover:bg-forest-75 transition-colors"
+            >
+              Get Started
+            </Link>
           </nav>
         </div>
       )}
