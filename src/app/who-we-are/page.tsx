@@ -31,45 +31,49 @@ export default function WhoWeAreB() {
 
       <section className="py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {founders.map((founder, i) => (
-              <FadeIn key={founder.name} delay={i * 150} className="h-full">
-                <div className="bg-warm-gray p-6 md:p-8 h-full">
-                  <div className="w-60 md:w-72 aspect-[540/615] relative overflow-hidden mb-6 bg-white">
-                    <Image
-                      src={founder.image}
-                      alt={founder.name}
-                      fill
-                      sizes="(min-width: 768px) 288px, 240px"
-                      quality={95}
-                      className="object-cover object-center"
-                    />
+          <div className="space-y-8">
+            {[...founders].reverse().map((founder, i) => (
+              <FadeIn key={founder.name} delay={i * 150}>
+                <div className="bg-warm-gray p-6 md:p-10">
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-8">
+                    <div className="w-full sm:w-64 md:w-80 aspect-[540/615] relative flex-shrink-0 overflow-hidden bg-white">
+                      <Image
+                        src={founder.image}
+                        alt={founder.name}
+                        fill
+                        sizes="(min-width: 768px) 320px, (min-width: 640px) 256px, 100vw"
+                        quality={95}
+                        className="object-cover object-center"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h2 className="text-xl font-medium text-near-black">
+                        {founder.name}
+                      </h2>
+                      <p className="text-sm text-stone italic mt-1">
+                        &ldquo;{founder.nickname}&rdquo; &middot; {founder.title}
+                      </p>
+                      <p className="text-xs font-semibold uppercase tracking-[0.1em] text-forest mt-2 mb-5">
+                        {founder.focus}
+                      </p>
+                      <p className="text-sm text-stone leading-relaxed mb-4 max-w-[65ch]">
+                        {founder.bio}
+                      </p>
+                      <ul className="space-y-1 mb-4">
+                        {founder.education.map((line) => (
+                          <li key={line} className="text-xs text-stone/80 leading-relaxed">
+                            {line}
+                          </li>
+                        ))}
+                      </ul>
+                      <a
+                        href={`mailto:${founder.email}`}
+                        className="inline-flex items-center min-h-11 mt-2 text-sm text-forest hover:text-deep-forest transition-colors"
+                      >
+                        {founder.email}
+                      </a>
+                    </div>
                   </div>
-                  <h2 className="text-xl font-medium text-near-black">
-                    {founder.name}
-                  </h2>
-                  <p className="text-sm text-stone italic mt-1">
-                    &ldquo;{founder.nickname}&rdquo; &middot; {founder.title}
-                  </p>
-                  <p className="text-xs font-semibold uppercase tracking-[0.1em] text-forest mt-2 mb-5">
-                    {founder.focus}
-                  </p>
-                  <p className="text-sm text-stone leading-relaxed mb-4">
-                    {founder.bio}
-                  </p>
-                  <ul className="space-y-1 mb-4">
-                    {founder.education.map((line) => (
-                      <li key={line} className="text-xs text-stone/80 leading-relaxed">
-                        {line}
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href={`mailto:${founder.email}`}
-                    className="inline-flex items-center min-h-11 mt-2 text-sm text-forest hover:text-deep-forest transition-colors"
-                  >
-                    {founder.email}
-                  </a>
                 </div>
               </FadeIn>
             ))}

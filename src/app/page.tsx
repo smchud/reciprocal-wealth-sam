@@ -117,12 +117,13 @@ export default function Home() {
       </section>
 
       {/* Our Mission */}
-      <section className="py-20 md:py-24">
+      <section className="bg-forest-10 py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
           <FadeIn className="max-w-[640px] mx-auto text-center">
             <SectionLabel>Our Mission</SectionLabel>
             <p className="mt-6 font-serif text-xl md:text-2xl text-near-black leading-relaxed tracking-[-0.3px]">
               Relentlessly aspire to deliver the best for our clients.
+              <br />
               Innovate fearlessly, learn constantly, and persevere
               tenaciously.
             </p>
@@ -205,17 +206,17 @@ export default function Home() {
               Built by <span className="italic">operators,</span> not salesmen.
             </h2>
           </FadeIn>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            {founders.map((founder, i) => (
-              <FadeIn key={founder.name} delay={i * 150} className="min-w-0 h-full">
-                <div className="bg-white p-6 md:p-8 h-full">
-                  <div className="flex flex-col sm:flex-row sm:items-start gap-6">
-                    <div className="w-full sm:w-56 aspect-[540/615] relative flex-shrink-0 overflow-hidden bg-warm-gray">
+          <div className="mt-12 space-y-8">
+            {[...founders].reverse().map((founder, i) => (
+              <FadeIn key={founder.name} delay={i * 150}>
+                <div className="bg-white p-6 md:p-10">
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-8">
+                    <div className="w-full sm:w-64 md:w-72 aspect-[540/615] relative flex-shrink-0 overflow-hidden bg-warm-gray">
                       <Image
                         src={founder.image}
                         alt={founder.name}
                         fill
-                        sizes="(min-width: 640px) 224px, 100vw"
+                        sizes="(min-width: 768px) 288px, (min-width: 640px) 256px, 100vw"
                         quality={95}
                         className="object-cover object-center"
                       />
@@ -230,7 +231,7 @@ export default function Home() {
                       <p className="text-xs font-semibold uppercase tracking-[0.1em] text-forest mt-2">
                         {founder.focus}
                       </p>
-                      <p className="mt-4 text-sm text-stone leading-relaxed">
+                      <p className="mt-4 text-sm text-stone leading-relaxed max-w-[65ch]">
                         {founder.bio}
                       </p>
                       <ul className="mt-4 space-y-1">
@@ -258,17 +259,14 @@ export default function Home() {
       {/* How We Differ */}
       <section className="bg-deep-forest py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
-          <FadeIn className="text-center">
-            <SectionLabel className="text-forest-50">How We Differ</SectionLabel>
-            <h2 className="mt-4 font-serif text-2xl md:text-[32px] tracking-[-0.3px] text-white">
-              {reciprocityByContract.label}
-            </h2>
-          </FadeIn>
-
           {/* Reciprocity For All — lead differentiator */}
-          <div className="mt-12 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-14 items-center">
             <FadeIn>
-              <p className="text-sm md:text-base text-white/55 leading-relaxed">
+              <SectionLabel className="text-forest-50">How We Differ</SectionLabel>
+              <h2 className="mt-4 font-serif text-2xl md:text-[32px] tracking-[-0.3px] text-white">
+                {reciprocityByContract.label}
+              </h2>
+              <p className="mt-3 text-sm md:text-base text-white/55 leading-relaxed">
                 {reciprocityByContract.tagline}
               </p>
               <div className="mt-8 space-y-4">
