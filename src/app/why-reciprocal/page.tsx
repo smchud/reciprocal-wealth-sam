@@ -4,7 +4,7 @@ import SectionLabel from "@/components/shared/SectionLabel";
 import { differentiators, reciprocityByContract } from "@/data/differentiators";
 
 const description =
-  "We believe wealth management should be straightforward, honest, and centered on your goals and priorities — including Reciprocity by Contract, our unique way of sharing in the firm's success.";
+  "Reciprocity For All is our unique way of sharing in the firm's success with clients — plus the other ways we believe wealth management should work.";
 
 export const metadata: Metadata = {
   title: "Why Reciprocal",
@@ -15,31 +15,15 @@ export const metadata: Metadata = {
 export default function WhyReciprocalB() {
   return (
     <>
-      <section className="bg-deep-forest py-20 md:py-28">
-        <div className="mx-auto max-w-[1200px] px-6">
-          <div className="max-w-[640px]">
-            <SectionLabel className="text-forest-50 text-[11px] md:text-[11px]">
-              How We Differ
-            </SectionLabel>
-            <h1 className="mt-4 font-serif text-[32px] md:text-[36px] tracking-[-0.5px] text-white leading-tight">
-              Invested in <span className="italic">your success</span>.
-            </h1>
-            <p className="mt-5 text-base text-white/55 leading-relaxed">
-              We believe wealth management should be straightforward, honest,
-              and centered on your goals and priorities.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Reciprocity by Contract — dedicated section */}
-      <section className="py-20 md:py-24">
+      {/* Reciprocity For All — dedicated section, page lead */}
+      <section className="py-20 md:py-28">
         <div className="mx-auto max-w-[1200px] px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 lg:gap-16 items-center">
             <FadeIn>
-              <span className="inline-block text-xl md:text-2xl font-semibold uppercase tracking-[0.1em] text-forest">
+              <SectionLabel className="text-[11px] md:text-[11px]">How We Differ</SectionLabel>
+              <h1 className="mt-4 font-serif text-[32px] md:text-[36px] tracking-[-0.5px] text-near-black leading-tight">
                 {reciprocityByContract.label}
-              </span>
+              </h1>
               <p className="mt-4 text-sm md:text-base text-stone leading-relaxed">
                 {reciprocityByContract.tagline}
               </p>

@@ -42,7 +42,7 @@ export default function WhoWeAreB() {
                       fill
                       sizes="(min-width: 768px) 288px, 240px"
                       quality={95}
-                      className="object-cover object-top"
+                      className="object-cover object-center"
                     />
                   </div>
                   <h2 className="text-xl font-medium text-near-black">

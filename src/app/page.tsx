@@ -116,6 +116,20 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Our Mission */}
+      <section className="py-20 md:py-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <FadeIn className="max-w-[640px] mx-auto text-center">
+            <SectionLabel>Our Mission</SectionLabel>
+            <p className="mt-6 font-serif text-xl md:text-2xl text-near-black leading-relaxed tracking-[-0.3px]">
+              Relentlessly aspire to deliver the best for our clients.
+              Innovate fearlessly, learn constantly, and persevere
+              tenaciously.
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* Values */}
       <section className="bg-warm-gray py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
@@ -195,7 +209,7 @@ export default function Home() {
             {founders.map((founder, i) => (
               <FadeIn key={founder.name} delay={i * 150} className="min-w-0 h-full">
                 <div className="bg-white p-6 md:p-8 h-full">
-                  <div className="flex flex-col sm:flex-row gap-6">
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-6">
                     <div className="w-full sm:w-56 aspect-[540/615] relative flex-shrink-0 overflow-hidden bg-warm-gray">
                       <Image
                         src={founder.image}
@@ -203,7 +217,7 @@ export default function Home() {
                         fill
                         sizes="(min-width: 640px) 224px, 100vw"
                         quality={95}
-                        className="object-cover object-top"
+                        className="object-cover object-center"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -247,17 +261,14 @@ export default function Home() {
           <FadeIn className="text-center">
             <SectionLabel className="text-forest-50">How We Differ</SectionLabel>
             <h2 className="mt-4 font-serif text-2xl md:text-[32px] tracking-[-0.3px] text-white">
-              Invested in <span className="italic">your success</span>.
+              {reciprocityByContract.label}
             </h2>
           </FadeIn>
 
-          {/* Reciprocity by Contract — lead differentiator */}
+          {/* Reciprocity For All — lead differentiator */}
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-14 items-center">
             <FadeIn>
-              <span className="inline-block text-xl md:text-2xl font-semibold uppercase tracking-[0.1em] text-forest-50">
-                {reciprocityByContract.label}
-              </span>
-              <p className="mt-3 text-sm md:text-base text-white/55 leading-relaxed">
+              <p className="text-sm md:text-base text-white/55 leading-relaxed">
                 {reciprocityByContract.tagline}
               </p>
               <div className="mt-8 space-y-4">

@@ -14,7 +14,7 @@ export const faqs: FAQ[] = [
   {
     question: "How does the participation right work?",
     answer:
-      "Reciprocity by Contract is a codified, contractual entitlement awarded to each client that sticks with Reciprocal until a sale. If the firm is ever sold, 20% of net cash proceeds is reserved exclusively for clients — no additional investment, no minimum AUM or account size required.",
+      "Reciprocity For All is a codified, contractual entitlement awarded to each client that sticks with Reciprocal until a sale. If the firm is ever sold, 20% of net cash proceeds is reserved exclusively for clients — no additional investment, no minimum AUM or account size required.",
   },
   {
     question: "Where are you based?",

@@ -65,11 +65,11 @@ at display size — fine inline, wrong for a big standalone stat. Pair
 
 ## Approved terminology
 
-The firm's profit-sharing benefit for clients is **"Reciprocity by
-Contract"** (formerly "The Client Pool" — that name is retired, don't
-reintroduce it).
-- Always: "Reciprocity by Contract"
-- Never: "The Client Pool" / "assignment provision"
+The firm's profit-sharing benefit for clients is **"Reciprocity For
+All"** (formerly "The Client Pool," then briefly "Reciprocity by
+Contract" — both retired, don't reintroduce either).
+- Always: "Reciprocity For All"
+- Never: "The Client Pool" / "Reciprocity by Contract" / "assignment provision"
 
 Shared copy for this concept lives in `src/data/differentiators.ts`
 (`reciprocityByContract` export) — reuse it rather than re-writing the

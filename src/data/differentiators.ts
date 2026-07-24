@@ -4,8 +4,8 @@ export interface Differentiator {
 }
 
 /**
- * The three "more ways we're different" boxes (excludes Reciprocity by
- * Contract, which has its own dedicated treatment via reciprocityByContract
+ * The three "more ways we're different" boxes (excludes Reciprocity For
+ * All, which has its own dedicated treatment via reciprocityByContract
  * below).
  */
 export const differentiators: Differentiator[] = [
@@ -31,9 +31,9 @@ export interface ReciprocityPoint {
   description: string;
 }
 
-/** Shared content for the Reciprocity by Contract sections (home + Why Reciprocal). */
+/** Shared content for the Reciprocity For All sections (home + Why Reciprocal). */
 export const reciprocityByContract = {
-  label: "Reciprocity by Contract",
+  label: "Reciprocity For All",
   tagline: "The first framework of its kind in wealth management.",
   stat: "20%",
   statDescription: "of the net cash proceeds from a sale of the firm",
