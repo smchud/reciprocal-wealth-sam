@@ -119,13 +119,15 @@ export default function Home() {
       {/* Our Mission */}
       <section className="bg-forest-10 py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
-          <FadeIn className="max-w-[640px] mx-auto text-center">
+          <FadeIn className="max-w-[900px] mx-auto text-center">
             <SectionLabel>Our Mission</SectionLabel>
             <p className="mt-6 font-serif text-xl md:text-2xl text-near-black leading-relaxed tracking-[-0.3px]">
               Relentlessly aspire to deliver the best for our clients.
               <br />
-              Innovate fearlessly, learn constantly, and persevere
-              tenaciously.
+              <span className="md:whitespace-nowrap">
+                Innovate fearlessly, learn constantly, and persevere
+                tenaciously.
+              </span>
             </p>
           </FadeIn>
         </div>
@@ -260,16 +262,18 @@ export default function Home() {
       <section className="bg-deep-forest py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
           {/* Reciprocity For All — lead differentiator */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-14 items-center">
+          <FadeIn>
+            <SectionLabel className="text-forest-50">How We Differ</SectionLabel>
+            <h2 className="mt-4 font-serif text-2xl md:text-[32px] tracking-[-0.3px] text-white">
+              {reciprocityByContract.label}
+            </h2>
+            <p className="mt-3 text-sm md:text-base text-white/55 leading-relaxed max-w-[640px]">
+              {reciprocityByContract.tagline}
+            </p>
+          </FadeIn>
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-14 items-center">
             <FadeIn>
-              <SectionLabel className="text-forest-50">How We Differ</SectionLabel>
-              <h2 className="mt-4 font-serif text-2xl md:text-[32px] tracking-[-0.3px] text-white">
-                {reciprocityByContract.label}
-              </h2>
-              <p className="mt-3 text-sm md:text-base text-white/55 leading-relaxed">
-                {reciprocityByContract.tagline}
-              </p>
-              <div className="mt-8 space-y-4">
+              <div className="space-y-4">
                 {reciprocityByContract.points.map((point) => (
                   <div key={point.title} className="border border-white/10 bg-white/[0.04] p-6">
                     <h4 className="text-base font-medium text-white">

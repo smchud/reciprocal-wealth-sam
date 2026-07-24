@@ -18,16 +18,18 @@ export default function WhyReciprocalB() {
       {/* Reciprocity For All — dedicated section, page lead */}
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-[1200px] px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 lg:gap-16 items-center">
+          <FadeIn>
+            <SectionLabel className="text-[11px] md:text-[11px]">How We Differ</SectionLabel>
+            <h1 className="mt-4 font-serif text-[32px] md:text-[36px] tracking-[-0.5px] text-near-black leading-tight">
+              {reciprocityByContract.label}
+            </h1>
+            <p className="mt-4 text-sm md:text-base text-stone leading-relaxed max-w-[640px]">
+              {reciprocityByContract.tagline}
+            </p>
+          </FadeIn>
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 lg:gap-16 items-center">
             <FadeIn>
-              <SectionLabel className="text-[11px] md:text-[11px]">How We Differ</SectionLabel>
-              <h1 className="mt-4 font-serif text-[32px] md:text-[36px] tracking-[-0.5px] text-near-black leading-tight">
-                {reciprocityByContract.label}
-              </h1>
-              <p className="mt-4 text-sm md:text-base text-stone leading-relaxed">
-                {reciprocityByContract.tagline}
-              </p>
-              <div className="mt-8 grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 gap-4">
                 {reciprocityByContract.points.map((point) => (
                   <div key={point.title} className="bg-forest-10 p-6">
                     <h3 className="text-base font-medium text-deep-forest">
