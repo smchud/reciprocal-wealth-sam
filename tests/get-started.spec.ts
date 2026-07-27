@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, request as apiRequest, type Page } from "@playwright/test";
 
 async function acceptConsent(page: Page) {
   await page.goto("/get-started");
@@ -59,6 +59,109 @@ test.describe("/get-started save & resume (UI)", () => {
 
     await expect(page.getByText("Check your inbox")).toBeVisible();
     await expect(page.getByText(/sent a link to jamie@example\.com/)).toBeVisible();
+  });
+});
+
+test.describe("/get-started save & resume (server enforcement)", () => {
+  test("a resume token can only be redeemed once - reuse from a second, independent context is rejected", async () => {
+    // Three independent cookie jars, standing in for: the device that
+    // requests the link, the device that first opens it, and a third party
+    // who gets hold of the same URL afterward (forwarded email, shared
+    // inbox, a security scanner, etc).
+    const requester = await apiRequest.newContext({ baseURL: "http://localhost:3000" });
+    const firstOpener = await apiRequest.newContext({ baseURL: "http://localhost:3000" });
+    const secondOpener = await apiRequest.newContext({ baseURL: "http://localhost:3000" });
+
+    try {
+      const created = await requester.post("/api/get-started/session", { data: { consent: true } });
+      expect(created.ok()).toBe(true);
+
+      const saved = await requester.patch("/api/get-started/session", {
+        data: {
+          step: "1",
+          data: { first_name: "Once", middle_name: "T", last_name: "Person", email: "once-only@example.com" },
+        },
+      });
+      expect(saved.ok()).toBe(true);
+
+      const linkRes = await requester.post("/api/get-started/resume-link", {
+        data: { email: "once-only@example.com" },
+      });
+      expect(linkRes.ok()).toBe(true);
+      const linkBody = await linkRes.json();
+      expect(linkBody.ok).toBe(true);
+
+      // Only present because RW_E2E_EXPOSE_RESUME_TOKEN=1 in this test run
+      // (see playwright.config.ts) - never present in production or preview.
+      const token: string = linkBody.token;
+      expect(typeof token).toBe("string");
+      expect(token.length).toBeGreaterThan(20);
+
+      // First redemption succeeds and grants access to the saved draft.
+      const first = await firstOpener.get(`/api/get-started/resume?token=${encodeURIComponent(token)}`, {
+        maxRedirects: 0,
+      });
+      expect([301, 302, 303, 307, 308]).toContain(first.status());
+      expect(first.headers()["location"]).toContain("resumed=1");
+
+      const firstOpenerSession = await firstOpener.get("/api/get-started/session");
+      const firstOpenerBody = await firstOpenerSession.json();
+      expect(firstOpenerBody.draft?.data?.first_name).toBe("Once");
+
+      // Reusing the exact same token from a second, cookie-isolated context
+      // must fail outright - this is the actual "single use" guarantee.
+      const second = await secondOpener.get(`/api/get-started/resume?token=${encodeURIComponent(token)}`, {
+        maxRedirects: 0,
+      });
+      expect(second.headers()["location"]).toContain("resume_error=1");
+
+      // And it must not have granted the second context any access at all.
+      const secondOpenerSession = await secondOpener.get("/api/get-started/session");
+      const secondOpenerBody = await secondOpenerSession.json();
+      expect(secondOpenerBody.draft).toBeNull();
+    } finally {
+      await requester.dispose();
+      await firstOpener.dispose();
+      await secondOpener.dispose();
+    }
+  });
+
+  test("re-clicking an already-used link in the same browser shows a clear message, not a silent success", async ({
+    page,
+  }) => {
+    await acceptConsent(page);
+    await page.getByRole("button", { name: "Begin" }).click();
+    await fillRequiredName(page);
+    await page.getByLabel("Email").fill("reclick@example.com");
+
+    // Let the debounced autosave flush before requesting a resume link, so
+    // the draft it points at actually contains what was just typed.
+    await expect(page.getByText("Saved", { exact: true })).toBeVisible();
+
+    await page.getByRole("button", { name: "Save & finish later" }).click();
+    const [linkRes] = await Promise.all([
+      page.waitForResponse(
+        (res) => res.url().includes("/api/get-started/resume-link") && res.request().method() === "POST"
+      ),
+      page.getByRole("button", { name: "Email me a link" }).click(),
+    ]);
+    const linkBody = await linkRes.json();
+    expect(linkBody.ok).toBe(true);
+    const token: string = linkBody.token;
+    expect(typeof token).toBe("string");
+    await page.getByRole("button", { name: "Done" }).click();
+
+    // First click: redeems the token and shows the normal welcome-back state.
+    await page.goto(`/api/get-started/resume?token=${encodeURIComponent(token)}`);
+    await expect(page.getByText("Welcome back")).toBeVisible();
+
+    // Second click of the identical link, same browser: the token is
+    // already spent, but this browser still has a valid session from the
+    // first click. It must not silently look like nothing happened.
+    await page.goto(`/api/get-started/resume?token=${encodeURIComponent(token)}`);
+    await expect(page.getByText("That link has already been used.")).toBeVisible();
+    // Their progress is still right there, not lost.
+    await expect(page.getByPlaceholder("First")).toHaveValue("Jamie");
   });
 });
 

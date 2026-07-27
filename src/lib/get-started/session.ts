@@ -5,7 +5,7 @@ import { isKnownFieldName, type SectionId } from "@/data/intakeFields";
 
 const SESSION_COOKIE = "rw_intake_session";
 const SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 30; // 30 days
-export const RESUME_TOKEN_TTL_MS = 1000 * 60 * 60 * 24 * 14; // 14 days
+export const RESUME_TOKEN_TTL_MS = 1000 * 60 * 60 * 72; // 72 hours
 
 export interface DraftRow {
   id: string;
