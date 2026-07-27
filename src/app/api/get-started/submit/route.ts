@@ -4,6 +4,7 @@ import { REQUIRED_FIELD_NAMES } from "@/data/intakeFields";
 import { computeFullScoring } from "@/lib/get-started/scoring";
 import { finalizeSubmission, markPdfEmailed, markWealthboxSynced } from "@/lib/get-started/submission";
 import { generateSummaryPdf } from "@/lib/get-started/pdf";
+import { buildCrmNote } from "@/lib/get-started/crmNote";
 import { sendSubmissionSummary } from "@/lib/notify";
 import { syncQuestionnaireContact } from "@/lib/wealthbox";
 
@@ -82,14 +83,7 @@ export async function POST() {
     try {
       const email = typeof draft.data.email === "string" ? draft.data.email : "";
       if (email) {
-        const note = [
-          `[${new Date().toISOString()}] Website questionnaire completed.`,
-          `Risk profile: ${scoring.riskProfile.label} (${scoring.finalRiskScore}/100, indicative equity ${scoring.riskProfile.equity})`,
-          `Psychographic archetype: ${scoring.psychographic.archetype}`,
-          draft.data.top_goal ? `Top goal: ${draft.data.top_goal}` : null,
-        ]
-          .filter(Boolean)
-          .join("\n");
+        const note = buildCrmNote(draft.data, scoring, new Date());
 
         const wb = await syncQuestionnaireContact({
           firstName: typeof draft.data.first_name === "string" ? draft.data.first_name : "",
