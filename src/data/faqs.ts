@@ -2,6 +2,8 @@ export interface FAQ {
   question: string;
   answer: string;
   cta?: { label: string; href: string };
+  /** Inline link appended to the end of the answer paragraph (e.g. "...download our white paper here."). */
+  answerLink?: { prefix: string; label: string; href: string; suffix?: string };
 }
 
 export const faqs: FAQ[] = [
@@ -12,23 +14,27 @@ export const faqs: FAQ[] = [
     cta: { label: "Start the questionnaire", href: "/get-started" },
   },
   {
-    question: "How does the participation right work?",
+    question: "What do you mean by Reciprocity For All?",
     answer:
       "Reciprocity For All is a codified, contractual entitlement awarded to each client that sticks with Reciprocal until a sale. If the firm is ever sold, 20% of net cash proceeds is reserved exclusively for clients — no additional investment, no minimum AUM or account size required.",
+    answerLink: {
+      prefix: "For more information, download our white paper",
+      label: "here",
+      // Placeholder pending the finalized white-paper PDF — Sam is
+      // finalizing this week; upload to public/documents/ and this path
+      // will resolve once the file lands.
+      href: "/documents/reciprocal-wealth-white-paper.pdf",
+      suffix: ".",
+    },
   },
   {
     question: "Where are you based?",
     answer: "We are based in the suburbs of Boston, MA.",
   },
   {
-    question: "What services do you offer?",
-    answer:
-      "We offer financial planning, investment management, retirement planning, and tax planning. That means assessing your current and future financial prospects, defining personalized goals, constructing a portfolio to match your risk tolerance, guiding you through retirement accounts, and using strategies like tax-loss harvesting to reduce your tax burden.",
-  },
-  {
     question: "What is your fee structure?",
     answer:
-      "We have a transparent fee structure that bills monthly at a percentage of assets under management.",
+      "We have a transparent fee structure that bills monthly at a percentage of assets under management. For more information, please contact us at info@reciprocalwealth.com.",
   },
   {
     question: "How often do you meet with clients?",

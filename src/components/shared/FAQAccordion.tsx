@@ -46,6 +46,21 @@ export default function FAQAccordion({
             >
               <p className={`text-sm leading-relaxed ${bodyColor}`}>
                 {faq.answer}
+                {faq.answerLink && (
+                  <>
+                    {" "}
+                    {faq.answerLink.prefix}{" "}
+                    <a
+                      href={faq.answerLink.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-forest hover:text-deep-forest underline transition-colors"
+                    >
+                      {faq.answerLink.label}
+                    </a>
+                    {faq.answerLink.suffix}
+                  </>
+                )}
               </p>
               {faq.cta && (
                 <Link
