@@ -126,13 +126,15 @@ export default function Header() {
             >
               Client Portal
             </a>
-            <Link
-              href="/get-started"
+            <a
+              href={siteConfig.bookingsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMobileOpen(false)}
               className="mt-2 flex items-center justify-center text-sm font-medium text-center min-h-11 bg-forest text-white px-5 rounded-sm hover:bg-forest-75 transition-colors"
             >
-              Become a Client
-            </Link>
+              Schedule a Call
+            </a>
           </nav>
         </div>
       )}
