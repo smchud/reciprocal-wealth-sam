@@ -51,11 +51,7 @@ export default function CompletionStep({ data }: { data: IntakeData }) {
       )}
 
       <div className="mt-6 text-sm text-near-black leading-relaxed max-w-[56ch]">
-        <p>We&rsquo;ll review your full responses together at our first meeting.</p>
-        <p className="mt-2">
-          Reciprocal Wealth will review your answers and reach out within two business days to schedule a first
-          meeting.
-        </p>
+        <p>We&rsquo;ll review your responses together when we meet.</p>
       </div>
 
       <h3 className="mt-8 text-base font-medium text-near-black">What would you like to do next?</h3>

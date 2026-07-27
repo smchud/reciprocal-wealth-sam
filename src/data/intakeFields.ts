@@ -9,11 +9,11 @@
 
 export const STATIC_FIELD_NAMES = [
   // Section 1 — Your Details
-  "first_name", "middle_name", "last_name", "dob", "email",
+  "first_name", "middle_name", "last_name", "preferred_name", "dob", "email",
   "phone_type", "phone",
   "address_street", "address_city", "address_state", "address_zip", "address_country",
   "marital_status",
-  "partner_first_name", "partner_middle_name", "partner_last_name",
+  "partner_first_name", "partner_middle_name", "partner_last_name", "partner_preferred_name",
   "partner_dob", "partner_email", "partner_phone", "partner_coclient",
   "has_children",
   "hobbies", "hobbies_other",
