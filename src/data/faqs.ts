@@ -34,19 +34,18 @@ export const faqs: FAQ[] = [
   {
     question: "What is your fee structure?",
     answer:
-      "We have a transparent fee structure that bills monthly at a percentage of assets under management. For more information, please contact us at info@reciprocalwealth.com.",
+      "We have a transparent fee structure that bills monthly at a percentage of assets under management. For more information, please contact us at",
+    answerLink: {
+      prefix: "",
+      label: "info@reciprocalwealth.com",
+      href: "mailto:info@reciprocalwealth.com",
+      suffix: ".",
+    },
   },
   {
     question: "How often do you meet with clients?",
     answer:
       "We meet with clients on an as-requested basis. If we don't hear from you often, we typically reach out about once per quarter to update you on performance and talk about whatever is on your mind.",
-  },
-  {
-    question: "Is there a white paper I can read first?",
-    // Placeholder pending the gated white-paper download - do not wire up a
-    // gated form until Sam confirms the piece and the flow.
-    answer:
-      "We're finalizing a downloadable overview of our approach. In the meantime, reach out and we're happy to send it directly.",
   },
   {
     question: "How do I access my account?",

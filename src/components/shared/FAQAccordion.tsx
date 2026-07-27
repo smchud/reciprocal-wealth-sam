@@ -48,12 +48,14 @@ export default function FAQAccordion({
                 {faq.answer}
                 {faq.answerLink && (
                   <>
-                    {" "}
-                    {faq.answerLink.prefix}{" "}
+                    {faq.answerLink.prefix
+                      ? ` ${faq.answerLink.prefix} `
+                      : " "}
                     <a
                       href={faq.answerLink.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      {...(faq.answerLink.href.startsWith("mailto:")
+                        ? {}
+                        : { target: "_blank", rel: "noopener noreferrer" })}
                       className="text-forest hover:text-deep-forest underline transition-colors"
                     >
                       {faq.answerLink.label}
