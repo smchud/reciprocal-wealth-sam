@@ -6,6 +6,7 @@ import { computePriorityMatrix } from "@/lib/get-started/effortScore";
 import { finalizeSubmission, markPdfEmailed, markWealthboxSynced } from "@/lib/get-started/submission";
 import { generateSummaryPdf } from "@/lib/get-started/pdf";
 import { buildCrmNote } from "@/lib/get-started/crmNote";
+import { buildWealthboxCustomFieldValues } from "@/lib/get-started/wealthboxCustomFields";
 import { sendSubmissionSummary } from "@/lib/notify";
 import { syncQuestionnaireContact } from "@/lib/wealthbox";
 
@@ -86,6 +87,7 @@ export async function POST() {
       const email = typeof draft.data.email === "string" ? draft.data.email : "";
       if (email) {
         const note = buildCrmNote(draft.data, scoring, new Date());
+        const customFieldValues = buildWealthboxCustomFieldValues(draft.data, scoring);
 
         const wb = await syncQuestionnaireContact({
           firstName: typeof draft.data.first_name === "string" ? draft.data.first_name : "",
@@ -93,6 +95,7 @@ export async function POST() {
           email,
           phone: typeof draft.data.phone === "string" ? draft.data.phone : undefined,
           note,
+          customFieldValues,
         });
         await markWealthboxSynced(submission.id, String(wb.id));
       }
