@@ -16,15 +16,32 @@ export default function Footer() {
               Navigation
             </h4>
             <nav className="flex flex-col">
-              {footerLinks.map((link) => (
-                <Link
-                  key={`${link.label}-${link.href}`}
-                  href={link.href.startsWith("/") || link.href === "" ? link.href || "/" : link.href}
-                  className="flex items-center min-h-11 text-sm text-white/65 hover:text-white transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {footerLinks.map((link) => {
+                const isExternal = link.href.startsWith("http");
+                const className = "flex items-center min-h-11 text-sm text-white/65 hover:text-white transition-colors";
+                if (isExternal) {
+                  return (
+                    <a
+                      key={`${link.label}-${link.href}`}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={className}
+                    >
+                      {link.label}
+                    </a>
+                  );
+                }
+                return (
+                  <Link
+                    key={`${link.label}-${link.href}`}
+                    href={link.href || "/"}
+                    className={className}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
 

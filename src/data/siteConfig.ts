@@ -4,10 +4,11 @@ export const siteConfig = {
   email: "info@reciprocalwealth.com",
   phone: "617-947-4749",
   address: "Medfield, MA | Waban, MA",
-  // TODO(altruist): placeholder until Sam provides the real Altruist client-portal
-  // login / onboarding-invite URL. Used by the "Already a client?" nav link and
-  // the post-questionnaire onboarding handoff on /get-started.
-  altruistPortalUrl: "#altruist-portal-todo",
+  // Altruist client portal login - white-labeled with Reciprocal Wealth
+  // branding. Signing and account opening happen entirely on Altruist's
+  // side; this is only the existing-client login link (the "Client Login"
+  // button in the header and footer, per PRD 6.4's existing-client path).
+  altruistPortalUrl: "https://app.altruist.com/login?client",
   bookingsUrl:
     "https://outlook.office.com/book/ReciprocalWealth1@reciprocalwealth.com/?ismsaljsauthenabled",
   disclosure:
@@ -28,5 +29,5 @@ export const navLinks = [
 export const footerLinks = [
   ...navLinks,
   { label: "Become a Client", href: "/get-started" },
-  { label: "Already a client? Access your portal", href: siteConfig.altruistPortalUrl },
+  { label: "Client Login", href: siteConfig.altruistPortalUrl },
 ] as const;

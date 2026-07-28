@@ -62,9 +62,11 @@ export default function Header() {
           ))}
           <a
             href={siteConfig.altruistPortalUrl}
-            className="flex items-center min-h-11 text-xs text-white/50 hover:text-white/80 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center min-h-11 text-sm font-medium border border-white/30 text-white px-5 rounded-sm hover:border-white/55 hover:bg-white/5 transition-colors"
           >
-            Already a client? Access your portal
+            Client Login
           </a>
           <Link
             href="/get-started"
@@ -119,10 +121,12 @@ export default function Header() {
             ))}
             <a
               href={siteConfig.altruistPortalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMobileOpen(false)}
-              className="mt-3 flex items-center justify-center text-xs text-white/50 hover:text-white/80 min-h-11 transition-colors"
+              className="mt-3 flex items-center justify-center text-sm font-medium text-center min-h-11 border border-white/30 text-white px-5 rounded-sm hover:border-white/55 hover:bg-white/5 transition-colors"
             >
-              Already a client? Access your portal
+              Client Login
             </a>
             <Link
               href="/get-started"

@@ -37,6 +37,6 @@ export const faqs: FAQ[] = [
   {
     question: "How do I access my account?",
     answer:
-      "Use our dedicated client portal to access all of your accounts. Click the Client Portal link at the top of the page to get started.",
+      "Use our dedicated client portal to access all of your accounts. Click the Client Login link at the top of the page to get started.",
   },
 ];

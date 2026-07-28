@@ -112,8 +112,11 @@ test.describe("/get-started full completion (real local server)", () => {
     await page.getByRole("button", { name: "Submit" }).click();
 
     await expect(page.getByText("Thank you, Jamie.")).toBeVisible();
-    await expect(page.getByText("Have Reciprocal Wealth reach out")).toBeVisible();
-    await expect(page.getByText("ready — proceed to onboarding")).toBeVisible();
+    await expect(page.getByText("What happens next")).toBeVisible();
+    await expect(page.getByText(/reach out.*to begin onboarding/)).toBeVisible();
+    await expect(page.getByText(/account-opening invitation.*advisory agreement/)).toBeVisible();
+    // No instant/single-click onboarding path - no link straight into Altruist.
+    await expect(page.getByText("proceed to onboarding")).toHaveCount(0);
 
     // The HARD RULE: never render the computed score/profile/archetype.
     const html = await page.content();
