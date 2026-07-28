@@ -22,6 +22,6 @@ export const values: Value[] = [
   {
     title: "Never settle",
     description:
-      "We always continue to learn, grow, and build together. The financial world changes, and so do your needs. We stay ahead of both.",
+      "We never stop learning, growing, and building together. The financial world changes, and so do your needs. We stay ahead of both.",
   },
 ];

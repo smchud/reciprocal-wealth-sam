@@ -22,7 +22,7 @@ export default function DisclosuresB() {
             <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.1em] text-forest-50 mb-4">
               Legal
             </span>
-            <h1 className="text-[32px] md:text-[36px] font-light tracking-[-1px] text-white leading-tight">
+            <h1 className="font-serif text-[32px] md:text-[36px] tracking-[-0.5px] text-white leading-tight">
               Disclosures
             </h1>
           </div>
@@ -35,7 +35,7 @@ export default function DisclosuresB() {
           <div className="mt-4 space-y-4">
             <p>
               Reciprocal Wealth, LLC (&ldquo;Reciprocal Wealth&rdquo;) is a
-              Registered Investment Advisor (&ldquo;RIA&rdquo;), located in the
+              Registered Investment Adviser (&ldquo;RIA&rdquo;), located in the
               Commonwealth of Massachusetts. Reciprocal Wealth provides
               investment advisory and related services for clients nationally.
               Reciprocal Wealth will maintain all applicable registration and
@@ -51,7 +51,7 @@ export default function DisclosuresB() {
           <div className="mt-4 space-y-4">
             <p>
               Form ADV is the official disclosure document every registered
-              investment advisor must file with regulators. It comes in two
+              investment adviser must file with regulators. It comes in two
               parts, which Reciprocal Wealth provides together as a single
               PDF for your convenience.
             </p>
@@ -207,11 +207,11 @@ export default function DisclosuresB() {
               Reciprocal Wealth is committed to safeguarding the use of
               personal information of our Clients (also referred to as
               &ldquo;you&rdquo; and &ldquo;your&rdquo;) that we obtain as your
-              Investment Advisor, as described in our Privacy Policy.
+              Investment Adviser, as described in our Privacy Policy.
             </p>
             <p>
               Reciprocal Wealth does not collect personal non-public
-              information through this website; however, the Advisor may
+              information through this website; however, the Adviser may
               collect information from you on application forms, agreements,
               profile or investment policy statements, and other documents
               received or processed in relation to services we provide. We
@@ -279,7 +279,7 @@ export default function DisclosuresB() {
               movement instructions via email.
             </p>
             <p>
-              As a registered investment advisor, Reciprocal Wealth emails may
+              As a registered investment adviser, Reciprocal Wealth emails may
               be subject to inspection by the Chief Compliance Officer
               (&ldquo;CCO&rdquo;) of Reciprocal Wealth or the securities
               regulators.

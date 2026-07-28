@@ -16,15 +16,32 @@ export default function Footer() {
               Navigation
             </h4>
             <nav className="flex flex-col">
-              {footerLinks.map((link) => (
-                <Link
-                  key={`${link.label}-${link.href}`}
-                  href={link.href.startsWith("/") || link.href === "" ? link.href || "/" : link.href}
-                  className="flex items-center min-h-11 text-sm text-white/65 hover:text-white transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {footerLinks.map((link) => {
+                const isExternal = link.href.startsWith("http");
+                const className = "flex items-center min-h-11 text-sm text-white/65 hover:text-white transition-colors";
+                if (isExternal) {
+                  return (
+                    <a
+                      key={`${link.label}-${link.href}`}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={className}
+                    >
+                      {link.label}
+                    </a>
+                  );
+                }
+                return (
+                  <Link
+                    key={`${link.label}-${link.href}`}
+                    href={link.href || "/"}
+                    className={className}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
 
@@ -52,10 +69,10 @@ export default function Footer() {
 
         <div className="mt-16 pt-6 border-t border-white/10">
           <p className="text-xs font-medium text-white/40">
-            Reciprocal Wealth, LLC · Registered Investment Advisor
+            Reciprocal Wealth, LLC · Registered Investment Adviser
           </p>
           <p className="mt-2 text-xs text-white/30 leading-relaxed">
-            {siteConfig.disclosure} Registration as an investment advisor
+            {siteConfig.disclosure} Registration as an investment adviser
             does not imply any certain level of skill or training. See our{" "}
             <Link href="/disclosures" className="underline hover:text-white/50 transition-colors">
               Disclosures
