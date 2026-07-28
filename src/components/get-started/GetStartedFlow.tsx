@@ -163,7 +163,6 @@ export default function GetStartedFlow() {
   function validateSection1(): boolean {
     const required: [string, string][] = [
       ["first_name", "first name"],
-      ["middle_name", "middle name"],
       ["last_name", "last name"],
     ];
     const missing: string[] = [];

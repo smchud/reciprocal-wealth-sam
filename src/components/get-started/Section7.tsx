@@ -129,7 +129,8 @@ export default function Section7({ data, setField }: SectionProps) {
       <QuestionBlock>
         <CheckboxGroup
           name="contact_channel"
-          label="Preferred way to communicate"
+          label="Preferred way(s) to communicate"
+          help="Select all that apply."
           value={getArr(data, "contact_channel")}
           onChange={setField}
           options={CONTACT_CHANNEL_OPTIONS}

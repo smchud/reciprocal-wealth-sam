@@ -26,6 +26,8 @@ const INDUSTRY_OPTIONS = [
   { value: "real_estate", label: "Real Estate" },
   { value: "education", label: "Education" },
   { value: "government", label: "Government / Public Sector" },
+  { value: "retail", label: "Retail" },
+  { value: "entertainment", label: "Entertainment" },
   { value: "na_retired", label: "N/A — Retired" },
   { value: "na_homemaker", label: "N/A — Homemaker" },
   { value: "other", label: "Other" },
@@ -38,6 +40,7 @@ const EDUCATION_OPTIONS = [
   { value: "master", label: "Master's degree" },
   { value: "professional", label: "Professional degree (JD, MD, etc.)" },
   { value: "doctorate", label: "Doctorate" },
+  { value: "na", label: "N/A" },
 ];
 
 const INCOME_SOURCES_OPTIONS = [
@@ -138,7 +141,9 @@ export default function Section2({ data, setField }: SectionProps) {
       <Conditional show={maritalStatus === "married"}>
         <QuestionBlock>
           <label className={labelClass}>Your spouse or partner</label>
-          <p className="text-xs text-stone mb-3">Same four questions, for the person you plan with.</p>
+          <p className="text-xs text-stone mb-3">
+            Same four questions, for the person you plan with — all optional.
+          </p>
           <div className="space-y-4">
             <div>
               <label className={subLabelClass}>Occupation / job title</label>

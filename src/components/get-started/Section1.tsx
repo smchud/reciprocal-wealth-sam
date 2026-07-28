@@ -126,7 +126,8 @@ export default function Section1({ data, setField, errors }: SectionProps) {
           />
         </div>
         <p className={helpClass + " mt-2"}>
-          Full legal middle name, please — we use it for account opening and custodial paperwork.
+          Middle name is optional, but if you have one, your full legal middle name helps with
+          account opening and custodial paperwork.
         </p>
         <div className="mt-4 max-w-[20rem]">
           <label className={subLabelClass}>Preferred name</label>

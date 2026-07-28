@@ -88,10 +88,9 @@ export function isKnownFieldName(name: string): boolean {
   return STATIC_FIELD_NAME_SET.has(name) || DYNAMIC_FIELD_PATTERN.test(name);
 }
 
-/** Only fields formally required in the approved source (Section 1 legal name). */
+/** Only fields formally required in the approved source (Section 1 legal name). Middle name is optional. */
 export const REQUIRED_FIELD_NAMES: readonly StaticFieldName[] = [
   "first_name",
-  "middle_name",
   "last_name",
 ];
 

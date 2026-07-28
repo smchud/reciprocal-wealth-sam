@@ -21,6 +21,8 @@ const industryOptions: Record<string, string> = {
   real_estate: "Real Estate",
   education: "Education",
   government: "Government / Public Sector",
+  retail: "Retail",
+  entertainment: "Entertainment",
   na_retired: "N/A — Retired",
   na_homemaker: "N/A — Homemaker",
   other: "Other",
@@ -33,6 +35,7 @@ const educationOptions: Record<string, string> = {
   master: "Master's degree",
   professional: "Professional degree (JD, MD, etc.)",
   doctorate: "Doctorate",
+  na: "N/A",
 };
 
 const likert5: Record<string, string> = {

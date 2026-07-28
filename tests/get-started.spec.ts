@@ -26,13 +26,24 @@ test.describe("/get-started consent and validation", () => {
     await page.getByRole("button", { name: "Begin" }).click();
     await expect(page.getByText("Your Details")).toBeVisible();
 
-    // Only fill one of the three required name fields.
+    // First and last name are required; middle name is not, so it's left blank here.
     await page.getByPlaceholder("First").fill("Jamie");
     await page.getByRole("button", { name: "Continue" }).click();
 
-    await expect(page.getByText(/Please enter your.*middle name.*last name/)).toBeVisible();
+    await expect(page.getByText(/Please enter your.*last name/)).toBeVisible();
     // Still on Section 1 - the field the visitor already typed is untouched.
     await expect(page.getByPlaceholder("First")).toHaveValue("Jamie");
+  });
+
+  test("middle name is optional - leaving it blank does not block advancing past Section 1", async ({ page }) => {
+    await acceptConsent(page);
+    await page.getByRole("button", { name: "Begin" }).click();
+    await page.getByPlaceholder("First").fill("Jamie");
+    await page.getByPlaceholder("Last").fill("Prospect");
+    await page.getByRole("button", { name: "Continue" }).click();
+
+    // Advanced to Section 2 - no validation error blocked it.
+    await expect(page.getByText("Section 2 of 7")).toBeVisible();
   });
 
   test("an invalid or expired resume link shows a clear message instead of a silent failure", async ({ page }) => {
