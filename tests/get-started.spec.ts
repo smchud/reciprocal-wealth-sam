@@ -216,13 +216,16 @@ test.describe("/get-started full completion (real local server)", () => {
     await page.getByRole("button", { name: "Continue" }).click(); // -> Section 4
     await page.getByRole("button", { name: "Continue" }).click(); // -> Section 5
 
-    // Deliberately pick the highest-effort involvement level too.
+    // Deliberately pick the highest-effort involvement level and
+    // account-checking frequency too.
     await page.locator('input[name="involvement"][value="hands_on"]').check();
+    await page.locator('input[name="checking_frequency"][value="multi_daily"]').check();
     await page.getByRole("button", { name: "Continue" }).click(); // -> Section 6
     await page.getByRole("button", { name: "Continue" }).click(); // -> Section 7
 
-    // And every service plus every contact channel, so this submission is
-    // unambiguously High-AUM, High-Effort when the leak check runs below.
+    // Every service plus the highest-effort contact frequency, so this
+    // submission is unambiguously High-AUM, High-Effort for the leak
+    // check below.
     for (const value of [
       "investment_management",
       "financial_planning",
@@ -232,9 +235,7 @@ test.describe("/get-started full completion (real local server)", () => {
     ]) {
       await page.locator(`input[name="services_desired"][value="${value}"]`).check();
     }
-    for (const value of ["email", "phone", "video", "in_person", "text"]) {
-      await page.locator(`input[name="contact_channel"][value="${value}"]`).check();
-    }
+    await page.locator('input[name="contact_frequency"][value="frequent"]').check();
 
     const submitRes = page.waitForResponse(
       (res) => res.url().includes("/api/get-started/submit") && res.request().method() === "POST"

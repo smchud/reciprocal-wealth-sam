@@ -18,33 +18,41 @@ function arr(data: IntakeData, name: string): string[] {
   return Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : [];
 }
 
-// ---------- Effort score (Section 7: services / involvement / communication) ----------
+// ---------- Effort score (Section 5 & 7: services / involvement / contact frequency / account checking) ----------
 
 const SERVICES_EFFORT_POINTS: Record<string, number> = {
   investment_management: 0,
-  financial_planning: 12,
-  retirement_planning: 8,
-  tax_planning: 10,
-  estate_planning: 12,
-  other: 8,
+  financial_planning: 10,
+  tax_planning: 8,
+  estate_planning: 9,
+  retirement_planning: 6,
+  other: 6,
 };
-const SERVICES_CAP = 40;
+const SERVICES_CAP = 30;
 
 const INVOLVEMENT_EFFORT_POINTS: Record<string, number> = {
   hands_off: 6,
-  informed: 14,
-  collaborative: 24,
+  informed: 12,
+  collaborative: 16,
   hands_on: 30,
 };
 
-const COMMUNICATION_EFFORT_POINTS: Record<string, number> = {
-  email: 3,
-  phone: 7,
-  video: 6,
-  in_person: 10,
-  text: 8,
+const CONTACT_FREQUENCY_EFFORT_POINTS: Record<string, number> = {
+  annual: 4,
+  semi: 8,
+  quarterly: 10,
+  frequent: 20,
 };
-const COMMUNICATION_CAP = 30;
+
+const ACCOUNT_CHECKING_EFFORT_POINTS: Record<string, number> = {
+  annually: 0,
+  quarterly: 3,
+  monthly: 9,
+  weekly: 12,
+  daily: 17,
+  multi_daily: 20,
+};
+
 const EFFORT_MAX = 100;
 
 /** Threshold for the effort axis: total effort score >= this is High-Effort. */
@@ -59,7 +67,8 @@ export function classifyEffortTier(totalEffortScore: number): EffortTier {
 export interface EffortScoreResult {
   servicesScore: number;
   involvementScore: number;
-  communicationScore: number;
+  contactFrequencyScore: number;
+  accountCheckingScore: number;
   totalEffortScore: number;
   effortTier: EffortTier;
 }
@@ -72,22 +81,19 @@ export function computeEffortScore(data: IntakeData): EffortScoreResult {
   const servicesScore = Math.min(servicesRaw, SERVICES_CAP);
 
   const involvementScore = INVOLVEMENT_EFFORT_POINTS[str(data, "involvement")] ?? 0;
-
-  const communicationRaw = arr(data, "contact_channel").reduce(
-    (sum, code) => sum + (COMMUNICATION_EFFORT_POINTS[code] ?? 0),
-    0
-  );
-  const communicationScore = Math.min(communicationRaw, COMMUNICATION_CAP);
+  const contactFrequencyScore = CONTACT_FREQUENCY_EFFORT_POINTS[str(data, "contact_frequency")] ?? 0;
+  const accountCheckingScore = ACCOUNT_CHECKING_EFFORT_POINTS[str(data, "checking_frequency")] ?? 0;
 
   const totalEffortScore = Math.min(
-    servicesScore + involvementScore + communicationScore,
+    servicesScore + involvementScore + contactFrequencyScore + accountCheckingScore,
     EFFORT_MAX
   );
 
   return {
     servicesScore,
     involvementScore,
-    communicationScore,
+    contactFrequencyScore,
+    accountCheckingScore,
     totalEffortScore,
     effortTier: classifyEffortTier(totalEffortScore),
   };

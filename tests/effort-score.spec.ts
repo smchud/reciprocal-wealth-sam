@@ -10,50 +10,55 @@ import {
 } from "../src/lib/get-started/effortScore";
 
 test.describe("effort score math", () => {
-  test("case 1: Investment management only + Hands-off + Email only -> 9, Low-Effort", () => {
+  test("case 1: IM only + Hands-off + Once a year + Annually or less -> 10, Low-Effort", () => {
     const result = computeEffortScore({
       services_desired: ["investment_management"],
       involvement: "hands_off",
-      contact_channel: ["email"],
+      contact_frequency: "annual",
+      checking_frequency: "annually",
     });
     expect(result.servicesScore).toBe(0);
     expect(result.involvementScore).toBe(6);
-    expect(result.communicationScore).toBe(3);
-    expect(result.totalEffortScore).toBe(9);
+    expect(result.contactFrequencyScore).toBe(4);
+    expect(result.accountCheckingScore).toBe(0);
+    expect(result.totalEffortScore).toBe(10);
     expect(result.effortTier).toBe("Low-Effort");
   });
 
-  test("case 2: Inv mgmt + Financial planning + Tax + Collaborative + Email/Phone/In-person -> 66, High-Effort", () => {
+  test("case 2: IM + Financial planning + Tax + Collaborative + Quarterly + Weekly -> 56, High-Effort", () => {
     const result = computeEffortScore({
       services_desired: ["investment_management", "financial_planning", "tax_planning"],
       involvement: "collaborative",
-      contact_channel: ["email", "phone", "in_person"],
+      contact_frequency: "quarterly",
+      checking_frequency: "weekly",
     });
-    expect(result.servicesScore).toBe(22);
-    expect(result.involvementScore).toBe(24);
-    expect(result.communicationScore).toBe(20);
-    expect(result.totalEffortScore).toBe(66);
+    expect(result.servicesScore).toBe(18);
+    expect(result.involvementScore).toBe(16);
+    expect(result.contactFrequencyScore).toBe(10);
+    expect(result.accountCheckingScore).toBe(12);
+    expect(result.totalEffortScore).toBe(56);
     expect(result.effortTier).toBe("High-Effort");
   });
 
-  test("case 3: all services + Hands-on + all channels -> 100, High-Effort", () => {
+  test("case 3: all services + Hands-on + Frequent + Multiple/day -> 100, High-Effort", () => {
     const result = computeEffortScore({
       services_desired: [
         "investment_management",
         "financial_planning",
-        "retirement_planning",
         "tax_planning",
         "estate_planning",
+        "retirement_planning",
         "other",
       ],
       involvement: "hands_on",
-      contact_channel: ["email", "phone", "video", "in_person", "text"],
+      contact_frequency: "frequent",
+      checking_frequency: "multi_daily",
     });
-    // Raw services sum is 50 (0+12+8+10+12+8), capped at 40.
-    expect(result.servicesScore).toBe(40);
+    // Raw services sum is 39 (0+10+8+9+6+6), capped at 30.
+    expect(result.servicesScore).toBe(30);
     expect(result.involvementScore).toBe(30);
-    // Raw communication sum is 34 (3+7+6+10+8), capped at 30.
-    expect(result.communicationScore).toBe(30);
+    expect(result.contactFrequencyScore).toBe(20);
+    expect(result.accountCheckingScore).toBe(20);
     expect(result.totalEffortScore).toBe(100);
     expect(result.effortTier).toBe("High-Effort");
   });
@@ -63,7 +68,8 @@ test.describe("effort score math", () => {
     expect(result).toEqual({
       servicesScore: 0,
       involvementScore: 0,
-      communicationScore: 0,
+      contactFrequencyScore: 0,
+      accountCheckingScore: 0,
       totalEffortScore: 0,
       effortTier: "Low-Effort",
     });
@@ -73,7 +79,8 @@ test.describe("effort score math", () => {
     const result = computeEffortScore({
       services_desired: ["not_a_real_option"],
       involvement: "not_a_real_option",
-      contact_channel: ["not_a_real_option"],
+      contact_frequency: "not_a_real_option",
+      checking_frequency: "not_a_real_option",
     });
     expect(result.totalEffortScore).toBe(0);
   });
@@ -147,7 +154,8 @@ test.describe("combined quadrant", () => {
       investable_assets: "lt_500k",
       services_desired: ["investment_management"],
       involvement: "hands_off",
-      contact_channel: ["email"],
+      contact_frequency: "annual",
+      checking_frequency: "annually",
     });
     expect(lowAumLowEffort.quadrant).toBe("Low-AUM, Low-Effort");
 
@@ -155,7 +163,8 @@ test.describe("combined quadrant", () => {
       investable_assets: "500k_1M",
       services_desired: ["financial_planning", "estate_planning"],
       involvement: "hands_on",
-      contact_channel: ["email", "phone", "in_person"],
+      contact_frequency: "frequent",
+      checking_frequency: "weekly",
     });
     expect(lowAumHighEffort.quadrant).toBe("Low-AUM, High-Effort");
 
@@ -163,7 +172,8 @@ test.describe("combined quadrant", () => {
       investable_assets: "5M_10M",
       services_desired: ["investment_management"],
       involvement: "hands_off",
-      contact_channel: ["email"],
+      contact_frequency: "annual",
+      checking_frequency: "annually",
     });
     expect(highAumLowEffort.quadrant).toBe("High-AUM, Low-Effort");
 
@@ -171,7 +181,8 @@ test.describe("combined quadrant", () => {
       investable_assets: "gt_10M",
       services_desired: ["financial_planning", "estate_planning", "tax_planning"],
       involvement: "hands_on",
-      contact_channel: ["email", "phone", "video", "in_person", "text"],
+      contact_frequency: "frequent",
+      checking_frequency: "multi_daily",
     });
     expect(highAumHighEffort.quadrant).toBe("High-AUM, High-Effort");
   });
