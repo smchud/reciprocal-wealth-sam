@@ -371,6 +371,18 @@ export const FIELD_META: Record<string, FieldMeta> = {
   },
 
   // Section 7
+  services_desired: {
+    label: "Services wanted from a financial adviser",
+    options: {
+      investment_management: "Investment management",
+      financial_planning: "Financial planning",
+      tax_planning: "Tax planning",
+      retirement_planning: "Retirement planning",
+      estate_planning: "Estate planning",
+      other: "Other",
+    },
+  },
+  services_desired_other: { label: "Services wanted — other, specified" },
   psy_p1: { label: "Judges advisor by performance targets net of fees", options: likert5 },
   psy_p2: { label: "Plan in place > last quarter's return", options: likert5 },
   psy_p3: { label: "Underperforming a benchmark would concern them", options: likert5 },

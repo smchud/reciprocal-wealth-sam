@@ -49,6 +49,8 @@ const NOTE_SECTIONS: NoteSection[] = [
   {
     title: "Working With Us",
     fields: [
+      "services_desired",
+      "services_desired_other",
       "contact_frequency",
       "contact_channel",
       "advisor_qualities",

@@ -107,6 +107,8 @@ const SECTION_FIELDS: { title: string; fields: string[] }[] = [
   {
     title: "Section 7 — Working With Us",
     fields: [
+      "services_desired",
+      "services_desired_other",
       "contact_frequency",
       "contact_channel",
       "advisor_qualities",

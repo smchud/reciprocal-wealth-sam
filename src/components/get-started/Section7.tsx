@@ -10,7 +10,17 @@ import {
   CheckboxGroup,
   LikertGrid,
   QuestionBlock,
+  Conditional,
 } from "./fields";
+
+const SERVICES_DESIRED_OPTIONS = [
+  { value: "investment_management", label: "Investment management" },
+  { value: "financial_planning", label: "Financial planning" },
+  { value: "tax_planning", label: "Tax planning" },
+  { value: "retirement_planning", label: "Retirement planning" },
+  { value: "estate_planning", label: "Estate planning" },
+  { value: "other", label: "Other" },
+];
 
 const PSY_STATEMENTS = [
   { name: "psy_p1", label: "I would judge my advisor primarily by whether my portfolio meets or exceeds reasonable performance targets net of fees." },
@@ -73,8 +83,29 @@ interface SectionProps {
 }
 
 export default function Section7({ data, setField }: SectionProps) {
+  const servicesDesired = getArr(data, "services_desired");
+
   return (
     <div>
+      <QuestionBlock>
+        <CheckboxGroup
+          name="services_desired"
+          label="Which services are you looking for your financial adviser to provide?"
+          help="Select all that apply."
+          value={servicesDesired}
+          onChange={setField}
+          options={SERVICES_DESIRED_OPTIONS}
+        />
+        <Conditional show={servicesDesired.includes("other")}>
+          <TextField
+            name="services_desired_other"
+            label="Please specify"
+            value={getStr(data, "services_desired_other")}
+            onChange={setField}
+          />
+        </Conditional>
+      </QuestionBlock>
+
       <QuestionBlock>
         <LikertGrid
           label="A few statements about working with an advisor"
