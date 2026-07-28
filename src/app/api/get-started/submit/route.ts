@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getDraftFromSession } from "@/lib/get-started/session";
 import { REQUIRED_FIELD_NAMES } from "@/data/intakeFields";
 import { computeFullScoring } from "@/lib/get-started/scoring";
+import { computePriorityMatrix } from "@/lib/get-started/effortScore";
 import { finalizeSubmission, markPdfEmailed, markWealthboxSynced } from "@/lib/get-started/submission";
 import { generateSummaryPdf } from "@/lib/get-started/pdf";
 import { buildCrmNote } from "@/lib/get-started/crmNote";
@@ -50,9 +51,10 @@ export async function POST() {
   // autosaved in the draft either way, so a failure here just means "try
   // again in a moment," never data loss.
   const scoring = computeFullScoring(draft.data);
+  const priorityMatrix = computePriorityMatrix(draft.data);
   let submission;
   try {
-    submission = await finalizeSubmission(draft.id, draft.data, scoring);
+    submission = await finalizeSubmission(draft.id, draft.data, scoring, priorityMatrix);
     log("get_started_submitted", { draftId: draft.id, submissionId: submission?.id ?? null });
   } catch (err) {
     logError("get_started_submit_failed", { draftId: draft.id, message: String(err) });

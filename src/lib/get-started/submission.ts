@@ -1,5 +1,6 @@
 import { pool, query } from "@/lib/db";
 import type { FullScoring } from "./scoring";
+import type { PriorityMatrixResult } from "./effortScore";
 
 type IntakeData = Record<string, unknown>;
 
@@ -17,7 +18,8 @@ export interface SubmissionRecord {
 export async function finalizeSubmission(
   draftId: string,
   data: IntakeData,
-  scoring: FullScoring
+  scoring: FullScoring,
+  priorityMatrix: PriorityMatrixResult
 ): Promise<SubmissionRecord | null> {
   const client = await pool.connect();
   try {
@@ -43,14 +45,18 @@ export async function finalizeSubmission(
          risk_tolerance_score, age_factor, situation_factor,
          tolerance_breakdown, situation_breakdown,
          psychographic_archetype, psychographic_performance_score,
-         psychographic_contact_score, psychographic_breakdown
+         psychographic_contact_score, psychographic_breakdown,
+         priority_quadrant, effort_score_services, effort_score_involvement,
+         effort_score_communication, effort_score_total, aum_bucket, aum_value
        ) values (
          $1, $2, $3, $4, $5,
          $6, $7, $8,
          $9, $10, $11,
          $12, $13,
          $14, $15,
-         $16, $17
+         $16, $17,
+         $18, $19, $20,
+         $21, $22, $23, $24
        )
        returning id`,
       [
@@ -71,6 +77,13 @@ export async function finalizeSubmission(
         scoring.psychographic.performanceScore,
         scoring.psychographic.contactScore,
         JSON.stringify(scoring.psychographic.breakdown),
+        priorityMatrix.quadrant,
+        priorityMatrix.effort.servicesScore,
+        priorityMatrix.effort.involvementScore,
+        priorityMatrix.effort.communicationScore,
+        priorityMatrix.effort.totalEffortScore,
+        priorityMatrix.aum.aumBucket,
+        priorityMatrix.aum.aumValue,
       ]
     );
 

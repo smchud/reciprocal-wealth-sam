@@ -201,29 +201,68 @@ test.describe("/get-started submission failure handling", () => {
 });
 
 test.describe("/get-started full completion (real local server)", () => {
-  test("completing all 7 sections submits successfully with no score or profile shown to the client", async ({
+  test("completing all 7 sections submits successfully with no score, profile, or priority matrix shown to the client", async ({
     page,
   }) => {
     await acceptConsent(page);
     await page.getByRole("button", { name: "Begin" }).click();
     await fillRequiredName(page);
+    await page.getByRole("button", { name: "Continue" }).click(); // -> Section 2
+    await page.getByRole("button", { name: "Continue" }).click(); // -> Section 3
 
-    for (let i = 0; i < 6; i++) {
-      await page.getByRole("button", { name: "Continue" }).click();
+    // Deliberately pick the highest AUM bucket, so this submission computes
+    // to High-AUM - the most sensitive case for the leak check below.
+    await page.locator('input[name="investable_assets"][value="gt_10M"]').check();
+    await page.getByRole("button", { name: "Continue" }).click(); // -> Section 4
+    await page.getByRole("button", { name: "Continue" }).click(); // -> Section 5
+
+    // Deliberately pick the highest-effort involvement level too.
+    await page.locator('input[name="involvement"][value="hands_on"]').check();
+    await page.getByRole("button", { name: "Continue" }).click(); // -> Section 6
+    await page.getByRole("button", { name: "Continue" }).click(); // -> Section 7
+
+    // And every service plus every contact channel, so this submission is
+    // unambiguously High-AUM, High-Effort when the leak check runs below.
+    for (const value of [
+      "investment_management",
+      "financial_planning",
+      "tax_planning",
+      "retirement_planning",
+      "estate_planning",
+    ]) {
+      await page.locator(`input[name="services_desired"][value="${value}"]`).check();
+    }
+    for (const value of ["email", "phone", "video", "in_person", "text"]) {
+      await page.locator(`input[name="contact_channel"][value="${value}"]`).check();
     }
 
+    const submitRes = page.waitForResponse(
+      (res) => res.url().includes("/api/get-started/submit") && res.request().method() === "POST"
+    );
     await page.getByRole("button", { name: "Submit" }).click();
+    const submitResponse = await submitRes;
 
     await expect(page.getByText("Thank you, Jamie.")).toBeVisible();
     await expect(page.getByText("Have Reciprocal Wealth reach out")).toBeVisible();
     await expect(page.getByText("ready — proceed to onboarding")).toBeVisible();
 
-    // The HARD RULE: never render the computed score/profile/archetype.
+    // The HARD RULE: never render the computed score/profile/archetype, and
+    // never render the priority matrix (quadrant, effort tier, AUM tier) -
+    // same treatment, client-facing surfaces only ever see this page.
     const html = await page.content();
     expect(html).not.toMatch(/final_risk_score|risk_profile|psychographic_archetype/i);
     expect(html).not.toContain("Moderately Aggressive");
     expect(html).not.toContain("Conservative");
     expect(html).not.toContain("Engaged Stakeholder");
+    expect(html).not.toMatch(/priority_quadrant|effort_score|aum_value|aum_bucket|effortTier|aumTier/i);
+    expect(html).not.toContain("High-Effort");
+    expect(html).not.toContain("Low-Effort");
+    expect(html).not.toContain("High-AUM");
+    expect(html).not.toContain("Low-AUM");
+
+    // And never in the submit API response body either.
+    const submitBody = await submitResponse.json();
+    expect(Object.keys(submitBody).sort()).toEqual(["firstName", "ok"]);
   });
 });
 
