@@ -17,5 +17,11 @@ export default defineConfig({
     url: "http://localhost:3000",
     reuseExistingServer: true,
     timeout: 60_000,
+    env: {
+      // Lets the resume-link test read back the real, server-issued token
+      // instead of depending on Resend delivery. Test-only - see the guard
+      // in src/app/api/get-started/resume-link/route.ts.
+      RW_E2E_EXPOSE_RESUME_TOKEN: "1",
+    },
   },
 });

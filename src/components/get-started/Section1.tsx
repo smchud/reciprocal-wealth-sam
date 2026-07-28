@@ -126,8 +126,18 @@ export default function Section1({ data, setField, errors }: SectionProps) {
           />
         </div>
         <p className={helpClass + " mt-2"}>
-          Full legal middle name, please — we use it for account opening and custodial paperwork.
+          Middle name is optional, but if you have one, your full legal middle name helps with
+          account opening and custodial paperwork.
         </p>
+        <div className="mt-4 max-w-[20rem]">
+          <label className={subLabelClass}>Preferred name</label>
+          <TextField
+            name="preferred_name"
+            value={getStr(data, "preferred_name")}
+            onChange={setField}
+            placeholder="What we should call you, if different"
+          />
+        </div>
       </QuestionBlock>
 
       <QuestionBlock>
@@ -249,6 +259,15 @@ export default function Section1({ data, setField, errors }: SectionProps) {
               <label className={subLabelClass}>Last name</label>
               <TextField name="partner_last_name" value={getStr(data, "partner_last_name")} onChange={setField} />
             </div>
+          </div>
+          <div className="mt-3 max-w-[20rem]">
+            <label className={subLabelClass}>Preferred name</label>
+            <TextField
+              name="partner_preferred_name"
+              value={getStr(data, "partner_preferred_name")}
+              onChange={setField}
+              placeholder="What we should call them, if different"
+            />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
             <div>

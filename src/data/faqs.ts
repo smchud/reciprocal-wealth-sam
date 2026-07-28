@@ -1,38 +1,51 @@
 export interface FAQ {
   question: string;
   answer: string;
+  cta?: { label: string; href: string };
+  /** Inline link appended to the end of the answer paragraph (e.g. "...download our white paper here."). */
+  answerLink?: { prefix: string; label: string; href: string; suffix?: string };
 }
 
 export const faqs: FAQ[] = [
   {
-    question: "Where are you based?",
+    question: "How do I become a client?",
     answer:
-      "We are based in the suburbs of Boston, MA.",
+      "Start with our intake questionnaire — about 15 minutes covering your goals, finances, and how you think about risk. We'll review your answers and reach out within two business days to schedule a first meeting.",
+    cta: { label: "Start the questionnaire", href: "/get-started" },
   },
   {
-    question: "What services do you offer?",
+    question: "What do you mean by Reciprocity For All?",
     answer:
-      "We offer financial planning, investment management, retirement planning, and tax planning. That means assessing your current and future financial prospects, defining personalized goals, constructing a portfolio to match your risk tolerance, guiding you through retirement accounts, and using strategies like tax-loss harvesting to reduce your tax burden.",
+      "Reciprocity For All is a codified, contractual entitlement awarded to each client that sticks with Reciprocal until a sale. If the firm is ever sold, 20% of net cash proceeds is reserved exclusively for clients — no additional investment, no minimum AUM or account size required.",
+    answerLink: {
+      prefix: "For more information, download our white paper",
+      label: "here",
+      // Placeholder pending the finalized white-paper PDF — Sam is
+      // finalizing this week; upload to public/documents/ and this path
+      // will resolve once the file lands.
+      href: "/documents/reciprocal-wealth-white-paper.pdf",
+      suffix: ".",
+    },
+  },
+  {
+    question: "Where are you based?",
+    answer: "We are based in the suburbs of Boston, MA.",
   },
   {
     question: "What is your fee structure?",
     answer:
-      "We have a transparent fee structure that bills monthly at a percentage of assets under management.",
-  },
-  {
-    question: "What is the Client Pool?",
-    answer:
-      "If we sell our interests in the firm to another party and you are a client at that time, you will receive a share of a pool of net proceeds reserved exclusively for clients.",
+      "We have a transparent fee structure that bills monthly at a percentage of assets under management. For more information, please contact us at",
+    answerLink: {
+      prefix: "",
+      label: "info@reciprocalwealth.com",
+      href: "mailto:info@reciprocalwealth.com",
+      suffix: ".",
+    },
   },
   {
     question: "How often do you meet with clients?",
     answer:
       "We meet with clients on an as-requested basis. If we don't hear from you often, we typically reach out about once per quarter to update you on performance and talk about whatever is on your mind.",
-  },
-  {
-    question: "How do I transfer my assets to Reciprocal?",
-    answer:
-      "There are just a few forms to fill out, which won't take more than a few minutes of your time. We will walk you through the process step-by-step to ensure that everything is taken care of in one shot.",
   },
   {
     question: "How do I access my account?",

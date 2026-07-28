@@ -2,8 +2,11 @@ import { NextResponse } from "next/server";
 import { getDraftFromSession } from "@/lib/get-started/session";
 import { REQUIRED_FIELD_NAMES } from "@/data/intakeFields";
 import { computeFullScoring } from "@/lib/get-started/scoring";
+import { computePriorityMatrix } from "@/lib/get-started/effortScore";
 import { finalizeSubmission, markPdfEmailed, markWealthboxSynced } from "@/lib/get-started/submission";
 import { generateSummaryPdf } from "@/lib/get-started/pdf";
+import { buildCrmNote } from "@/lib/get-started/crmNote";
+import { buildWealthboxCustomFieldValues } from "@/lib/get-started/wealthboxCustomFields";
 import { sendSubmissionSummary } from "@/lib/notify";
 import { syncQuestionnaireContact } from "@/lib/wealthbox";
 
@@ -49,9 +52,10 @@ export async function POST() {
   // autosaved in the draft either way, so a failure here just means "try
   // again in a moment," never data loss.
   const scoring = computeFullScoring(draft.data);
+  const priorityMatrix = computePriorityMatrix(draft.data);
   let submission;
   try {
-    submission = await finalizeSubmission(draft.id, draft.data, scoring);
+    submission = await finalizeSubmission(draft.id, draft.data, scoring, priorityMatrix);
     log("get_started_submitted", { draftId: draft.id, submissionId: submission?.id ?? null });
   } catch (err) {
     logError("get_started_submit_failed", { draftId: draft.id, message: String(err) });
@@ -72,7 +76,7 @@ export async function POST() {
   // visitor sees. Each is isolated so one failing doesn't skip the others.
   if (submission) {
     try {
-      const pdfBuffer = await generateSummaryPdf(draft.data, scoring, new Date());
+      const pdfBuffer = await generateSummaryPdf(draft.data, scoring, priorityMatrix, new Date());
       await sendSubmissionSummary(name, pdfBuffer);
       await markPdfEmailed(submission.id);
     } catch (err) {
@@ -82,14 +86,8 @@ export async function POST() {
     try {
       const email = typeof draft.data.email === "string" ? draft.data.email : "";
       if (email) {
-        const note = [
-          `[${new Date().toISOString()}] Website questionnaire completed.`,
-          `Risk profile: ${scoring.riskProfile.label} (${scoring.finalRiskScore}/100, indicative equity ${scoring.riskProfile.equity})`,
-          `Psychographic archetype: ${scoring.psychographic.archetype}`,
-          draft.data.top_goal ? `Top goal: ${draft.data.top_goal}` : null,
-        ]
-          .filter(Boolean)
-          .join("\n");
+        const note = buildCrmNote(draft.data, scoring, new Date());
+        const customFieldValues = buildWealthboxCustomFieldValues(draft.data, scoring);
 
         const wb = await syncQuestionnaireContact({
           firstName: typeof draft.data.first_name === "string" ? draft.data.first_name : "",
@@ -97,6 +95,7 @@ export async function POST() {
           email,
           phone: typeof draft.data.phone === "string" ? draft.data.phone : undefined,
           note,
+          customFieldValues,
         });
         await markWealthboxSynced(submission.id, String(wb.id));
       }

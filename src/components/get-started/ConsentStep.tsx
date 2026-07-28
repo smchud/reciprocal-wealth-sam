@@ -16,7 +16,7 @@ export default function ConsentStep({
 
   return (
     <div>
-      <h1 className="text-[28px] sm:text-[32px] font-light tracking-[-0.5px] text-near-black leading-tight">
+      <h1 className="text-[28px] sm:text-[32px] font-serif tracking-[-0.5px] text-near-black leading-tight">
         Before we start
       </h1>
       <p className="mt-4 text-sm text-stone leading-relaxed max-w-[60ch]">

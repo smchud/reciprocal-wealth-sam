@@ -61,6 +61,8 @@ export default function GetStartedFlow() {
         const body = await res.json();
         if (cancelled) return;
 
+        const resumeError = searchParams.get("resume_error") === "1";
+
         if (body.ok && body.draft) {
           setData(body.draft.data || {});
           if (body.draft.submittedAt) {
@@ -72,10 +74,15 @@ export default function GetStartedFlow() {
           setPhase("flow");
           if (searchParams.get("resumed") === "1") {
             setBanner("Welcome back — we've restored your progress.");
+          } else if (resumeError) {
+            // The token itself was already used or has expired, but this
+            // browser still holds a valid session from redeeming it
+            // earlier - say so plainly rather than silently doing nothing.
+            setBanner("That link has already been used. You're still viewing your saved progress from earlier.");
           }
         } else {
           setPhase("consent");
-          if (searchParams.get("resume_error") === "1") {
+          if (resumeError) {
             setBanner("That link is invalid or has expired. Please start again below.");
           }
         }
@@ -156,7 +163,6 @@ export default function GetStartedFlow() {
   function validateSection1(): boolean {
     const required: [string, string][] = [
       ["first_name", "first name"],
-      ["middle_name", "middle name"],
       ["last_name", "last name"],
     ];
     const missing: string[] = [];
@@ -274,7 +280,7 @@ export default function GetStartedFlow() {
             <div className="text-[11px] font-semibold uppercase tracking-wide text-forest mb-2">
               Section {currentStep}
             </div>
-            <h2 className="text-[24px] sm:text-[28px] font-light tracking-[-0.5px] text-near-black">
+            <h2 className="text-[24px] sm:text-[28px] font-serif tracking-[-0.5px] text-near-black">
               {meta.title}
             </h2>
             <p className="mt-2 text-sm text-stone max-w-[60ch] mb-8">{meta.subtitle}</p>

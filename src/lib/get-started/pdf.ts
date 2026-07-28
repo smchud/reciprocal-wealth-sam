@@ -1,6 +1,7 @@
 import PDFDocument from "pdfkit";
 import { fieldLabel, formatValue } from "./answerLabels";
 import type { FullScoring } from "./scoring";
+import type { PriorityMatrixResult } from "./effortScore";
 
 type IntakeData = Record<string, unknown>;
 
@@ -11,6 +12,7 @@ const SECTION_FIELDS: { title: string; fields: string[] }[] = [
       "first_name",
       "middle_name",
       "last_name",
+      "preferred_name",
       "dob",
       "email",
       "phone_type",
@@ -24,6 +26,7 @@ const SECTION_FIELDS: { title: string; fields: string[] }[] = [
       "partner_first_name",
       "partner_middle_name",
       "partner_last_name",
+      "partner_preferred_name",
       "partner_dob",
       "partner_email",
       "partner_phone",
@@ -105,6 +108,8 @@ const SECTION_FIELDS: { title: string; fields: string[] }[] = [
   {
     title: "Section 7 — Working With Us",
     fields: [
+      "services_desired",
+      "services_desired_other",
       "contact_frequency",
       "contact_channel",
       "advisor_qualities",
@@ -148,7 +153,12 @@ function childRows(data: IntakeData): { name: string; dob: string; school: strin
     .filter((c) => c.name || c.dob || c.school);
 }
 
-export function generateSummaryPdf(data: IntakeData, scoring: FullScoring, submittedAt: Date): Promise<Buffer> {
+export function generateSummaryPdf(
+  data: IntakeData,
+  scoring: FullScoring,
+  priorityMatrix: PriorityMatrixResult,
+  submittedAt: Date
+): Promise<Buffer> {
   const doc = new PDFDocument({ margin: 50, bufferPages: true });
   const chunks: Buffer[] = [];
   doc.on("data", (chunk) => chunks.push(chunk));
@@ -199,6 +209,24 @@ export function generateSummaryPdf(data: IntakeData, scoring: FullScoring, submi
     .text(scoring.psychographic.description)
     .text(
       `Performance axis: ${scoring.psychographic.performanceScore >= 0 ? "+" : ""}${scoring.psychographic.performanceScore} · Contact axis: ${scoring.psychographic.contactScore >= 0 ? "+" : ""}${scoring.psychographic.contactScore}`
+    );
+  doc.moveDown(0.5);
+
+  doc.fontSize(11).font("Helvetica-Bold").fillColor("#0F6E56").text("Priority quadrant");
+  doc.fillColor("#000000").fontSize(10).font("Helvetica");
+  doc.moveDown(0.2);
+  doc.font("Helvetica-Bold").text(`Quadrant: ${priorityMatrix.quadrant}`);
+  doc.font("Helvetica").text(
+    `AUM score: ${priorityMatrix.aum.aumScore} (${priorityMatrix.aum.aumRangeLabel})`
+  );
+  doc
+    .font("Helvetica-Bold")
+    .text(`Effort score: ${priorityMatrix.effort.totalEffortScore} / 100 — ${priorityMatrix.effort.effortTier}`);
+  doc
+    .font("Helvetica")
+    .text(
+      `Components — services: ${priorityMatrix.effort.servicesScore}, involvement: ${priorityMatrix.effort.involvementScore}, ` +
+        `contact frequency: ${priorityMatrix.effort.contactFrequencyScore}, account checking: ${priorityMatrix.effort.accountCheckingScore}`
     );
   doc.moveDown(1);
 

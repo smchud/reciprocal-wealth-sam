@@ -22,7 +22,7 @@ export default function TalkToUsB() {
             <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.1em] text-forest-50 mb-4">
               Get in Touch
             </span>
-            <h1 className="text-[32px] md:text-[36px] font-light tracking-[-1px] text-white leading-tight">
+            <h1 className="font-serif text-[32px] md:text-[36px] tracking-[-0.5px] text-white leading-tight">
               Contact us
             </h1>
             <p className="mt-5 text-base text-white/55 leading-relaxed">

@@ -12,6 +12,12 @@
   --color-near-black: #1A1A18;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* v4c: serif for headings/subheadings. Georgia first (not redistributable
+     as a webfont); Gelasio (self-hosted via next/font/local as
+     --font-gelasio, see layout.tsx) is the metrically-compatible fallback
+     for visitors without Georgia installed. Inter stays for body copy, UI,
+     and labels. */
+  --font-serif: Georgia, var(--font-gelasio), serif;
 }
 
 html {

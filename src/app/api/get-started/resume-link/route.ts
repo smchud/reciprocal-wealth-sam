@@ -57,8 +57,17 @@ export async function POST(req: NextRequest) {
 
     const rawToken = await issueResumeToken(draft.id);
     const resumeUrl = `${getSiteUrl()}/api/get-started/resume?token=${encodeURIComponent(rawToken)}`;
-    await sendResumeLink(email, resumeUrl);
-    return NextResponse.json({ ok: true });
+
+    // Test-only escape hatch so Playwright can verify real token issuance/
+    // redemption without depending on Resend delivery. Never set this env
+    // var outside a local/CI test run — production and preview deploys must
+    // never expose a raw resume token in an API response.
+    const e2eExposeToken = process.env.RW_E2E_EXPOSE_RESUME_TOKEN === "1";
+    if (!e2eExposeToken) {
+      await sendResumeLink(email, resumeUrl);
+    }
+
+    return NextResponse.json({ ok: true, ...(e2eExposeToken ? { token: rawToken } : {}) });
   } catch (err) {
     logError("get_started_resume_link_failed", { message: String(err) });
     return NextResponse.json(

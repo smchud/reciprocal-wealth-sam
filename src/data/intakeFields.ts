@@ -9,11 +9,11 @@
 
 export const STATIC_FIELD_NAMES = [
   // Section 1 — Your Details
-  "first_name", "middle_name", "last_name", "dob", "email",
+  "first_name", "middle_name", "last_name", "preferred_name", "dob", "email",
   "phone_type", "phone",
   "address_street", "address_city", "address_state", "address_zip", "address_country",
   "marital_status",
-  "partner_first_name", "partner_middle_name", "partner_last_name",
+  "partner_first_name", "partner_middle_name", "partner_last_name", "partner_preferred_name",
   "partner_dob", "partner_email", "partner_phone", "partner_coclient",
   "has_children",
   "hobbies", "hobbies_other",
@@ -66,6 +66,7 @@ export const STATIC_FIELD_NAMES = [
   "risk_q38",
 
   // Section 7 — Working With Us
+  "services_desired", "services_desired_other",
   "psy_p1", "psy_p2", "psy_p3", "psy_p4",
   "psy_c1", "psy_c2", "psy_c3", "psy_c4",
   "contact_frequency", "contact_channel",
@@ -87,10 +88,9 @@ export function isKnownFieldName(name: string): boolean {
   return STATIC_FIELD_NAME_SET.has(name) || DYNAMIC_FIELD_PATTERN.test(name);
 }
 
-/** Only fields formally required in the approved source (Section 1 legal name). */
+/** Only fields formally required in the approved source (Section 1 legal name). Middle name is optional. */
 export const REQUIRED_FIELD_NAMES: readonly StaticFieldName[] = [
   "first_name",
-  "middle_name",
   "last_name",
 ];
 
@@ -105,6 +105,7 @@ export const MULTI_VALUE_FIELD_NAMES: readonly StaticFieldName[] = [
   "contact_channel",
   "advisor_qualities",
   "investing_values",
+  "services_desired",
 ];
 
 export const SECTION_IDS = ["consent", "welcome", "1", "2", "3", "4", "5", "6", "7"] as const;

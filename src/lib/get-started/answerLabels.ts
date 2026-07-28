@@ -21,6 +21,8 @@ const industryOptions: Record<string, string> = {
   real_estate: "Real Estate",
   education: "Education",
   government: "Government / Public Sector",
+  retail: "Retail",
+  entertainment: "Entertainment",
   na_retired: "N/A — Retired",
   na_homemaker: "N/A — Homemaker",
   other: "Other",
@@ -33,6 +35,7 @@ const educationOptions: Record<string, string> = {
   master: "Master's degree",
   professional: "Professional degree (JD, MD, etc.)",
   doctorate: "Doctorate",
+  na: "N/A",
 };
 
 const likert5: Record<string, string> = {
@@ -48,6 +51,7 @@ export const FIELD_META: Record<string, FieldMeta> = {
   first_name: { label: "First name" },
   middle_name: { label: "Middle name" },
   last_name: { label: "Last name" },
+  preferred_name: { label: "Preferred name" },
   dob: { label: "Date of birth" },
   email: { label: "Email" },
   phone_type: { label: "Phone type" },
@@ -70,6 +74,7 @@ export const FIELD_META: Record<string, FieldMeta> = {
   partner_first_name: { label: "Partner first name" },
   partner_middle_name: { label: "Partner middle name" },
   partner_last_name: { label: "Partner last name" },
+  partner_preferred_name: { label: "Partner preferred name" },
   partner_dob: { label: "Partner date of birth" },
   partner_email: { label: "Partner email" },
   partner_phone: { label: "Partner phone" },
@@ -369,6 +374,18 @@ export const FIELD_META: Record<string, FieldMeta> = {
   },
 
   // Section 7
+  services_desired: {
+    label: "Services wanted from a financial adviser",
+    options: {
+      investment_management: "Investment management",
+      financial_planning: "Financial planning",
+      tax_planning: "Tax planning",
+      retirement_planning: "Retirement planning",
+      estate_planning: "Estate planning",
+      other: "Other",
+    },
+  },
+  services_desired_other: { label: "Services wanted — other, specified" },
   psy_p1: { label: "Judges advisor by performance targets net of fees", options: likert5 },
   psy_p2: { label: "Plan in place > last quarter's return", options: likert5 },
   psy_p3: { label: "Underperforming a benchmark would concern them", options: likert5 },

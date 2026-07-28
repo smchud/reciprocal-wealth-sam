@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import type { FAQ } from "@/data/faqs";
 
 interface FAQAccordionProps {
@@ -45,7 +46,32 @@ export default function FAQAccordion({
             >
               <p className={`text-sm leading-relaxed ${bodyColor}`}>
                 {faq.answer}
+                {faq.answerLink && (
+                  <>
+                    {faq.answerLink.prefix
+                      ? ` ${faq.answerLink.prefix} `
+                      : " "}
+                    <a
+                      href={faq.answerLink.href}
+                      {...(faq.answerLink.href.startsWith("mailto:")
+                        ? {}
+                        : { target: "_blank", rel: "noopener noreferrer" })}
+                      className="text-forest hover:text-deep-forest underline transition-colors"
+                    >
+                      {faq.answerLink.label}
+                    </a>
+                    {faq.answerLink.suffix}
+                  </>
+                )}
               </p>
+              {faq.cta && (
+                <Link
+                  href={faq.cta.href}
+                  className="mt-3 inline-flex items-center min-h-11 text-sm font-medium text-forest hover:text-deep-forest transition-colors"
+                >
+                  {faq.cta.label} &rarr;
+                </Link>
+              )}
             </div>
           </div>
         );

@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, request as apiRequest, type Page } from "@playwright/test";
 
 async function acceptConsent(page: Page) {
   await page.goto("/get-started");
@@ -26,13 +26,24 @@ test.describe("/get-started consent and validation", () => {
     await page.getByRole("button", { name: "Begin" }).click();
     await expect(page.getByText("Your Details")).toBeVisible();
 
-    // Only fill one of the three required name fields.
+    // First and last name are required; middle name is not, so it's left blank here.
     await page.getByPlaceholder("First").fill("Jamie");
     await page.getByRole("button", { name: "Continue" }).click();
 
-    await expect(page.getByText(/Please enter your.*middle name.*last name/)).toBeVisible();
+    await expect(page.getByText(/Please enter your.*last name/)).toBeVisible();
     // Still on Section 1 - the field the visitor already typed is untouched.
     await expect(page.getByPlaceholder("First")).toHaveValue("Jamie");
+  });
+
+  test("middle name is optional - leaving it blank does not block advancing past Section 1", async ({ page }) => {
+    await acceptConsent(page);
+    await page.getByRole("button", { name: "Begin" }).click();
+    await page.getByPlaceholder("First").fill("Jamie");
+    await page.getByPlaceholder("Last").fill("Prospect");
+    await page.getByRole("button", { name: "Continue" }).click();
+
+    // Advanced to Section 2 - no validation error blocked it.
+    await expect(page.getByText("Section 2 of 7")).toBeVisible();
   });
 
   test("an invalid or expired resume link shows a clear message instead of a silent failure", async ({ page }) => {
@@ -59,6 +70,109 @@ test.describe("/get-started save & resume (UI)", () => {
 
     await expect(page.getByText("Check your inbox")).toBeVisible();
     await expect(page.getByText(/sent a link to jamie@example\.com/)).toBeVisible();
+  });
+});
+
+test.describe("/get-started save & resume (server enforcement)", () => {
+  test("a resume token can only be redeemed once - reuse from a second, independent context is rejected", async () => {
+    // Three independent cookie jars, standing in for: the device that
+    // requests the link, the device that first opens it, and a third party
+    // who gets hold of the same URL afterward (forwarded email, shared
+    // inbox, a security scanner, etc).
+    const requester = await apiRequest.newContext({ baseURL: "http://localhost:3000" });
+    const firstOpener = await apiRequest.newContext({ baseURL: "http://localhost:3000" });
+    const secondOpener = await apiRequest.newContext({ baseURL: "http://localhost:3000" });
+
+    try {
+      const created = await requester.post("/api/get-started/session", { data: { consent: true } });
+      expect(created.ok()).toBe(true);
+
+      const saved = await requester.patch("/api/get-started/session", {
+        data: {
+          step: "1",
+          data: { first_name: "Once", middle_name: "T", last_name: "Person", email: "once-only@example.com" },
+        },
+      });
+      expect(saved.ok()).toBe(true);
+
+      const linkRes = await requester.post("/api/get-started/resume-link", {
+        data: { email: "once-only@example.com" },
+      });
+      expect(linkRes.ok()).toBe(true);
+      const linkBody = await linkRes.json();
+      expect(linkBody.ok).toBe(true);
+
+      // Only present because RW_E2E_EXPOSE_RESUME_TOKEN=1 in this test run
+      // (see playwright.config.ts) - never present in production or preview.
+      const token: string = linkBody.token;
+      expect(typeof token).toBe("string");
+      expect(token.length).toBeGreaterThan(20);
+
+      // First redemption succeeds and grants access to the saved draft.
+      const first = await firstOpener.get(`/api/get-started/resume?token=${encodeURIComponent(token)}`, {
+        maxRedirects: 0,
+      });
+      expect([301, 302, 303, 307, 308]).toContain(first.status());
+      expect(first.headers()["location"]).toContain("resumed=1");
+
+      const firstOpenerSession = await firstOpener.get("/api/get-started/session");
+      const firstOpenerBody = await firstOpenerSession.json();
+      expect(firstOpenerBody.draft?.data?.first_name).toBe("Once");
+
+      // Reusing the exact same token from a second, cookie-isolated context
+      // must fail outright - this is the actual "single use" guarantee.
+      const second = await secondOpener.get(`/api/get-started/resume?token=${encodeURIComponent(token)}`, {
+        maxRedirects: 0,
+      });
+      expect(second.headers()["location"]).toContain("resume_error=1");
+
+      // And it must not have granted the second context any access at all.
+      const secondOpenerSession = await secondOpener.get("/api/get-started/session");
+      const secondOpenerBody = await secondOpenerSession.json();
+      expect(secondOpenerBody.draft).toBeNull();
+    } finally {
+      await requester.dispose();
+      await firstOpener.dispose();
+      await secondOpener.dispose();
+    }
+  });
+
+  test("re-clicking an already-used link in the same browser shows a clear message, not a silent success", async ({
+    page,
+  }) => {
+    await acceptConsent(page);
+    await page.getByRole("button", { name: "Begin" }).click();
+    await fillRequiredName(page);
+    await page.getByLabel("Email").fill("reclick@example.com");
+
+    // Let the debounced autosave flush before requesting a resume link, so
+    // the draft it points at actually contains what was just typed.
+    await expect(page.getByText("Saved", { exact: true })).toBeVisible();
+
+    await page.getByRole("button", { name: "Save & finish later" }).click();
+    const [linkRes] = await Promise.all([
+      page.waitForResponse(
+        (res) => res.url().includes("/api/get-started/resume-link") && res.request().method() === "POST"
+      ),
+      page.getByRole("button", { name: "Email me a link" }).click(),
+    ]);
+    const linkBody = await linkRes.json();
+    expect(linkBody.ok).toBe(true);
+    const token: string = linkBody.token;
+    expect(typeof token).toBe("string");
+    await page.getByRole("button", { name: "Done" }).click();
+
+    // First click: redeems the token and shows the normal welcome-back state.
+    await page.goto(`/api/get-started/resume?token=${encodeURIComponent(token)}`);
+    await expect(page.getByText("Welcome back")).toBeVisible();
+
+    // Second click of the identical link, same browser: the token is
+    // already spent, but this browser still has a valid session from the
+    // first click. It must not silently look like nothing happened.
+    await page.goto(`/api/get-started/resume?token=${encodeURIComponent(token)}`);
+    await expect(page.getByText("That link has already been used.")).toBeVisible();
+    // Their progress is still right there, not lost.
+    await expect(page.getByPlaceholder("First")).toHaveValue("Jamie");
   });
 });
 
@@ -98,18 +212,47 @@ test.describe("/get-started submission failure handling", () => {
 });
 
 test.describe("/get-started full completion (real local server)", () => {
-  test("completing all 7 sections submits successfully with no score or profile shown to the client", async ({
+  test("completing all 7 sections submits successfully with no score, profile, or priority matrix shown to the client", async ({
     page,
   }) => {
     await acceptConsent(page);
     await page.getByRole("button", { name: "Begin" }).click();
     await fillRequiredName(page);
+    await page.getByRole("button", { name: "Continue" }).click(); // -> Section 2
+    await page.getByRole("button", { name: "Continue" }).click(); // -> Section 3
 
-    for (let i = 0; i < 6; i++) {
-      await page.getByRole("button", { name: "Continue" }).click();
+    // Deliberately pick the highest AUM bucket, so this submission computes
+    // to High-AUM - the most sensitive case for the leak check below.
+    await page.locator('input[name="investable_assets"][value="gt_10M"]').check();
+    await page.getByRole("button", { name: "Continue" }).click(); // -> Section 4
+    await page.getByRole("button", { name: "Continue" }).click(); // -> Section 5
+
+    // Deliberately pick the highest-effort involvement level and
+    // account-checking frequency too.
+    await page.locator('input[name="involvement"][value="hands_on"]').check();
+    await page.locator('input[name="checking_frequency"][value="multi_daily"]').check();
+    await page.getByRole("button", { name: "Continue" }).click(); // -> Section 6
+    await page.getByRole("button", { name: "Continue" }).click(); // -> Section 7
+
+    // Every service plus the highest-effort contact frequency, so this
+    // submission is unambiguously High-AUM, High-Effort for the leak
+    // check below.
+    for (const value of [
+      "investment_management",
+      "financial_planning",
+      "tax_planning",
+      "retirement_planning",
+      "estate_planning",
+    ]) {
+      await page.locator(`input[name="services_desired"][value="${value}"]`).check();
     }
+    await page.locator('input[name="contact_frequency"][value="frequent"]').check();
 
+    const submitRes = page.waitForResponse(
+      (res) => res.url().includes("/api/get-started/submit") && res.request().method() === "POST"
+    );
     await page.getByRole("button", { name: "Submit" }).click();
+    const submitResponse = await submitRes;
 
     await expect(page.getByText("Thank you, Jamie.")).toBeVisible();
     await expect(page.getByText("What happens next")).toBeVisible();
@@ -118,12 +261,23 @@ test.describe("/get-started full completion (real local server)", () => {
     // No instant/single-click onboarding path - no link straight into Altruist.
     await expect(page.getByText("proceed to onboarding")).toHaveCount(0);
 
-    // The HARD RULE: never render the computed score/profile/archetype.
+    // The HARD RULE: never render the computed score/profile/archetype, and
+    // never render the priority matrix (quadrant, effort tier, AUM tier) -
+    // same treatment, client-facing surfaces only ever see this page.
     const html = await page.content();
     expect(html).not.toMatch(/final_risk_score|risk_profile|psychographic_archetype/i);
     expect(html).not.toContain("Moderately Aggressive");
     expect(html).not.toContain("Conservative");
     expect(html).not.toContain("Engaged Stakeholder");
+    expect(html).not.toMatch(/priority_quadrant|effort_score|aum_score|aum_range|aum_bucket|effortTier|aumTier/i);
+    expect(html).not.toContain("High-Effort");
+    expect(html).not.toContain("Low-Effort");
+    expect(html).not.toContain("High-AUM");
+    expect(html).not.toContain("Low-AUM");
+
+    // And never in the submit API response body either.
+    const submitBody = await submitResponse.json();
+    expect(Object.keys(submitBody).sort()).toEqual(["firstName", "ok"]);
   });
 });
 

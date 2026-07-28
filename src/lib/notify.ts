@@ -103,13 +103,13 @@ export async function sendResumeLink(email: string, resumeUrl: string): Promise<
     "",
     resumeUrl,
     "",
-    "This link is unique to you and expires in 14 days. If you didn't request it, you can ignore this email.",
+    "This link is unique to you, can only be used once, and expires in 72 hours. If you didn't request it, you can ignore this email.",
   ].join("\n");
 
   const html = `
     <p>Here's your link to pick up where you left off on the Reciprocal Wealth questionnaire:</p>
     <p><a href="${escapeHtml(resumeUrl)}">${escapeHtml(resumeUrl)}</a></p>
-    <p style="color:#6b746f;font-size:13px;">This link is unique to you and expires in 14 days. If you didn't request it, you can ignore this email.</p>
+    <p style="color:#6b746f;font-size:13px;">This link is unique to you, can only be used once, and expires in 72 hours. If you didn't request it, you can ignore this email.</p>
   `;
 
   const { error } = await resend.emails.send({

@@ -13,9 +13,24 @@ const inter = localFont({
   display: "swap",
 });
 
-const defaultTitle = "Reciprocal Wealth | Personalized Wealth Management";
+// Gelasio: metrically compatible with Georgia (which can't be redistributed
+// as a webfont), so it's the self-hosted fallback when Georgia isn't
+// installed on the reader's device. Georgia leads the CSS stack in
+// globals.css; this only ever renders for visitors without it.
+const gelasio = localFont({
+  src: [
+    { path: "../fonts/Gelasio-Regular-latin.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/Gelasio-Italic-latin.woff2", weight: "400", style: "italic" },
+    { path: "../fonts/Gelasio-Bold-latin.woff2", weight: "700", style: "normal" },
+    { path: "../fonts/Gelasio-BoldItalic-latin.woff2", weight: "700", style: "italic" },
+  ],
+  variable: "--font-gelasio",
+  display: "swap",
+});
+
+const defaultTitle = "Reciprocal Wealth | Invested Together.";
 const defaultDescription =
-  "Reciprocal Wealth offers personalized wealth management for individuals and families.";
+  "An independent, fee-only investment adviser for affluent individuals and families.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
@@ -51,7 +66,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`}>
+    <html lang="en" className={`${inter.variable} ${gelasio.variable} h-full`}>
       <body className="min-h-full flex flex-col font-sans antialiased">
         <Header />
         <main className="flex-1">{children}</main>
