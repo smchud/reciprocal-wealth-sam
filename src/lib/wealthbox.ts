@@ -109,20 +109,34 @@ interface WealthboxCustomFieldDefinition {
 }
 
 /**
- * Fetches the account's custom field definitions and resolves the given
- * name -> value map into Wealthbox's { id, value } shape, by exact
+ * Fetches the account's Contact custom field definitions and resolves the
+ * given name -> value map into Wealthbox's { id, value } shape, by exact
  * (case-insensitive) name match. Names not found in the account are
  * dropped with a warning rather than failing the whole sync - a renamed
  * or deleted Wealthbox field shouldn't block the contact from syncing at
- * all.
+ * all. Failure to even fetch the field list (network issue, endpoint
+ * change, etc) is likewise non-fatal - it just means no custom fields get
+ * set on this sync, not that the contact/note/tags update never happens.
  */
 async function resolveCustomFields(
   values: Record<string, string>
 ): Promise<{ id: number; value: string }[]> {
   if (Object.keys(values).length === 0) return [];
 
-  const res = await wealthboxFetch("/custom_fields", { method: "GET" });
-  const definitions: WealthboxCustomFieldDefinition[] = res?.custom_fields ?? res ?? [];
+  let definitions: WealthboxCustomFieldDefinition[];
+  try {
+    const res = await wealthboxFetch("/categories/custom_fields?document_type=Contact", { method: "GET" });
+    definitions = res?.custom_fields ?? res ?? [];
+  } catch (err) {
+    console.error(
+      JSON.stringify({
+        event: "wealthbox_custom_fields_fetch_failed",
+        ts: new Date().toISOString(),
+        message: String(err),
+      })
+    );
+    return [];
+  }
 
   const byName = new Map<string, number>();
   for (const def of definitions) {
