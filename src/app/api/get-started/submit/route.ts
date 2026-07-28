@@ -76,7 +76,7 @@ export async function POST() {
   // visitor sees. Each is isolated so one failing doesn't skip the others.
   if (submission) {
     try {
-      const pdfBuffer = await generateSummaryPdf(draft.data, scoring, new Date());
+      const pdfBuffer = await generateSummaryPdf(draft.data, scoring, priorityMatrix, new Date());
       await sendSubmissionSummary(name, pdfBuffer);
       await markPdfEmailed(submission.id);
     } catch (err) {
