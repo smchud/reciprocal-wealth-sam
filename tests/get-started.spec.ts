@@ -255,7 +255,7 @@ test.describe("/get-started full completion (real local server)", () => {
     expect(html).not.toContain("Moderately Aggressive");
     expect(html).not.toContain("Conservative");
     expect(html).not.toContain("Engaged Stakeholder");
-    expect(html).not.toMatch(/priority_quadrant|effort_score|aum_value|aum_bucket|effortTier|aumTier/i);
+    expect(html).not.toMatch(/priority_quadrant|effort_score|aum_score|aum_range|aum_bucket|effortTier|aumTier/i);
     expect(html).not.toContain("High-Effort");
     expect(html).not.toContain("Low-Effort");
     expect(html).not.toContain("High-AUM");

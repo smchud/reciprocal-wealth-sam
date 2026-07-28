@@ -99,37 +99,58 @@ export function computeEffortScore(data: IntakeData): EffortScoreResult {
   };
 }
 
-// ---------- AUM axis (Section 3: investable_assets) ----------
+// ---------- AUM score & axis (Section 3: investable_assets range) ----------
+//
+// The questionnaire only ever captures investable assets as one of six
+// ranges - never an exact dollar figure - so both the graded score and the
+// axis classification are driven directly by which range was selected,
+// never by a numeric dollar threshold.
 
-/** Lower bound in dollars for each investable_assets bucket - used as the axis's representative value. */
-const AUM_BUCKET_VALUE: Record<string, number> = {
-  lt_500k: 0,
-  "500k_1M": 500_000,
-  "1M_2.5M": 1_000_000,
-  "2.5M_5M": 2_500_000,
-  "5M_10M": 5_000_000,
-  gt_10M: 10_000_000,
+/** Verbatim option text from Section3.tsx, stored alongside the score for the PDF. */
+const AUM_RANGE_LABEL: Record<string, string> = {
+  lt_500k: "Under $500,000",
+  "500k_1M": "$500,000 – $1,000,000",
+  "1M_2.5M": "$1,000,000 – $2,500,000",
+  "2.5M_5M": "$2,500,000 – $5,000,000",
+  "5M_10M": "$5,000,000 – $10,000,000",
+  gt_10M: "Over $10,000,000",
 };
 
-/** Threshold for the AUM axis: representative value >= this is High-AUM. */
-export const AUM_THRESHOLD = 1_000_000;
+/** Graded 0-100 AUM score, one fixed value per range - for ranking within a quadrant. */
+const AUM_SCORE_BY_BUCKET: Record<string, number> = {
+  lt_500k: 15,
+  "500k_1M": 40,
+  "1M_2.5M": 60,
+  "2.5M_5M": 75,
+  "5M_10M": 88,
+  gt_10M: 100,
+};
+
+/** Ranges at/above $1,000,000-$2,500,000 are High-AUM for the quadrant split. */
+const HIGH_AUM_BUCKETS = new Set(["1M_2.5M", "2.5M_5M", "5M_10M", "gt_10M"]);
 
 export type AumTier = "Low-AUM" | "High-AUM";
 
-export function classifyAumTier(aumValue: number): AumTier {
-  return aumValue >= AUM_THRESHOLD ? "High-AUM" : "Low-AUM";
+/** Missing/unrecognized ranges default to Low-AUM, same conservative default used elsewhere in this module. */
+export function classifyAumTier(bucket: string): AumTier {
+  return HIGH_AUM_BUCKETS.has(bucket) ? "High-AUM" : "Low-AUM";
 }
 
 export interface AumAxisResult {
   aumBucket: string;
-  aumValue: number;
+  aumRangeLabel: string;
+  aumScore: number;
   aumTier: AumTier;
 }
 
 export function computeAumAxis(data: IntakeData): AumAxisResult {
   const aumBucket = str(data, "investable_assets");
-  const aumValue = AUM_BUCKET_VALUE[aumBucket] ?? 0;
-  return { aumBucket, aumValue, aumTier: classifyAumTier(aumValue) };
+  return {
+    aumBucket,
+    aumRangeLabel: AUM_RANGE_LABEL[aumBucket] ?? "",
+    aumScore: AUM_SCORE_BY_BUCKET[aumBucket] ?? 0,
+    aumTier: classifyAumTier(aumBucket),
+  };
 }
 
 // ---------- Combined 2x2 matrix ----------

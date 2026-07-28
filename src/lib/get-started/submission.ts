@@ -48,7 +48,7 @@ export async function finalizeSubmission(
          psychographic_contact_score, psychographic_breakdown,
          priority_quadrant, effort_score_services, effort_score_involvement,
          effort_score_contact_frequency, effort_score_account_checking,
-         effort_score_total, aum_bucket, aum_value
+         effort_score_total, aum_bucket, aum_range_label, aum_score
        ) values (
          $1, $2, $3, $4, $5,
          $6, $7, $8,
@@ -57,7 +57,7 @@ export async function finalizeSubmission(
          $14, $15,
          $16, $17,
          $18, $19, $20,
-         $21, $22, $23, $24, $25
+         $21, $22, $23, $24, $25, $26
        )
        returning id`,
       [
@@ -85,7 +85,8 @@ export async function finalizeSubmission(
         priorityMatrix.effort.accountCheckingScore,
         priorityMatrix.effort.totalEffortScore,
         priorityMatrix.aum.aumBucket,
-        priorityMatrix.aum.aumValue,
+        priorityMatrix.aum.aumRangeLabel,
+        priorityMatrix.aum.aumScore,
       ]
     );
 

@@ -6,7 +6,6 @@ import {
   classifyEffortTier,
   classifyAumTier,
   EFFORT_THRESHOLD,
-  AUM_THRESHOLD,
 } from "../src/lib/get-started/effortScore";
 
 test.describe("effort score math", () => {
@@ -100,51 +99,60 @@ test.describe("effort tier boundary (threshold is 50)", () => {
   });
 });
 
-test.describe("AUM axis", () => {
-  test("bucket boundary: 500k_1M is Low-AUM, 1M_2.5M is High-AUM", () => {
-    const under = computeAumAxis({ investable_assets: "500k_1M" });
-    expect(under.aumValue).toBe(500_000);
-    expect(under.aumTier).toBe("Low-AUM");
-
-    const atThreshold = computeAumAxis({ investable_assets: "1M_2.5M" });
-    expect(atThreshold.aumValue).toBe(1_000_000);
-    expect(atThreshold.aumTier).toBe("High-AUM");
-  });
-
-  test("all six buckets resolve to the expected value and tier", () => {
-    expect(computeAumAxis({ investable_assets: "lt_500k" })).toMatchObject({
-      aumValue: 0,
+test.describe("AUM score and axis (range-based, not a dollar figure)", () => {
+  test("all six ranges resolve to the expected score, label, and tier", () => {
+    expect(computeAumAxis({ investable_assets: "lt_500k" })).toEqual({
+      aumBucket: "lt_500k",
+      aumRangeLabel: "Under $500,000",
+      aumScore: 15,
       aumTier: "Low-AUM",
     });
-    expect(computeAumAxis({ investable_assets: "2.5M_5M" })).toMatchObject({
-      aumValue: 2_500_000,
-      aumTier: "High-AUM",
-    });
-    expect(computeAumAxis({ investable_assets: "5M_10M" })).toMatchObject({
-      aumValue: 5_000_000,
-      aumTier: "High-AUM",
-    });
-    expect(computeAumAxis({ investable_assets: "gt_10M" })).toMatchObject({
-      aumValue: 10_000_000,
-      aumTier: "High-AUM",
-    });
-  });
-
-  test("missing or unrecognized bucket defaults to $0 / Low-AUM, not a crash", () => {
-    expect(computeAumAxis({})).toMatchObject({ aumValue: 0, aumTier: "Low-AUM" });
-    expect(computeAumAxis({ investable_assets: "not_a_real_bucket" })).toMatchObject({
-      aumValue: 0,
+    expect(computeAumAxis({ investable_assets: "500k_1M" })).toEqual({
+      aumBucket: "500k_1M",
+      aumRangeLabel: "$500,000 – $1,000,000",
+      aumScore: 40,
       aumTier: "Low-AUM",
     });
+    expect(computeAumAxis({ investable_assets: "1M_2.5M" })).toEqual({
+      aumBucket: "1M_2.5M",
+      aumRangeLabel: "$1,000,000 – $2,500,000",
+      aumScore: 60,
+      aumTier: "High-AUM",
+    });
+    expect(computeAumAxis({ investable_assets: "2.5M_5M" })).toEqual({
+      aumBucket: "2.5M_5M",
+      aumRangeLabel: "$2,500,000 – $5,000,000",
+      aumScore: 75,
+      aumTier: "High-AUM",
+    });
+    expect(computeAumAxis({ investable_assets: "5M_10M" })).toEqual({
+      aumBucket: "5M_10M",
+      aumRangeLabel: "$5,000,000 – $10,000,000",
+      aumScore: 88,
+      aumTier: "High-AUM",
+    });
+    expect(computeAumAxis({ investable_assets: "gt_10M" })).toEqual({
+      aumBucket: "gt_10M",
+      aumRangeLabel: "Over $10,000,000",
+      aumScore: 100,
+      aumTier: "High-AUM",
+    });
   });
-});
 
-test.describe("AUM tier boundary (threshold is $1,000,000)", () => {
-  test("$999,999 is Low-AUM, $1,000,000 is High-AUM, $1,000,001 is High-AUM", () => {
-    expect(AUM_THRESHOLD).toBe(1_000_000);
-    expect(classifyAumTier(999_999)).toBe("Low-AUM");
-    expect(classifyAumTier(1_000_000)).toBe("High-AUM");
-    expect(classifyAumTier(1_000_001)).toBe("High-AUM");
+  test("quadrant boundary: $500K-$1M is Low-AUM, $1M-$2.5M is High-AUM", () => {
+    expect(classifyAumTier("500k_1M")).toBe("Low-AUM");
+    expect(classifyAumTier("1M_2.5M")).toBe("High-AUM");
+  });
+
+  test("missing or unrecognized range defaults to score 0 / Low-AUM, not a crash", () => {
+    expect(computeAumAxis({})).toMatchObject({ aumScore: 0, aumTier: "Low-AUM", aumRangeLabel: "" });
+    expect(computeAumAxis({ investable_assets: "not_a_real_range" })).toMatchObject({
+      aumScore: 0,
+      aumTier: "Low-AUM",
+      aumRangeLabel: "",
+    });
+    expect(classifyAumTier("")).toBe("Low-AUM");
+    expect(classifyAumTier("not_a_real_range")).toBe("Low-AUM");
   });
 });
 
