@@ -61,18 +61,14 @@ export default function Home() {
                 >
                   Become a Client
                 </Link>
-                <Link
-                  href="/why-reciprocal"
-                  className="col-span-2 flex items-center justify-center rounded-sm border border-white/35 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/55 hover:bg-white/5"
-                >
-                  Learn More About Reciprocity For All
-                </Link>
               </div>
             </div>
             <div className="hidden md:block flex-shrink-0 w-[320px]">
-              <SectionLabel className="text-forest-50 block text-center">
-                {reciprocityByContract.label}
-              </SectionLabel>
+              <div className="bg-warm-gray py-3 text-center">
+                <span className="text-xs font-semibold uppercase tracking-[0.1em] text-forest">
+                  {reciprocityByContract.label}
+                </span>
+              </div>
               <div className="mt-4 bg-forest-10 p-10 md:p-12 text-center">
                 <p className="font-serif lining-nums text-[64px] md:text-[72px] font-bold tracking-[-2px] text-deep-forest leading-none">
                   {reciprocityByContract.stat}
@@ -84,6 +80,12 @@ export default function Home() {
                   {reciprocityByContract.statLabel}
                 </p>
               </div>
+              <Link
+                href="/why-reciprocal"
+                className="mt-4 flex items-center justify-center rounded-sm border border-white/35 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/55 hover:bg-white/5"
+              >
+                Learn More
+              </Link>
             </div>
           </div>
         </div>
