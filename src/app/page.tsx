@@ -65,18 +65,25 @@ export default function Home() {
                   href="/why-reciprocal"
                   className="col-span-2 flex items-center justify-center rounded-sm border border-white/35 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/55 hover:bg-white/5"
                 >
-                  Learn More About The Participation Right
+                  Learn More About Reciprocity For All
                 </Link>
               </div>
             </div>
-            <div className="hidden md:block flex-shrink-0">
-              <Image
-                src="/images/logo-vertical-dark-transparent.png"
-                alt="Reciprocal Wealth"
-                width={1418}
-                height={1898}
-                className="h-64 w-auto object-contain"
-              />
+            <div className="hidden md:block flex-shrink-0 w-[320px]">
+              <SectionLabel className="text-forest-50 block text-center">
+                {reciprocityByContract.label}
+              </SectionLabel>
+              <div className="mt-4 bg-forest-10 p-10 md:p-12 text-center">
+                <p className="font-serif lining-nums text-[64px] md:text-[72px] font-bold tracking-[-2px] text-deep-forest leading-none">
+                  {reciprocityByContract.stat}
+                </p>
+                <p className="mt-5 text-base font-bold text-deep-forest leading-relaxed max-w-[240px] mx-auto">
+                  {reciprocityByContract.statDescription}
+                </p>
+                <p className="mt-4 text-xs font-bold uppercase tracking-[0.1em] text-forest">
+                  {reciprocityByContract.statLabel}
+                </p>
+              </div>
             </div>
           </div>
         </div>
