@@ -89,7 +89,7 @@ export default function Section6({ data, setField }: SectionProps) {
       <QuestionBlock>
         <RadioGroup
           name="risk_q36"
-          label="How much short-term volatility could you tolerate before it would seriously affect your sleep, work, or relationships?"
+          label="How much of a short-term drawdown/correction could you tolerate before it would seriously affect your sleep, work, or relationships?"
           value={getStr(data, "risk_q36")}
           onChange={setField}
           options={Q36_OPTIONS}

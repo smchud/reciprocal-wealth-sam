@@ -95,10 +95,22 @@ export function computeSituationFactor(data: IntakeData): SituationResult {
     gt_30: 15,
     retired: 0,
   };
-  const savingsRate = str(data, "savings_rate");
-  if (savingsRate && savingsMap[savingsRate] !== undefined) {
-    s += savingsMap[savingsRate];
-    breakdown.savings_rate = savingsMap[savingsRate];
+  // Split into pre-tax (retirement) and post-tax savings questions - average
+  // the two bucket contributions so an unanswered half doesn't zero out a
+  // meaningful answer on the other, and the combined swing stays in the
+  // same rough range as the single question this replaced.
+  const pretaxRate = str(data, "savings_rate_pretax");
+  const posttaxRate = str(data, "savings_rate_posttax");
+  const pretaxContribution = pretaxRate && savingsMap[pretaxRate] !== undefined ? savingsMap[pretaxRate] : undefined;
+  const posttaxContribution =
+    posttaxRate && savingsMap[posttaxRate] !== undefined ? savingsMap[posttaxRate] : undefined;
+  const savingsContributions = [pretaxContribution, posttaxContribution].filter(
+    (v): v is number => v !== undefined
+  );
+  if (savingsContributions.length > 0) {
+    const avg = Math.round(savingsContributions.reduce((a, b) => a + b, 0) / savingsContributions.length);
+    s += avg;
+    breakdown.savings_rate = avg;
   }
 
   const stabilityMap: Record<string, number> = {

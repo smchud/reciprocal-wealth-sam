@@ -5,8 +5,9 @@ import { IntakeData, getArr, getStr } from "./fields";
 
 export default function CompletionStep({ data }: { data: IntakeData }) {
   const firstName = getStr(data, "first_name") || "there";
-  const priorities = getArr(data, "priorities").map((v) => PRIORITIES_LABELS[v] || v);
-  const topGoal = getStr(data, "top_goal").trim();
+  const rawPriorities = getArr(data, "priorities");
+  const priorities = rawPriorities.map((v) => PRIORITIES_LABELS[v] || v);
+  const topGoal = rawPriorities.length > 0 ? PRIORITIES_LABELS[rawPriorities[0]] || rawPriorities[0] : "";
   const timeHorizon = TIME_HORIZON_LABELS[getStr(data, "time_horizon")];
   const majorExpenditures = getStr(data, "major_expenditures").trim();
 
@@ -25,7 +26,7 @@ export default function CompletionStep({ data }: { data: IntakeData }) {
         <div className="mt-6 rounded-sm border border-near-black/10 bg-warm-gray/50 p-5 space-y-3 text-sm text-near-black">
           {priorities.length > 0 && (
             <p>
-              <span className="font-medium">Priorities:</span> {priorities.join(", ")}
+              <span className="font-medium">Priorities (in order of importance):</span> {priorities.join(", ")}
             </p>
           )}
           {topGoal && (

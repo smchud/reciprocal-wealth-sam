@@ -61,17 +61,14 @@ const SECTION_FIELDS: { title: string; fields: string[] }[] = [
     fields: [
       "investable_assets",
       "assets_other_specify",
-      "tax_cash_pct",
-      "tax_taxable_pct",
-      "tax_deferred_pct",
-      "tax_free_pct",
       "liab_mortgage",
       "liab_student",
       "liab_auto",
       "liab_cc",
       "emergency_fund",
       "cash_balance",
-      "savings_rate",
+      "savings_rate_pretax",
+      "savings_rate_posttax",
       "inheritance",
       "inheritance_magnitude",
     ],
@@ -81,7 +78,6 @@ const SECTION_FIELDS: { title: string; fields: string[] }[] = [
     fields: [
       "priorities",
       "priorities_other",
-      "top_goal",
       "retirement_vision",
       "time_horizon",
       "major_expenditures",
@@ -116,6 +112,7 @@ const SECTION_FIELDS: { title: string; fields: string[] }[] = [
       "investing_values",
       "values_notes",
       "prompt",
+      "prompt_other",
       "referral_source",
       "referral_name",
       "other_notes",
@@ -124,17 +121,15 @@ const SECTION_FIELDS: { title: string; fields: string[] }[] = [
 ];
 
 const ASSET_ROWS: { key: string; label: string }[] = [
-  { key: "cash", label: "Cash & savings" },
+  { key: "cash", label: "Checking / savings / money market" },
   { key: "taxable", label: "Taxable brokerage" },
-  { key: "401k", label: "401(k) / 403(b)" },
-  { key: "ira", label: "IRA / Roth IRA" },
-  { key: "bonds", label: "Treasuries / bonds" },
+  { key: "401k", label: "401(k) / 403(b) / 457(b)" },
+  { key: "ira_trad", label: "Traditional / Rollover IRA" },
+  { key: "ira_roth", label: "Roth IRA" },
+  { key: "ira_other", label: "Other IRA: SIMPLE / SEP" },
   { key: "529", label: "529 plans" },
   { key: "equity", label: "Employer equity" },
-  { key: "private", label: "Private investments" },
-  { key: "crypto", label: "Cryptocurrency" },
-  { key: "alt", label: "Other alternatives" },
-  { key: "other", label: "Other" },
+  { key: "other", label: "Other: privates, alternatives, crypto, etc." },
 ];
 
 function childRows(data: IntakeData): { name: string; dob: string; school: string }[] {

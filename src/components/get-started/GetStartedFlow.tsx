@@ -274,7 +274,7 @@ export default function GetStartedFlow() {
         )}
 
         {isWelcome ? (
-          <WelcomeStep />
+          <WelcomeStep onBegin={goNext} />
         ) : (
           <>
             <div className="text-[11px] font-semibold uppercase tracking-wide text-forest mb-2">

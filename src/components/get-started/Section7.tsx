@@ -4,10 +4,12 @@ import {
   IntakeData,
   getStr,
   getArr,
+  Option,
   TextField,
   TextAreaField,
   RadioGroup,
   CheckboxGroup,
+  RankOrderField,
   LikertGrid,
   QuestionBlock,
   Conditional,
@@ -15,10 +17,11 @@ import {
 
 const SERVICES_DESIRED_OPTIONS = [
   { value: "investment_management", label: "Investment management" },
-  { value: "financial_planning", label: "Financial planning" },
-  { value: "tax_planning", label: "Tax planning" },
-  { value: "retirement_planning", label: "Retirement planning" },
-  { value: "estate_planning", label: "Estate planning" },
+  { value: "financial_retirement_planning", label: "Financial and/or retirement planning" },
+  { value: "tax_estate_planning", label: "Tax / estate planning" },
+  { value: "equity_comp", label: "Equity compensation planning/management" },
+  { value: "exit_planning", label: "Exit planning for my business" },
+  { value: "philanthropy", label: "Philanthropy / charitable giving" },
   { value: "other", label: "Other" },
 ];
 
@@ -34,9 +37,10 @@ const PSY_STATEMENTS = [
 ];
 
 const CONTACT_FREQUENCY_OPTIONS = [
-  { value: "quarterly", label: "Quarterly check-ins are plenty" },
-  { value: "semi", label: "Twice a year is right" },
+  { value: "as_needed", label: "Only when I need help or want to check in" },
   { value: "annual", label: "Once a year, plus when something important comes up" },
+  { value: "semi", label: "Twice a year is right" },
+  { value: "quarterly", label: "Quarterly check-ins are plenty" },
   { value: "frequent", label: "Frequent contact — monthly or more" },
 ];
 
@@ -45,7 +49,6 @@ const CONTACT_CHANNEL_OPTIONS = [
   { value: "phone", label: "Phone" },
   { value: "video", label: "Video call" },
   { value: "in_person", label: "In-person meetings" },
-  { value: "text", label: "Text / messaging" },
 ];
 
 const ADVISOR_QUALITIES_OPTIONS = [
@@ -62,10 +65,18 @@ const ADVISOR_QUALITIES_OPTIONS = [
 
 const INVESTING_VALUES_OPTIONS = [
   { value: "tax", label: "Tax efficiency is a top priority" },
-  { value: "esg", label: "Environmental, Social, and Governance (ESG) / values-aligned investing matters to me" },
+  { value: "esg", label: "ESG / values-aligned investing matters to me" },
   { value: "exclusions", label: "I want to avoid specific industries or companies" },
   { value: "income", label: "I value steady income from my investments" },
   { value: "none", label: "None — invest for the best risk-adjusted return" },
+];
+
+const PROMPT_OPTIONS = [
+  { value: "unhappy_advisor", label: "Unhappy with current advisor" },
+  { value: "time_to_hire_help", label: "Time to get serious and hire help" },
+  { value: "no_time_or_interest", label: "No longer have time or interest in doing it myself" },
+  { value: "enough_liquid", label: "Finally have enough liquid to start investing" },
+  { value: "other", label: "Other" },
 ];
 
 const REFERRAL_SOURCE_OPTIONS = [
@@ -84,6 +95,12 @@ interface SectionProps {
 
 export default function Section7({ data, setField }: SectionProps) {
   const servicesDesired = getArr(data, "services_desired");
+  const advisorQualities = getArr(data, "advisor_qualities");
+  const rankedAdvisorQualities: Option[] = advisorQualities
+    .map((v) => ADVISOR_QUALITIES_OPTIONS.find((o) => o.value === v))
+    .filter((o): o is Option => Boolean(o));
+  const prompt = getArr(data, "prompt");
+  const referralSource = getStr(data, "referral_source");
 
   return (
     <div>
@@ -142,11 +159,19 @@ export default function Section7({ data, setField }: SectionProps) {
           name="advisor_qualities"
           label="What matters to you in an advisor relationship?"
           help="Select up to 3."
-          value={getArr(data, "advisor_qualities")}
+          value={advisorQualities}
           onChange={setField}
           options={ADVISOR_QUALITIES_OPTIONS}
           maxSelect={3}
         />
+        <Conditional show={rankedAdvisorQualities.length === 3}>
+          <RankOrderField
+            name="advisor_qualities"
+            label="Now rank your top 3"
+            items={rankedAdvisorQualities}
+            onChange={setField}
+          />
+        </Conditional>
       </QuestionBlock>
 
       <QuestionBlock>
@@ -168,30 +193,48 @@ export default function Section7({ data, setField }: SectionProps) {
       </QuestionBlock>
 
       <QuestionBlock>
-        <TextAreaField
+        <CheckboxGroup
           name="prompt"
           label="What prompted you to look for an advisor right now?"
-          value={getStr(data, "prompt")}
+          help="Select all that apply."
+          value={prompt}
           onChange={setField}
+          options={PROMPT_OPTIONS}
         />
+        <Conditional show={prompt.includes("other")}>
+          <TextField
+            name="prompt_other"
+            label="Please specify"
+            value={getStr(data, "prompt_other")}
+            onChange={setField}
+          />
+        </Conditional>
       </QuestionBlock>
 
       <QuestionBlock>
         <RadioGroup
           name="referral_source"
           label="How did you hear about Reciprocal Wealth?"
-          value={getStr(data, "referral_source")}
+          value={referralSource}
           onChange={setField}
           options={REFERRAL_SOURCE_OPTIONS}
         />
-        <div className="mt-2">
+        <Conditional show={referralSource === "personal"}>
           <TextField
             name="referral_name"
             value={getStr(data, "referral_name")}
             onChange={setField}
-            placeholder="Name (if comfortable)"
+            placeholder="Who referred you? (if comfortable)"
           />
-        </div>
+        </Conditional>
+        <Conditional show={referralSource === "professional"}>
+          <TextField
+            name="referral_name"
+            value={getStr(data, "referral_name")}
+            onChange={setField}
+            placeholder="Which professional, or their firm? (if comfortable)"
+          />
+        </Conditional>
       </QuestionBlock>
 
       <QuestionBlock>

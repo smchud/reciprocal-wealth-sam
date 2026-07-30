@@ -91,14 +91,9 @@ export const FIELD_META: Record<string, FieldMeta> = {
     options: {
       golf: "Golf",
       travel: "Travel",
-      dining: "Dining out",
-      live_events_sports: "Live events — sports",
-      live_events_music: "Live events — music",
-      live_events_theater: "Live events — theater",
+      dining: "Dining Out",
       exercise: "Exercise",
-      outdoors: "Outdoors & fitness",
-      arts: "Arts & culture",
-      family: "Family time",
+      live_entertainment: "Live Entertainment (music, sports, theater)",
       other: "Other",
     },
   },
@@ -185,10 +180,6 @@ export const FIELD_META: Record<string, FieldMeta> = {
     },
   },
   assets_other_specify: { label: "Assets — 'Other', specified" },
-  tax_cash_pct: { label: "Tax location — cash & equivalents %" },
-  tax_taxable_pct: { label: "Tax location — taxable %" },
-  tax_deferred_pct: { label: "Tax location — tax-deferred %" },
-  tax_free_pct: { label: "Tax location — tax-free %" },
   liab_mortgage: { label: "Liability — mortgage" },
   liab_student: { label: "Liability — student loans" },
   liab_auto: { label: "Liability — auto / personal loans" },
@@ -198,8 +189,19 @@ export const FIELD_META: Record<string, FieldMeta> = {
     options: { yes: "Yes", partial: "Partially", no: "No", unsure: "Not sure" },
   },
   cash_balance: { label: "Approximate current cash balance" },
-  savings_rate: {
-    label: "% of gross household income saved annually",
+  savings_rate_pretax: {
+    label: "% of pre-tax household income saved for retirement annually",
+    options: {
+      lt_5: "Less than 5%",
+      "5_10": "5–10%",
+      "10_20": "10–20%",
+      "20_30": "20–30%",
+      gt_30: "More than 30%",
+      retired: "Retired — drawing rather than saving",
+    },
+  },
+  savings_rate_posttax: {
+    label: "% of after-tax household income saved annually",
     options: {
       lt_5: "Less than 5%",
       "5_10": "5–10%",
@@ -247,7 +249,6 @@ export const FIELD_META: Record<string, FieldMeta> = {
     },
   },
   priorities_other: { label: "Priorities — other, specified" },
-  top_goal: { label: "Single most important goal" },
   retirement_vision: { label: "Ideal retired life" },
   time_horizon: {
     label: "Time horizon to draw on investments",
@@ -319,7 +320,6 @@ export const FIELD_META: Record<string, FieldMeta> = {
     options: {
       self: "Self-managed",
       another_advisor: "Another advisor/firm",
-      employer_plan: "Employer plan only",
       robo: "Robo-advisor",
       family: "Family member or friend",
       other: "Other",
@@ -330,12 +330,11 @@ export const FIELD_META: Record<string, FieldMeta> = {
   prior_dissatisfaction: {
     label: "Sources of dissatisfaction with prior arrangement",
     options: {
-      responsiveness: "Lack of responsiveness",
-      contact: "Lack of contact/communication",
-      inaction: "Lack of action",
-      advice: "Poor investment advice",
-      returns: "Poor returns vs. market",
-      distrust: "Distrust",
+      fees: "Fees / expenses",
+      unresponsive: "Unresponsive, poor communication, or inaction",
+      underperformance: "Underperformance vs. benchmark",
+      poor_planning: "Poor / inadequate financial planning",
+      distrust: "Distrust, poor fit, or personality mismatch",
       na: "N/A — no previous advisor",
       other: "Other",
     },
@@ -378,10 +377,11 @@ export const FIELD_META: Record<string, FieldMeta> = {
     label: "Services wanted from a financial adviser",
     options: {
       investment_management: "Investment management",
-      financial_planning: "Financial planning",
-      tax_planning: "Tax planning",
-      retirement_planning: "Retirement planning",
-      estate_planning: "Estate planning",
+      financial_retirement_planning: "Financial and/or retirement planning",
+      tax_estate_planning: "Tax / estate planning",
+      equity_comp: "Equity compensation planning/management",
+      exit_planning: "Exit planning for my business",
+      philanthropy: "Philanthropy / charitable giving",
       other: "Other",
     },
   },
@@ -396,11 +396,17 @@ export const FIELD_META: Record<string, FieldMeta> = {
   psy_c4: { label: "Seeing advisor's thinking regularly is part of the value", options: likert5 },
   contact_frequency: {
     label: "Desired contact frequency",
-    options: { quarterly: "Quarterly", semi: "Twice a year", annual: "Annual + as-needed", frequent: "Monthly or more" },
+    options: {
+      as_needed: "Only when needed / to check in",
+      annual: "Annual + as-needed",
+      semi: "Twice a year",
+      quarterly: "Quarterly",
+      frequent: "Monthly or more",
+    },
   },
   contact_channel: {
     label: "Preferred communication channel(s)",
-    options: { email: "Email", phone: "Phone", video: "Video call", in_person: "In-person", text: "Text/messaging" },
+    options: { email: "Email", phone: "Phone", video: "Video call", in_person: "In-person" },
   },
   advisor_qualities: {
     label: "What matters in an advisor relationship (up to 3)",
@@ -427,7 +433,17 @@ export const FIELD_META: Record<string, FieldMeta> = {
     },
   },
   values_notes: { label: "Investing values — notes" },
-  prompt: { label: "What prompted looking for an advisor now" },
+  prompt: {
+    label: "What prompted looking for an advisor now",
+    options: {
+      unhappy_advisor: "Unhappy with current advisor",
+      time_to_hire_help: "Time to get serious and hire help",
+      no_time_or_interest: "No longer have time or interest in doing it myself",
+      enough_liquid: "Finally have enough liquid to start investing",
+      other: "Other",
+    },
+  },
+  prompt_other: { label: "Prompt — other, specified" },
   referral_source: {
     label: "How they heard about Reciprocal Wealth",
     options: {

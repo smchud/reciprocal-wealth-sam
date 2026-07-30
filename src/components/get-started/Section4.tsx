@@ -4,10 +4,12 @@ import {
   IntakeData,
   getStr,
   getArr,
+  Option,
   TextField,
   TextAreaField,
   RadioGroup,
   CheckboxGroup,
+  RankOrderField,
   Conditional,
   QuestionBlock,
   labelClass,
@@ -51,6 +53,9 @@ interface SectionProps {
 export default function Section4({ data, setField }: SectionProps) {
   const priorities = getArr(data, "priorities");
   const showRetirementVision = priorities.includes("retire_comfortably") || priorities.includes("retire_early");
+  const rankedPriorities: Option[] = priorities
+    .map((v) => PRIORITIES_OPTIONS.find((o) => o.value === v))
+    .filter((o): o is Option => Boolean(o));
 
   return (
     <div>
@@ -71,16 +76,19 @@ export default function Section4({ data, setField }: SectionProps) {
             onChange={setField}
           />
         </Conditional>
+        <Conditional show={rankedPriorities.length > 1}>
+          <RankOrderField
+            name="priorities"
+            label="Rank these in order of importance to you"
+            help="Your #1 priority helps us understand what matters most."
+            items={rankedPriorities}
+            onChange={setField}
+          />
+        </Conditional>
       </QuestionBlock>
 
-      <QuestionBlock>
-        <TextAreaField
-          name="top_goal"
-          label="Of those, which is your single most important goal? Tell us a bit about it."
-          value={getStr(data, "top_goal")}
-          onChange={setField}
-        />
-        <Conditional show={showRetirementVision}>
+      {showRetirementVision && (
+        <QuestionBlock>
           <label className={labelClass}>
             If retirement is a priority, describe what an ideal retired life would look like.
           </label>
@@ -90,8 +98,8 @@ export default function Section4({ data, setField }: SectionProps) {
             onChange={setField}
             placeholder="Where you live, how you spend your time, who you spend it with…"
           />
-        </Conditional>
-      </QuestionBlock>
+        </QuestionBlock>
+      )}
 
       <QuestionBlock>
         <RadioGroup

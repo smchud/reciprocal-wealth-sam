@@ -30,23 +30,20 @@ export const STATIC_FIELD_NAMES = [
   "assets_cash_value", "assets_cash_where",
   "assets_taxable_value", "assets_taxable_where",
   "assets_401k_value", "assets_401k_where",
-  "assets_ira_value", "assets_ira_where",
-  "assets_bonds_value", "assets_bonds_where",
+  "assets_ira_trad_value", "assets_ira_trad_where",
+  "assets_ira_roth_value", "assets_ira_roth_where",
+  "assets_ira_other_value", "assets_ira_other_where",
   "assets_529_value", "assets_529_where",
   "assets_equity_value", "assets_equity_where",
-  "assets_private_value", "assets_private_where",
-  "assets_crypto_value", "assets_crypto_where",
-  "assets_alt_value", "assets_alt_where",
   "assets_other_value", "assets_other_where", "assets_other_specify",
-  "tax_cash_pct", "tax_taxable_pct", "tax_deferred_pct", "tax_free_pct",
   "liab_mortgage", "liab_student", "liab_auto", "liab_cc",
   "emergency_fund", "cash_balance",
-  "savings_rate",
+  "savings_rate_pretax", "savings_rate_posttax",
   "inheritance", "inheritance_magnitude",
 
   // Section 4 — Goals & Time Horizon
   "priorities", "priorities_other",
-  "top_goal", "retirement_vision",
+  "retirement_vision",
   "time_horizon",
   "major_expenditures", "specific_targets", "nonprofit_involvement",
   "charitable_giving",
@@ -72,7 +69,7 @@ export const STATIC_FIELD_NAMES = [
   "contact_frequency", "contact_channel",
   "advisor_qualities",
   "investing_values", "values_notes",
-  "prompt",
+  "prompt", "prompt_other",
   "referral_source", "referral_name",
   "other_notes",
 ] as const;
@@ -106,6 +103,7 @@ export const MULTI_VALUE_FIELD_NAMES: readonly StaticFieldName[] = [
   "advisor_qualities",
   "investing_values",
   "services_desired",
+  "prompt",
 ];
 
 export const SECTION_IDS = ["consent", "welcome", "1", "2", "3", "4", "5", "6", "7"] as const;

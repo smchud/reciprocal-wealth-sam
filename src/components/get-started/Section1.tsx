@@ -42,14 +42,9 @@ const HAS_CHILDREN_OPTIONS = [
 const HOBBIES_OPTIONS = [
   { value: "golf", label: "Golf" },
   { value: "travel", label: "Travel" },
-  { value: "dining", label: "Dining out" },
-  { value: "live_events_sports", label: "Live events — sports" },
-  { value: "live_events_music", label: "Live events — music" },
-  { value: "live_events_theater", label: "Live events — theater" },
+  { value: "dining", label: "Dining Out" },
   { value: "exercise", label: "Exercise" },
-  { value: "outdoors", label: "Outdoors & fitness" },
-  { value: "arts", label: "Arts & culture" },
-  { value: "family", label: "Family time" },
+  { value: "live_entertainment", label: "Live Entertainment (music, sports, theater)" },
   { value: "other", label: "Other" },
 ];
 

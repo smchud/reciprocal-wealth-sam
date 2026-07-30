@@ -25,7 +25,6 @@ const NOTE_SECTIONS: NoteSection[] = [
     fields: [
       "priorities",
       "priorities_other",
-      "top_goal",
       "retirement_vision",
       "time_horizon",
       "major_expenditures",

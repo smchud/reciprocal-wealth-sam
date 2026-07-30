@@ -52,19 +52,17 @@ const INVOLVEMENT_OPTIONS = [
 const PRIOR_ADVISOR_OPTIONS = [
   { value: "self", label: "Self-managed" },
   { value: "another_advisor", label: "Another advisor or advisory firm" },
-  { value: "employer_plan", label: "Employer plan only (401(k), 403(b))" },
   { value: "robo", label: "Robo-advisor or automated platform" },
   { value: "family", label: "A family member or friend" },
   { value: "other", label: "Other" },
 ];
 
 const PRIOR_DISSATISFACTION_OPTIONS = [
-  { value: "responsiveness", label: "Lack of responsiveness" },
-  { value: "contact", label: "Lack of contact / communication" },
-  { value: "inaction", label: "Lack of action; left money on the table" },
-  { value: "advice", label: "Poor investment advice" },
-  { value: "returns", label: "Poor returns vs. market" },
-  { value: "distrust", label: "Distrust" },
+  { value: "fees", label: "Fees / expenses" },
+  { value: "unresponsive", label: "Unresponsive, poor communication, or inaction" },
+  { value: "underperformance", label: "Underperformance vs. benchmark" },
+  { value: "poor_planning", label: "Poor / inadequate financial planning" },
+  { value: "distrust", label: "Distrust, poor fit, or personality mismatch" },
   { value: "na", label: "N/A — no previous advisor" },
   { value: "other", label: "Other" },
 ];

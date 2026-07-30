@@ -22,17 +22,15 @@ const INVESTABLE_ASSETS_OPTIONS = [
 ];
 
 const ASSET_ROWS = [
-  { key: "cash", label: "Cash & savings" },
+  { key: "cash", label: "Checking / savings / money market" },
   { key: "taxable", label: "Taxable brokerage" },
-  { key: "401k", label: "401(k) / 403(b)" },
-  { key: "ira", label: "IRA / Roth IRA" },
-  { key: "bonds", label: "Treasuries / bonds" },
+  { key: "401k", label: "401(k) / 403(b) / 457(b)" },
+  { key: "ira_trad", label: "Traditional / Rollover IRA" },
+  { key: "ira_roth", label: "Roth IRA" },
+  { key: "ira_other", label: "Other IRA: SIMPLE / SEP" },
   { key: "529", label: "529 plans" },
   { key: "equity", label: "Employer equity (RSUs, options, ESPP)" },
-  { key: "private", label: "Private investments" },
-  { key: "crypto", label: "Cryptocurrency" },
-  { key: "alt", label: "Other alternatives" },
-  { key: "other", label: "Other" },
+  { key: "other", label: "Other: privates, alternatives, crypto, etc." },
 ];
 
 const EMERGENCY_FUND_OPTIONS = [
@@ -145,49 +143,6 @@ export default function Section3({ data, setField }: SectionProps) {
       </QuestionBlock>
 
       <QuestionBlock>
-        <label className={labelClass}>Tax location of your investable assets</label>
-        <p className={helpClass}>Roughly what % is in each tax treatment? Totals don&rsquo;t need to add to 100 exactly.</p>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <div>
-            <label className="block text-xs text-stone mb-1.5">Cash &amp; equivalents</label>
-            <input
-              className={inputClass}
-              placeholder="%"
-              value={getStr(data, "tax_cash_pct")}
-              onChange={(e) => setField("tax_cash_pct", e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="block text-xs text-stone mb-1.5">Taxable (brokerage)</label>
-            <input
-              className={inputClass}
-              placeholder="%"
-              value={getStr(data, "tax_taxable_pct")}
-              onChange={(e) => setField("tax_taxable_pct", e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="block text-xs text-stone mb-1.5">Tax-deferred (IRA, 401(k))</label>
-            <input
-              className={inputClass}
-              placeholder="%"
-              value={getStr(data, "tax_deferred_pct")}
-              onChange={(e) => setField("tax_deferred_pct", e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="block text-xs text-stone mb-1.5">Tax-free (Roth, HSA)</label>
-            <input
-              className={inputClass}
-              placeholder="%"
-              value={getStr(data, "tax_free_pct")}
-              onChange={(e) => setField("tax_free_pct", e.target.value)}
-            />
-          </div>
-        </div>
-      </QuestionBlock>
-
-      <QuestionBlock>
         <label className={labelClass}>Major liabilities — approximate balances</label>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
           <div>
@@ -251,10 +206,21 @@ export default function Section3({ data, setField }: SectionProps) {
 
       <QuestionBlock>
         <RadioGroup
-          name="savings_rate"
-          label="Roughly what % of your gross household income do you save annually?"
-          help="Include retirement contributions (401(k), IRA), taxable savings, and other investments."
-          value={getStr(data, "savings_rate")}
+          name="savings_rate_pretax"
+          label="What % of your pre-tax household income do you save for retirement annually?"
+          help="e.g., 401-K or comparable pre-tax retirement plan"
+          value={getStr(data, "savings_rate_pretax")}
+          onChange={setField}
+          options={SAVINGS_RATE_OPTIONS}
+        />
+      </QuestionBlock>
+
+      <QuestionBlock>
+        <RadioGroup
+          name="savings_rate_posttax"
+          label="What % of your after-tax household income do you save annually?"
+          help="e.g., savings, brokerage, Roth IRA, or 529"
+          value={getStr(data, "savings_rate_posttax")}
           onChange={setField}
           options={SAVINGS_RATE_OPTIONS}
         />
