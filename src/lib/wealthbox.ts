@@ -93,14 +93,39 @@ export async function syncContact(input: SyncContactInput): Promise<{ id: number
   return { id: created.id, created: true };
 }
 
+interface StreetAddressInput {
+  street: string;
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
+}
+
 interface SyncQuestionnaireContactInput {
   firstName: string;
+  middleName?: string;
   lastName: string;
   email: string;
   phone?: string;
+  /** "cell" | "home" | "work" (matches the questionnaire's phone_type field). Defaults to "cell". */
+  phoneType?: string;
+  address?: StreetAddressInput;
   note: string;
   /** Wealthbox custom field name -> value. Fields not found by name in the Wealthbox account are skipped and logged. */
   customFieldValues?: Record<string, string>;
+}
+
+const PHONE_KIND_BY_TYPE: Record<string, string> = {
+  cell: "Mobile",
+  home: "Home",
+  work: "Work",
+};
+
+function hasAddress(address: StreetAddressInput | undefined): address is StreetAddressInput {
+  if (!address) return false;
+  return [address.street, address.city, address.state, address.zip, address.country].some(
+    (v) => v.trim() !== ""
+  );
 }
 
 interface WealthboxCustomFieldDefinition {
@@ -187,7 +212,20 @@ export async function syncQuestionnaireContact(
 
   const emailAddresses = [{ address: input.email, principal: true, kind: "Work" }];
   const phoneNumbers = input.phone
-    ? [{ address: input.phone, principal: true, kind: "Mobile" }]
+    ? [{ address: input.phone, principal: true, kind: PHONE_KIND_BY_TYPE[input.phoneType ?? "cell"] ?? "Mobile" }]
+    : undefined;
+  const streetAddresses = hasAddress(input.address)
+    ? [
+        {
+          street_line_1: input.address.street,
+          city: input.address.city,
+          state: input.address.state,
+          zip_code: input.address.zip,
+          country: input.address.country,
+          principal: true,
+          kind: "Home",
+        },
+      ]
     : undefined;
   const customFields = await resolveCustomFields(input.customFieldValues ?? {});
 
@@ -206,7 +244,9 @@ export async function syncQuestionnaireContact(
       body: JSON.stringify({
         tags,
         background_information,
+        ...(input.middleName ? { middle_name: input.middleName } : {}),
         ...(phoneNumbers ? { phone_numbers: phoneNumbers } : {}),
+        ...(streetAddresses ? { street_addresses: streetAddresses } : {}),
         ...(customFields.length > 0 ? { custom_fields: customFields } : {}),
       }),
     });
@@ -218,9 +258,11 @@ export async function syncQuestionnaireContact(
     method: "POST",
     body: JSON.stringify({
       first_name: input.firstName,
+      ...(input.middleName ? { middle_name: input.middleName } : {}),
       last_name: input.lastName,
       email_addresses: emailAddresses,
       ...(phoneNumbers ? { phone_numbers: phoneNumbers } : {}),
+      ...(streetAddresses ? { street_addresses: streetAddresses } : {}),
       tags: [QUESTIONNAIRE_SOURCE_TAG],
       background_information: input.note,
       ...(customFields.length > 0 ? { custom_fields: customFields } : {}),
