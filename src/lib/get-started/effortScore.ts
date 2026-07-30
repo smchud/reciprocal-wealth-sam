@@ -20,12 +20,18 @@ function arr(data: IntakeData, name: string): string[] {
 
 // ---------- Effort score (Section 5 & 7: services / involvement / contact frequency / account checking) ----------
 
+// Section7.tsx merged financial_planning+retirement_planning and
+// tax_planning+estate_planning into single combined options, and added
+// three new services (equity_comp, exit_planning, philanthropy) - points
+// below carry forward the sum of the merged pair's old values, and assign
+// the new services points in the same 6-10 range as the existing spread.
 const SERVICES_EFFORT_POINTS: Record<string, number> = {
   investment_management: 0,
-  financial_planning: 10,
-  tax_planning: 8,
-  estate_planning: 9,
-  retirement_planning: 6,
+  financial_retirement_planning: 16,
+  tax_estate_planning: 17,
+  equity_comp: 9,
+  exit_planning: 10,
+  philanthropy: 6,
   other: 6,
 };
 const SERVICES_CAP = 30;
@@ -38,6 +44,7 @@ const INVOLVEMENT_EFFORT_POINTS: Record<string, number> = {
 };
 
 const CONTACT_FREQUENCY_EFFORT_POINTS: Record<string, number> = {
+  as_needed: 0,
   annual: 4,
   semi: 8,
   quarterly: 10,

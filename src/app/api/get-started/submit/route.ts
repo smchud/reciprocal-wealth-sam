@@ -89,11 +89,22 @@ export async function POST() {
         const note = buildCrmNote(draft.data, scoring, new Date());
         const customFieldValues = buildWealthboxCustomFieldValues(draft.data, scoring);
 
+        const str = (v: unknown): string => (typeof v === "string" ? v : "");
+
         const wb = await syncQuestionnaireContact({
-          firstName: typeof draft.data.first_name === "string" ? draft.data.first_name : "",
-          lastName: typeof draft.data.last_name === "string" ? draft.data.last_name : "",
+          firstName: str(draft.data.first_name),
+          middleName: str(draft.data.middle_name) || undefined,
+          lastName: str(draft.data.last_name),
           email,
-          phone: typeof draft.data.phone === "string" ? draft.data.phone : undefined,
+          phone: str(draft.data.phone) || undefined,
+          phoneType: str(draft.data.phone_type) || undefined,
+          address: {
+            street: str(draft.data.address_street),
+            city: str(draft.data.address_city),
+            state: str(draft.data.address_state),
+            zip: str(draft.data.address_zip),
+            country: str(draft.data.address_country),
+          },
           note,
           customFieldValues,
         });

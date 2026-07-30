@@ -1,4 +1,5 @@
 import { formatValue } from "./answerLabels";
+import { PRIORITIES_LABELS } from "@/data/get-started-meta";
 import type { FullScoring } from "./scoring";
 
 type IntakeData = Record<string, unknown>;
@@ -6,6 +7,16 @@ type IntakeData = Record<string, unknown>;
 function str(data: IntakeData, name: string): string {
   const v = data[name];
   return typeof v === "string" ? v.trim() : "";
+}
+
+/** Priorities is now a ranked (not just selected) list, so the top-ranked
+ * entry is the client's single most important goal - the "top_goal" free-text
+ * field it used to come from was removed in favor of the rank itself. */
+function topGoal(data: IntakeData): string {
+  const priorities = data.priorities;
+  if (!Array.isArray(priorities) || priorities.length === 0) return "";
+  const first = String(priorities[0]);
+  return PRIORITIES_LABELS[first] ?? first;
 }
 
 function fmt(data: IntakeData, name: string): string {
@@ -60,8 +71,7 @@ export function buildWealthboxCustomFieldValues(
     "Household Income": fmt(data, "income_range"),
     "Time Horizon": fmt(data, "time_horizon"),
     Priorities: fmt(data, "priorities"),
-    "Top Goal": str(data, "top_goal"),
-    "Retirement Vision": str(data, "retirement_vision"),
+    "Top Goal": topGoal(data),
     "Major Expenditures": str(data, "major_expenditures"),
     "Charitable Giving": fmt(data, "charitable_giving"),
     "Marital Status": fmt(data, "marital_status"),

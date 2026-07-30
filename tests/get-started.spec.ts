@@ -23,7 +23,7 @@ test.describe("/get-started consent and validation", () => {
 
   test("required-name validation blocks advancing past Section 1 and preserves entered data", async ({ page }) => {
     await acceptConsent(page);
-    await page.getByRole("button", { name: "Begin" }).click();
+    await page.getByRole("button", { name: "Begin" }).first().click();
     await expect(page.getByText("Your Details")).toBeVisible();
 
     // First and last name are required; middle name is not, so it's left blank here.
@@ -37,7 +37,7 @@ test.describe("/get-started consent and validation", () => {
 
   test("middle name is optional - leaving it blank does not block advancing past Section 1", async ({ page }) => {
     await acceptConsent(page);
-    await page.getByRole("button", { name: "Begin" }).click();
+    await page.getByRole("button", { name: "Begin" }).first().click();
     await page.getByPlaceholder("First").fill("Jamie");
     await page.getByPlaceholder("Last").fill("Prospect");
     await page.getByRole("button", { name: "Continue" }).click();
@@ -57,7 +57,7 @@ test.describe("/get-started consent and validation", () => {
 test.describe("/get-started save & resume (UI)", () => {
   test("requesting a resume link shows a confirmation", async ({ page }) => {
     await acceptConsent(page);
-    await page.getByRole("button", { name: "Begin" }).click();
+    await page.getByRole("button", { name: "Begin" }).first().click();
     await fillRequiredName(page);
     await page.getByLabel("Email").fill("jamie@example.com");
 
@@ -141,7 +141,7 @@ test.describe("/get-started save & resume (server enforcement)", () => {
     page,
   }) => {
     await acceptConsent(page);
-    await page.getByRole("button", { name: "Begin" }).click();
+    await page.getByRole("button", { name: "Begin" }).first().click();
     await fillRequiredName(page);
     await page.getByLabel("Email").fill("reclick@example.com");
 
@@ -179,7 +179,7 @@ test.describe("/get-started save & resume (server enforcement)", () => {
 test.describe("/get-started submission failure handling", () => {
   test("a failed submission shows a sensible message and never clears the visitor's answers", async ({ page }) => {
     await acceptConsent(page);
-    await page.getByRole("button", { name: "Begin" }).click();
+    await page.getByRole("button", { name: "Begin" }).first().click();
     await fillRequiredName(page);
 
     // Skip through the remaining sections - only Section 1 enforces required fields.
@@ -216,7 +216,7 @@ test.describe("/get-started full completion (real local server)", () => {
     page,
   }) => {
     await acceptConsent(page);
-    await page.getByRole("button", { name: "Begin" }).click();
+    await page.getByRole("button", { name: "Begin" }).first().click();
     await fillRequiredName(page);
     await page.getByRole("button", { name: "Continue" }).click(); // -> Section 2
     await page.getByRole("button", { name: "Continue" }).click(); // -> Section 3
@@ -239,10 +239,11 @@ test.describe("/get-started full completion (real local server)", () => {
     // check below.
     for (const value of [
       "investment_management",
-      "financial_planning",
-      "tax_planning",
-      "retirement_planning",
-      "estate_planning",
+      "financial_retirement_planning",
+      "tax_estate_planning",
+      "equity_comp",
+      "exit_planning",
+      "philanthropy",
     ]) {
       await page.locator(`input[name="services_desired"][value="${value}"]`).check();
     }
@@ -257,7 +258,7 @@ test.describe("/get-started full completion (real local server)", () => {
     await expect(page.getByText("Thank you, Jamie.")).toBeVisible();
     await expect(page.getByText("What happens next")).toBeVisible();
     await expect(page.getByText(/reach out.*to begin onboarding/)).toBeVisible();
-    await expect(page.getByText(/account-opening invitation.*advisory agreement/)).toBeVisible();
+    await expect(page.getByText(/account-opening invitation.*wealth management agreement/)).toBeVisible();
     // No instant/single-click onboarding path - no link straight into Altruist.
     await expect(page.getByText("proceed to onboarding")).toHaveCount(0);
 

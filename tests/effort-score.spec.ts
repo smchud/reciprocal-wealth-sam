@@ -24,18 +24,18 @@ test.describe("effort score math", () => {
     expect(result.effortTier).toBe("Low-Effort");
   });
 
-  test("case 2: IM + Financial planning + Tax + Collaborative + Quarterly + Weekly -> 56, High-Effort", () => {
+  test("case 2: IM + Financial/retirement planning + Philanthropy + Collaborative + Quarterly + Weekly -> 60, High-Effort", () => {
     const result = computeEffortScore({
-      services_desired: ["investment_management", "financial_planning", "tax_planning"],
+      services_desired: ["investment_management", "financial_retirement_planning", "philanthropy"],
       involvement: "collaborative",
       contact_frequency: "quarterly",
       checking_frequency: "weekly",
     });
-    expect(result.servicesScore).toBe(18);
+    expect(result.servicesScore).toBe(22);
     expect(result.involvementScore).toBe(16);
     expect(result.contactFrequencyScore).toBe(10);
     expect(result.accountCheckingScore).toBe(12);
-    expect(result.totalEffortScore).toBe(56);
+    expect(result.totalEffortScore).toBe(60);
     expect(result.effortTier).toBe("High-Effort");
   });
 
@@ -43,17 +43,18 @@ test.describe("effort score math", () => {
     const result = computeEffortScore({
       services_desired: [
         "investment_management",
-        "financial_planning",
-        "tax_planning",
-        "estate_planning",
-        "retirement_planning",
+        "financial_retirement_planning",
+        "tax_estate_planning",
+        "equity_comp",
+        "exit_planning",
+        "philanthropy",
         "other",
       ],
       involvement: "hands_on",
       contact_frequency: "frequent",
       checking_frequency: "multi_daily",
     });
-    // Raw services sum is 39 (0+10+8+9+6+6), capped at 30.
+    // Raw services sum is 64 (0+16+17+9+10+6+6), capped at 30.
     expect(result.servicesScore).toBe(30);
     expect(result.involvementScore).toBe(30);
     expect(result.contactFrequencyScore).toBe(20);
@@ -169,7 +170,7 @@ test.describe("combined quadrant", () => {
 
     const lowAumHighEffort = computePriorityMatrix({
       investable_assets: "500k_1M",
-      services_desired: ["financial_planning", "estate_planning"],
+      services_desired: ["financial_retirement_planning", "tax_estate_planning"],
       involvement: "hands_on",
       contact_frequency: "frequent",
       checking_frequency: "weekly",
@@ -187,7 +188,7 @@ test.describe("combined quadrant", () => {
 
     const highAumHighEffort = computePriorityMatrix({
       investable_assets: "gt_10M",
-      services_desired: ["financial_planning", "estate_planning", "tax_planning"],
+      services_desired: ["financial_retirement_planning", "tax_estate_planning", "equity_comp"],
       involvement: "hands_on",
       contact_frequency: "frequent",
       checking_frequency: "multi_daily",

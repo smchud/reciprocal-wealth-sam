@@ -373,6 +373,69 @@ export function LikertGrid({
   );
 }
 
+export function RankOrderField({
+  name,
+  label,
+  help,
+  items,
+  onChange,
+}: {
+  name: string;
+  label?: string;
+  help?: string;
+  items: Option[];
+  onChange: (name: string, value: string[]) => void;
+}) {
+  function move(index: number, dir: -1 | 1) {
+    const next = [...items];
+    const target = index + dir;
+    if (target < 0 || target >= next.length) return;
+    [next[index], next[target]] = [next[target], next[index]];
+    onChange(
+      name,
+      next.map((o) => o.value)
+    );
+  }
+
+  return (
+    <FieldWrap label={label} help={help}>
+      <ol className="flex flex-col gap-2">
+        {items.map((item, i) => (
+          <li
+            key={item.value}
+            className="flex items-center gap-3 rounded-sm border border-near-black/15 bg-white px-3.5 py-3 min-h-11"
+          >
+            <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-warm-gray text-xs font-semibold text-near-black">
+              {i + 1}
+            </span>
+            <span className="flex-1 text-sm text-near-black">{item.label}</span>
+            <div className="flex flex-shrink-0 gap-1">
+              <button
+                type="button"
+                onClick={() => move(i, -1)}
+                disabled={i === 0}
+                aria-label={`Move ${item.label} up`}
+                className="flex h-8 w-8 items-center justify-center rounded-sm border border-near-black/15 text-near-black disabled:opacity-30 disabled:cursor-not-allowed hover:bg-warm-gray transition-colors cursor-pointer"
+              >
+                &#8593;
+              </button>
+              <button
+                type="button"
+                onClick={() => move(i, 1)}
+                disabled={i === items.length - 1}
+                aria-label={`Move ${item.label} down`}
+                className="flex h-8 w-8 items-center justify-center rounded-sm border border-near-black/15 text-near-black disabled:opacity-30 disabled:cursor-not-allowed hover:bg-warm-gray transition-colors cursor-pointer"
+              >
+                &#8595;
+              </button>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </FieldWrap>
+  );
+}
+
 export function Conditional({ show, children }: { show: boolean; children: React.ReactNode }) {
   if (!show) return null;
   return <div className="mt-3 pl-4 border-l-2 border-forest-25">{children}</div>;

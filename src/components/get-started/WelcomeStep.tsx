@@ -1,6 +1,6 @@
 "use client";
 
-export default function WelcomeStep() {
+export default function WelcomeStep({ onBegin }: { onBegin: () => void }) {
   return (
     <div>
       <h1 className="text-[28px] sm:text-[32px] font-serif tracking-[-0.5px] text-near-black leading-tight">
@@ -28,6 +28,14 @@ export default function WelcomeStep() {
           Everything you share is held in strict confidence under our fiduciary duty to you.
         </p>
       </div>
+
+      <button
+        type="button"
+        onClick={onBegin}
+        className="mt-8 min-h-11 px-6 text-sm font-medium text-white bg-forest rounded-sm hover:bg-deep-forest transition-colors cursor-pointer"
+      >
+        Begin
+      </button>
     </div>
   );
 }

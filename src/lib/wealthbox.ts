@@ -93,14 +93,67 @@ export async function syncContact(input: SyncContactInput): Promise<{ id: number
   return { id: created.id, created: true };
 }
 
+interface StreetAddressInput {
+  street: string;
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
+}
+
 interface SyncQuestionnaireContactInput {
   firstName: string;
+  middleName?: string;
   lastName: string;
   email: string;
   phone?: string;
+  /** "cell" | "home" | "work" (matches the questionnaire's phone_type field). Defaults to "cell". */
+  phoneType?: string;
+  address?: StreetAddressInput;
   note: string;
   /** Wealthbox custom field name -> value. Fields not found by name in the Wealthbox account are skipped and logged. */
   customFieldValues?: Record<string, string>;
+}
+
+const PHONE_KIND_BY_TYPE: Record<string, string> = {
+  cell: "Mobile",
+  home: "Home",
+  work: "Work",
+};
+
+// Wealthbox's country field expects a full country name, not an ISO/postal
+// abbreviation - "USA" is silently dropped to an empty string otherwise.
+// Every other COUNTRY_OPTIONS value in Section1.tsx is already a full name.
+const WEALTHBOX_COUNTRY_NAME: Record<string, string> = {
+  USA: "United States",
+};
+
+function hasAddress(address: StreetAddressInput | undefined): address is StreetAddressInput {
+  if (!address) return false;
+  return [address.street, address.city, address.state, address.zip, address.country].some(
+    (v) => v.trim() !== ""
+  );
+}
+
+interface WealthboxExistingContact {
+  id: number;
+  tags?: string[];
+  background_information?: string;
+  phone_numbers?: { id: number; kind?: string }[];
+  street_addresses?: { id: number; kind?: string }[];
+}
+
+/**
+ * Finds an existing entry of the same kind on the matched contact so an
+ * update reuses its id (Wealthbox appends a new phone/address entry rather
+ * than replacing one when no id is given), instead of accumulating a
+ * duplicate on every sync.
+ */
+function existingIdByKind(
+  entries: { id: number; kind?: string }[] | undefined,
+  kind: string
+): number | undefined {
+  return entries?.find((e) => e.kind === kind)?.id;
 }
 
 interface WealthboxCustomFieldDefinition {
@@ -183,11 +236,12 @@ export async function syncQuestionnaireContact(
     method: "GET",
   });
 
-  const match = existing?.contacts?.[0];
+  const match: WealthboxExistingContact | undefined = existing?.contacts?.[0];
 
   const emailAddresses = [{ address: input.email, principal: true, kind: "Work" }];
-  const phoneNumbers = input.phone
-    ? [{ address: input.phone, principal: true, kind: "Mobile" }]
+  const phoneKind = PHONE_KIND_BY_TYPE[input.phoneType ?? "cell"] ?? "Mobile";
+  const addressCountry = hasAddress(input.address)
+    ? WEALTHBOX_COUNTRY_NAME[input.address.country] ?? input.address.country
     : undefined;
   const customFields = await resolveCustomFields(input.customFieldValues ?? {});
 
@@ -201,12 +255,44 @@ export async function syncQuestionnaireContact(
       ? `${existingBackground}\n\n${input.note}`
       : input.note;
 
+    // Reuse the existing entry's id (by kind) so this updates it in place -
+    // omitting id here would append a duplicate on every re-sync instead.
+    const phoneNumbers = input.phone
+      ? [
+          {
+            ...(existingIdByKind(match.phone_numbers, phoneKind) !== undefined
+              ? { id: existingIdByKind(match.phone_numbers, phoneKind) }
+              : {}),
+            address: input.phone,
+            principal: true,
+            kind: phoneKind,
+          },
+        ]
+      : undefined;
+    const streetAddresses = hasAddress(input.address)
+      ? [
+          {
+            ...(existingIdByKind(match.street_addresses, "Home") !== undefined
+              ? { id: existingIdByKind(match.street_addresses, "Home") }
+              : {}),
+            street_line_1: input.address.street,
+            city: input.address.city,
+            state: input.address.state,
+            zip_code: input.address.zip,
+            country: addressCountry,
+            principal: true,
+            kind: "Home",
+          },
+        ]
+      : undefined;
+
     await wealthboxFetch(`/contacts/${match.id}`, {
       method: "PUT",
       body: JSON.stringify({
         tags,
         background_information,
         ...(phoneNumbers ? { phone_numbers: phoneNumbers } : {}),
+        ...(streetAddresses ? { street_addresses: streetAddresses } : {}),
         ...(customFields.length > 0 ? { custom_fields: customFields } : {}),
       }),
     });
@@ -214,13 +300,32 @@ export async function syncQuestionnaireContact(
     return { id: match.id, created: false };
   }
 
+  const newPhoneNumbers = input.phone
+    ? [{ address: input.phone, principal: true, kind: phoneKind }]
+    : undefined;
+  const newStreetAddresses = hasAddress(input.address)
+    ? [
+        {
+          street_line_1: input.address.street,
+          city: input.address.city,
+          state: input.address.state,
+          zip_code: input.address.zip,
+          country: addressCountry,
+          principal: true,
+          kind: "Home",
+        },
+      ]
+    : undefined;
+
   const created = await wealthboxFetch("/contacts", {
     method: "POST",
     body: JSON.stringify({
       first_name: input.firstName,
+      ...(input.middleName ? { middle_name: input.middleName } : {}),
       last_name: input.lastName,
       email_addresses: emailAddresses,
-      ...(phoneNumbers ? { phone_numbers: phoneNumbers } : {}),
+      ...(newPhoneNumbers ? { phone_numbers: newPhoneNumbers } : {}),
+      ...(newStreetAddresses ? { street_addresses: newStreetAddresses } : {}),
       tags: [QUESTIONNAIRE_SOURCE_TAG],
       background_information: input.note,
       ...(customFields.length > 0 ? { custom_fields: customFields } : {}),
