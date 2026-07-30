@@ -43,23 +43,29 @@ export default function Home() {
                 Invested <span className="italic">Together.</span>
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/60 leading-relaxed max-w-[540px]">
-                An independent, fee-only investment adviser for affluent
+                A first-of-its-kind fee-only investment adviser for affluent
                 individuals and families.
               </p>
-              <div className="mt-10 flex flex-wrap items-center gap-4">
+              <div className="mt-10 inline-grid grid-cols-2 gap-4">
                 <a
                   href={siteConfig.bookingsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-sm bg-white px-7 py-3 text-sm font-medium text-deep-forest transition-colors hover:bg-warm-gray"
+                  className="flex items-center justify-center rounded-sm bg-white px-7 py-3 text-sm font-medium text-deep-forest transition-colors hover:bg-warm-gray"
                 >
                   Schedule a Call
                 </a>
                 <Link
                   href="/get-started"
-                  className="inline-flex items-center rounded-sm border border-white/35 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/55 hover:bg-white/5"
+                  className="flex items-center justify-center rounded-sm border border-white/35 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/55 hover:bg-white/5"
                 >
                   Become a Client
+                </Link>
+                <Link
+                  href="/why-reciprocal"
+                  className="col-span-2 flex items-center justify-center rounded-sm border border-white/35 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/55 hover:bg-white/5"
+                >
+                  Learn More About The Participation Right
                 </Link>
               </div>
             </div>
