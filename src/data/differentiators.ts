@@ -15,12 +15,12 @@ export const differentiators: Differentiator[] = [
       "Our founders are clients number one and two. Their assets are managed by the firm with the same duty, thought, and care as your own and they pay fees like everyone else.",
   },
   {
-    title: "Modern technology",
+    title: "Modern Technology",
     description:
       "Many established firms have your information scattered across legacy platforms. We've adopted a modern client platform — a one-stop shop for your financial information that reduces errors and saves your time.",
   },
   {
-    title: "Fair & transparent fees",
+    title: "Fair & Transparent Fees",
     description:
       "Many of our competitors rely on opaque, convoluted fee structures. We keep things transparent and simple: you pay one fee to cover all services.",
   },

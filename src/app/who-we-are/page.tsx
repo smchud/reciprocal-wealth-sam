@@ -36,7 +36,7 @@ export default function WhoWeAreB() {
               <FadeIn key={founder.name} delay={i * 150}>
                 <div className="bg-warm-gray p-6 md:p-10">
                   <div className="flex flex-col sm:flex-row sm:items-start gap-8">
-                    <div className="w-full sm:w-64 md:w-80 aspect-[540/615] relative flex-shrink-0 overflow-hidden bg-white">
+                    <div className="w-full sm:w-64 md:w-80 aspect-[540/615] relative flex-shrink-0 overflow-hidden bg-white border border-near-black/10">
                       <Image
                         src={founder.image}
                         alt={founder.name}
