@@ -53,7 +53,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center rounded-sm bg-white px-7 py-3 text-sm font-medium text-deep-forest transition-colors hover:bg-warm-gray"
                 >
-                  Schedule A Call
+                  Schedule a Call
                 </a>
                 <Link
                   href="/get-started"
