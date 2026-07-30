@@ -64,7 +64,7 @@ export default function Home() {
               </div>
             </div>
             <div className="hidden md:block flex-shrink-0 w-[320px]">
-              <div className="bg-warm-gray py-6 text-center">
+              <div className="bg-warm-gray py-3 text-center">
                 <span className="font-serif text-2xl md:text-[32px] tracking-[-0.3px] text-near-black">
                   {reciprocityByContract.label}
                 </span>
