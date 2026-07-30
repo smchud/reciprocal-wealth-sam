@@ -258,7 +258,7 @@ test.describe("/get-started full completion (real local server)", () => {
     await expect(page.getByText("Thank you, Jamie.")).toBeVisible();
     await expect(page.getByText("What happens next")).toBeVisible();
     await expect(page.getByText(/reach out.*to begin onboarding/)).toBeVisible();
-    await expect(page.getByText(/account-opening invitation.*advisory agreement/)).toBeVisible();
+    await expect(page.getByText(/account-opening invitation.*wealth management agreement/)).toBeVisible();
     // No instant/single-click onboarding path - no link straight into Altruist.
     await expect(page.getByText("proceed to onboarding")).toHaveCount(0);
 

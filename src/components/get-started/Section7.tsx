@@ -19,7 +19,7 @@ const SERVICES_DESIRED_OPTIONS = [
   { value: "investment_management", label: "Investment management" },
   { value: "financial_retirement_planning", label: "Financial and/or retirement planning" },
   { value: "tax_estate_planning", label: "Tax / estate planning" },
-  { value: "equity_comp", label: "Equity compensation planning/management" },
+  { value: "equity_comp", label: "Equity compensation planning / management" },
   { value: "exit_planning", label: "Exit planning for my business" },
   { value: "philanthropy", label: "Philanthropy / charitable giving" },
   { value: "other", label: "Other" },
@@ -233,6 +233,14 @@ export default function Section7({ data, setField }: SectionProps) {
             value={getStr(data, "referral_name")}
             onChange={setField}
             placeholder="Which professional, or their firm? (if comfortable)"
+          />
+        </Conditional>
+        <Conditional show={referralSource === "other"}>
+          <TextField
+            name="referral_other"
+            label="Please specify"
+            value={getStr(data, "referral_other")}
+            onChange={setField}
           />
         </Conditional>
       </QuestionBlock>

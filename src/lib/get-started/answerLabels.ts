@@ -249,13 +249,11 @@ export const FIELD_META: Record<string, FieldMeta> = {
     },
   },
   priorities_other: { label: "Priorities — other, specified" },
-  retirement_vision: { label: "Ideal retired life" },
   time_horizon: {
     label: "Time horizon to draw on investments",
     options: { lt_3: "Less than 3 years", "3_5": "3–5 years", "5_10": "5–10 years", "10_20": "10–20 years", gt_20: "20+ years" },
   },
   major_expenditures: { label: "Anticipated major expenditures" },
-  specific_targets: { label: "Specific dollar amounts / dates" },
   nonprofit_involvement: { label: "Non-profit involvement" },
   charitable_giving: {
     label: "Approximate annual charitable giving",
@@ -332,7 +330,7 @@ export const FIELD_META: Record<string, FieldMeta> = {
     options: {
       fees: "Fees / expenses",
       unresponsive: "Unresponsive, poor communication, or inaction",
-      underperformance: "Underperformance vs. benchmark",
+      underperformance: "Poor performance vs. market",
       poor_planning: "Poor / inadequate financial planning",
       distrust: "Distrust, poor fit, or personality mismatch",
       na: "N/A — no previous advisor",
@@ -379,7 +377,7 @@ export const FIELD_META: Record<string, FieldMeta> = {
       investment_management: "Investment management",
       financial_retirement_planning: "Financial and/or retirement planning",
       tax_estate_planning: "Tax / estate planning",
-      equity_comp: "Equity compensation planning/management",
+      equity_comp: "Equity compensation planning / management",
       exit_planning: "Exit planning for my business",
       philanthropy: "Philanthropy / charitable giving",
       other: "Other",
@@ -455,6 +453,7 @@ export const FIELD_META: Record<string, FieldMeta> = {
     },
   },
   referral_name: { label: "Referral name" },
+  referral_other: { label: "Referral source — other, specified" },
   other_notes: { label: "Anything else they'd like known" },
 };
 

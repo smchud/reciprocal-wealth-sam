@@ -60,7 +60,7 @@ const PRIOR_ADVISOR_OPTIONS = [
 const PRIOR_DISSATISFACTION_OPTIONS = [
   { value: "fees", label: "Fees / expenses" },
   { value: "unresponsive", label: "Unresponsive, poor communication, or inaction" },
-  { value: "underperformance", label: "Underperformance vs. benchmark" },
+  { value: "underperformance", label: "Poor performance vs. market" },
   { value: "poor_planning", label: "Poor / inadequate financial planning" },
   { value: "distrust", label: "Distrust, poor fit, or personality mismatch" },
   { value: "na", label: "N/A — no previous advisor" },

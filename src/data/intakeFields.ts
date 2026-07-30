@@ -43,9 +43,8 @@ export const STATIC_FIELD_NAMES = [
 
   // Section 4 — Goals & Time Horizon
   "priorities", "priorities_other",
-  "retirement_vision",
   "time_horizon",
-  "major_expenditures", "specific_targets", "nonprofit_involvement",
+  "major_expenditures", "nonprofit_involvement",
   "charitable_giving",
 
   // Section 5 — Investing Background
@@ -70,7 +69,7 @@ export const STATIC_FIELD_NAMES = [
   "advisor_qualities",
   "investing_values", "values_notes",
   "prompt", "prompt_other",
-  "referral_source", "referral_name",
+  "referral_source", "referral_name", "referral_other",
   "other_notes",
 ] as const;
 

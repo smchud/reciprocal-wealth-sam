@@ -78,10 +78,8 @@ const SECTION_FIELDS: { title: string; fields: string[] }[] = [
     fields: [
       "priorities",
       "priorities_other",
-      "retirement_vision",
       "time_horizon",
       "major_expenditures",
-      "specific_targets",
       "nonprofit_involvement",
       "charitable_giving",
     ],
@@ -115,6 +113,7 @@ const SECTION_FIELDS: { title: string; fields: string[] }[] = [
       "prompt_other",
       "referral_source",
       "referral_name",
+      "referral_other",
       "other_notes",
     ],
   },

@@ -55,9 +55,9 @@ export default function CompletionStep({ data }: { data: IntakeData }) {
         </p>
         <p>
           From there, you&rsquo;ll receive two separate items from us: an account-opening invitation, and the
-          advisory agreement to review and e-sign.
+          wealth management agreement to review and e-sign.
         </p>
-        <p>Your Form ADV brochure is provided and acknowledged as part of account opening.</p>
+        <p>Our Form ADV brochure is provided and acknowledged as part of account opening.</p>
       </div>
     </div>
   );

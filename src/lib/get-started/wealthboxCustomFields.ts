@@ -72,7 +72,6 @@ export function buildWealthboxCustomFieldValues(
     "Time Horizon": fmt(data, "time_horizon"),
     Priorities: fmt(data, "priorities"),
     "Top Goal": topGoal(data),
-    "Retirement Vision": str(data, "retirement_vision"),
     "Major Expenditures": str(data, "major_expenditures"),
     "Charitable Giving": fmt(data, "charitable_giving"),
     "Marital Status": fmt(data, "marital_status"),

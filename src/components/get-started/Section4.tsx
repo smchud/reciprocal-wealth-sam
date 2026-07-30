@@ -12,7 +12,6 @@ import {
   RankOrderField,
   Conditional,
   QuestionBlock,
-  labelClass,
 } from "./fields";
 
 const PRIORITIES_OPTIONS = [
@@ -52,7 +51,6 @@ interface SectionProps {
 
 export default function Section4({ data, setField }: SectionProps) {
   const priorities = getArr(data, "priorities");
-  const showRetirementVision = priorities.includes("retire_comfortably") || priorities.includes("retire_early");
   const rankedPriorities: Option[] = priorities
     .map((v) => PRIORITIES_OPTIONS.find((o) => o.value === v))
     .filter((o): o is Option => Boolean(o));
@@ -87,20 +85,6 @@ export default function Section4({ data, setField }: SectionProps) {
         </Conditional>
       </QuestionBlock>
 
-      {showRetirementVision && (
-        <QuestionBlock>
-          <label className={labelClass}>
-            If retirement is a priority, describe what an ideal retired life would look like.
-          </label>
-          <TextAreaField
-            name="retirement_vision"
-            value={getStr(data, "retirement_vision")}
-            onChange={setField}
-            placeholder="Where you live, how you spend your time, who you spend it with…"
-          />
-        </QuestionBlock>
-      )}
-
       <QuestionBlock>
         <RadioGroup
           name="time_horizon"
@@ -118,16 +102,6 @@ export default function Section4({ data, setField }: SectionProps) {
           help="Home purchase or renovation, tuition, a wedding, a business investment, a sabbatical — anything sizeable enough to plan around."
           value={getStr(data, "major_expenditures")}
           onChange={setField}
-        />
-      </QuestionBlock>
-
-      <QuestionBlock>
-        <TextAreaField
-          name="specific_targets"
-          label="Are there specific dollar amounts and dates you have in mind?"
-          value={getStr(data, "specific_targets")}
-          onChange={setField}
-          placeholder="e.g., $2M for retirement at 60, $200K for college in 2034."
         />
       </QuestionBlock>
 
