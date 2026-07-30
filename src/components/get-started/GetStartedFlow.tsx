@@ -200,6 +200,23 @@ export default function GetStartedFlow() {
     setStepIndex((i) => Math.max(i - 1, 0));
   }
 
+  // A debounced autosave can still be pending (up to AUTOSAVE_DEBOUNCE_MS
+  // after the last keystroke) when the visitor asks to save and finish
+  // later. Since that flow immediately requests a resume link and the
+  // visitor may then navigate away, a pending timer would otherwise be
+  // destroyed before it fires - silently dropping their most recent
+  // changes (and the current step) from what the resume link restores.
+  // Flush it synchronously first so the save-and-resume modal can only
+  // open once everything typed so far is actually persisted.
+  async function openSaveModal() {
+    if (saveTimer.current) {
+      clearTimeout(saveTimer.current);
+      saveTimer.current = null;
+      await saveNow(currentStep, data);
+    }
+    setShowSaveModal(true);
+  }
+
   async function handleSubmit() {
     setSubmitting(true);
     setSubmitError(undefined);
@@ -309,7 +326,7 @@ export default function GetStartedFlow() {
             {!isWelcome && (
               <button
                 type="button"
-                onClick={() => setShowSaveModal(true)}
+                onClick={openSaveModal}
                 className="hidden sm:inline text-xs text-forest hover:text-deep-forest underline min-h-11"
               >
                 Save & finish later
