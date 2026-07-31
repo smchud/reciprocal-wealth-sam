@@ -37,7 +37,7 @@ export default function Home() {
       {/* Hero */}
       <section className="relative bg-deep-forest py-24 md:py-32 lg:py-40 overflow-hidden">
         <div className="relative mx-auto max-w-[1200px] px-6">
-          <div className="flex items-center gap-12">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-12">
             <div className="flex-1 max-w-[720px]">
               <h1 className="font-serif text-[40px] md:text-[56px] leading-[1.1] tracking-[-1px] text-white">
                 Invested <span className="italic">Together.</span>
@@ -63,9 +63,9 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="hidden md:block flex-shrink-0 w-[320px]">
-              <div className="bg-warm-gray py-3 text-center">
-                <span className="font-serif text-2xl md:text-[32px] tracking-[-0.3px] text-near-black">
+            <div className="w-full max-w-[320px] flex-shrink-0">
+              <div className="bg-forest rounded-sm py-3 text-center">
+                <span className="text-2xl md:text-[28px] font-semibold tracking-[-0.3px] text-white">
                   {reciprocityByContract.label}
                 </span>
               </div>
