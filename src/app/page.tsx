@@ -63,13 +63,8 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="w-full max-w-[320px] flex-shrink-0">
-              <div className="bg-forest rounded-sm py-2 text-center">
-                <span className="text-lg md:text-[22px] font-semibold tracking-[-0.3px] text-white">
-                  {reciprocityByContract.label}
-                </span>
-              </div>
-              <div className="mt-4 bg-forest-10 p-10 md:p-12 text-center">
+            <div className="w-full md:max-w-[320px] flex-shrink-0">
+              <div className="bg-forest-10 p-10 md:p-12 text-center">
                 <p className="font-serif lining-nums text-[64px] md:text-[72px] font-bold tracking-[-2px] text-deep-forest leading-none">
                   {reciprocityByContract.stat}
                 </p>
