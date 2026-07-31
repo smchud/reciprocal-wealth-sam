@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-deep-forest py-24 md:py-32 lg:py-40 overflow-hidden">
+      <section className="relative bg-deep-forest py-16 md:py-32 lg:py-40 overflow-hidden">
         <div className="relative mx-auto max-w-[1200px] px-6">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-12">
             <div className="flex-1 max-w-[720px]">
