@@ -64,8 +64,8 @@ export default function Home() {
               </div>
             </div>
             <div className="w-full max-w-[320px] flex-shrink-0">
-              <div className="bg-forest rounded-sm py-3 text-center">
-                <span className="text-2xl md:text-[28px] font-semibold tracking-[-0.3px] text-white">
+              <div className="bg-forest rounded-sm py-2 text-center">
+                <span className="text-lg md:text-[22px] font-semibold tracking-[-0.3px] text-white">
                   {reciprocityByContract.label}
                 </span>
               </div>
