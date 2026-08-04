@@ -89,6 +89,87 @@ export async function sendSubmissionSummary(
 }
 
 /**
+ * Emails the branded verify-and-download link for the Reciprocity For All
+ * white paper. Throws on failure - callers decide how to respond to the
+ * visitor.
+ */
+export async function sendWhitePaperEmail(email: string, downloadUrl: string): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) throw new Error("RESEND_API_KEY is not configured");
+
+  const resend = new Resend(apiKey);
+  const safeUrl = escapeHtml(downloadUrl);
+
+  const text = [
+    "Email Verification Request & White Paper Download",
+    "",
+    "Thank you for your interest in Reciprocity For All. Use the link below to verify your email address and download our white paper:",
+    "",
+    downloadUrl,
+    "",
+    "This link expires in 72 hours. If you didn't request the white paper, you can ignore this email.",
+    "",
+    "Reciprocal Wealth, LLC",
+  ].join("\n");
+
+  // Table-based layout + inline styles for broad email-client support.
+  // The logo is referenced from the live production site so it renders in
+  // email clients regardless of where the sending deployment lives.
+  const html = `
+    <div style="background-color:#F0EFED;padding:32px 16px;font-family:Arial,Helvetica,sans-serif;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;">
+        <tr>
+          <td style="background-color:#04342C;padding:28px 40px;text-align:center;">
+            <img src="https://reciprocalwealth.com/images/logo-horizontal-white.png" alt="Reciprocal Wealth" width="200" style="display:inline-block;max-width:200px;height:auto;" />
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color:#ffffff;padding:36px 40px;">
+            <h1 style="margin:0 0 16px;font-size:20px;line-height:1.35;color:#1A1A18;font-weight:bold;">
+              Email Verification Request &amp; White Paper Download
+            </h1>
+            <p style="margin:0 0 24px;font-size:15px;line-height:1.6;color:#1A1A18;">
+              Thank you for your interest in Reciprocity For All. Click the button
+              below to verify your email address and download our white paper.
+            </p>
+            <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+              <tr>
+                <td style="background-color:#0F6E56;border-radius:2px;">
+                  <a href="${safeUrl}" style="display:inline-block;padding:14px 28px;font-size:14px;font-weight:bold;color:#ffffff;text-decoration:none;">
+                    Click here to verify your email &amp; download the white paper
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <p style="margin:24px 0 0;font-size:13px;line-height:1.6;color:#888780;">
+              This link expires in 72 hours. If you didn't request the white paper,
+              you can ignore this email.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:20px 40px;text-align:center;">
+            <p style="margin:0;font-size:12px;color:#888780;">
+              Reciprocal Wealth, LLC
+            </p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  `;
+
+  const { error } = await resend.emails.send({
+    from: FROM_ADDRESS,
+    to: [email],
+    subject: "Email Verification Request & White Paper Download",
+    text,
+    html,
+  });
+
+  if (error) throw new Error(`Resend send failed: ${error.message}`);
+}
+
+/**
  * Emails a single-use resume link for the /get-started questionnaire.
  * Throws on failure - callers decide how to respond to the visitor.
  */

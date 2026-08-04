@@ -41,11 +41,22 @@ export default function FAQAccordion({
             </button>
             <div
               className={`overflow-hidden transition-all duration-300 ${
-                isOpen ? "max-h-96 pb-5" : "max-h-0"
+                isOpen ? "max-h-[1200px] pb-5" : "max-h-0"
               }`}
             >
+              {Array.isArray(faq.answer) &&
+                faq.answer.slice(0, -1).map((paragraph, pi) => (
+                  <p
+                    key={pi}
+                    className={`text-sm leading-relaxed mb-3 ${bodyColor}`}
+                  >
+                    {paragraph}
+                  </p>
+                ))}
               <p className={`text-sm leading-relaxed ${bodyColor}`}>
-                {faq.answer}
+                {Array.isArray(faq.answer)
+                  ? faq.answer[faq.answer.length - 1]
+                  : faq.answer}
                 {faq.answerLink && (
                   <>
                     {faq.answerLink.prefix
@@ -53,7 +64,8 @@ export default function FAQAccordion({
                       : " "}
                     <a
                       href={faq.answerLink.href}
-                      {...(faq.answerLink.href.startsWith("mailto:")
+                      {...(faq.answerLink.href.startsWith("mailto:") ||
+                      faq.answerLink.href.startsWith("/")
                         ? {}
                         : { target: "_blank", rel: "noopener noreferrer" })}
                       className="text-forest hover:text-deep-forest underline transition-colors"

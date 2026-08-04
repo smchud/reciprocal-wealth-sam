@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import FadeIn from "@/components/shared/FadeIn";
 import SectionLabel from "@/components/shared/SectionLabel";
+import WhitePaperForm from "@/components/shared/WhitePaperForm";
 import { differentiators, reciprocityByContract } from "@/data/differentiators";
 
 const description =
@@ -56,6 +57,26 @@ export default function WhyReciprocalB() {
               </div>
             </FadeIn>
           </div>
+        </div>
+      </section>
+
+      {/* White paper download — email verification flow */}
+      <section id="white-paper" className="scroll-mt-24 pb-20 md:pb-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <FadeIn>
+            <div className="mx-auto max-w-[640px] border border-near-black/8 bg-white shadow-sm p-8 md:p-10 text-center">
+              <h2 className="font-serif text-xl md:text-2xl tracking-[-0.3px] text-near-black">
+                Download our <span className="italic">white paper</span>
+              </h2>
+              <p className="mt-3 text-sm md:text-base text-stone leading-relaxed">
+                Enter your email address to download a copy of our white paper
+                explaining Reciprocity For All in detail.
+              </p>
+              <div className="mt-6 text-left">
+                <WhitePaperForm />
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 

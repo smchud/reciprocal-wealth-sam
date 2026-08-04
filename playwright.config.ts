@@ -22,6 +22,9 @@ export default defineConfig({
       // instead of depending on Resend delivery. Test-only - see the guard
       // in src/app/api/get-started/resume-link/route.ts.
       RW_E2E_EXPOSE_RESUME_TOKEN: "1",
+      // Same escape hatch for the white paper verification flow - see
+      // src/app/api/white-paper/request/route.ts.
+      RW_E2E_EXPOSE_WP_TOKEN: "1",
     },
   },
 });

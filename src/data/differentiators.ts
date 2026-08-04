@@ -47,7 +47,7 @@ export const reciprocityByContract = {
     {
       title: "Participation Right",
       description:
-        "A codified, contractual entitlement awarded to each client that sticks with Reciprocal until the sale.",
+        "A codified, contractual entitlement awarded to each client.",
     },
     {
       title: "No Strings Attached",

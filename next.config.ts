@@ -44,6 +44,12 @@ const nextConfig: NextConfig = {
   // __dirname at runtime; bundling it rewrites that path and breaks font
   // loading (ENOENT for Helvetica.afm). Keep it a real require() instead.
   serverExternalPackages: ["pdfkit"],
+  // The white paper PDF lives outside public/ (downloads are gated behind
+  // email verification), so the download route's bundle must include it
+  // explicitly.
+  outputFileTracingIncludes: {
+    "/api/white-paper/download": ["./private/**"],
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },
