@@ -40,21 +40,19 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-start md:items-center gap-12">
             <div className="flex-1 max-w-[720px]">
               <h1 className="font-serif text-[40px] md:text-[56px] leading-[1.1] tracking-[-1px] text-white">
-                Invested <span className="italic">Together.</span>
+                Home of <span className="italic">Reciprocity For All</span>
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/60 leading-relaxed max-w-[540px]">
-                A first-of-its-kind fee-only investment adviser for affluent
-                individuals and families.
+                A groundbreaking offering with 20% of net cash proceeds from
+                a sale of the firm reserved exclusively for clients.
               </p>
               <div className="mt-10 inline-grid grid-cols-2 gap-4">
-                <a
-                  href={siteConfig.bookingsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/why-reciprocal"
                   className="flex items-center justify-center rounded-sm bg-white px-7 py-3 text-sm font-medium text-deep-forest transition-colors hover:bg-warm-gray"
                 >
-                  Schedule a Call
-                </a>
+                  Learn More
+                </Link>
                 <Link
                   href="/get-started"
                   className="flex items-center justify-center rounded-sm border border-white/35 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/55 hover:bg-white/5"
