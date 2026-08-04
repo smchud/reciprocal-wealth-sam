@@ -109,7 +109,7 @@ test.describe("white paper form UI", () => {
   test("the home page white paper button links to the Why Reciprocal section", async ({ page }) => {
     await page.goto("/");
     const button = page.getByRole("link", {
-      name: "Click here to download a copy of our white paper",
+      name: "Download our white paper",
     });
     await expect(button).toHaveAttribute("href", "/why-reciprocal#white-paper");
   });

@@ -294,7 +294,7 @@ export default function Home() {
                 href="/why-reciprocal#white-paper"
                 className="mb-4 flex w-full items-center justify-center rounded-sm bg-forest px-5 py-3 text-sm font-medium text-white text-center transition-colors hover:bg-forest-75"
               >
-                Click here to download a copy of our white paper
+                Download our white paper
               </Link>
               <div className="bg-forest-10 p-10 md:p-12 text-center">
                 <p className="font-serif lining-nums text-[64px] md:text-[72px] font-bold tracking-[-2px] text-deep-forest leading-none">

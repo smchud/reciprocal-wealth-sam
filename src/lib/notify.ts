@@ -120,7 +120,7 @@ export async function sendWhitePaperEmail(email: string, downloadUrl: string): P
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;">
         <tr>
           <td style="background-color:#04342C;padding:28px 40px;text-align:center;">
-            <img src="https://reciprocalwealth.com/images/logo-horizontal-white.png" alt="Reciprocal Wealth" width="200" style="display:inline-block;max-width:200px;height:auto;" />
+            <img src="https://reciprocalwealth.com/images/logo-horizontal-dark.png" alt="Reciprocal Wealth" width="200" style="display:inline-block;max-width:200px;height:auto;" />
           </td>
         </tr>
         <tr>
@@ -136,7 +136,7 @@ export async function sendWhitePaperEmail(email: string, downloadUrl: string): P
               <tr>
                 <td style="background-color:#0F6E56;border-radius:2px;">
                   <a href="${safeUrl}" style="display:inline-block;padding:14px 28px;font-size:14px;font-weight:bold;color:#ffffff;text-decoration:none;">
-                    Click here to verify your email &amp; download the white paper
+                    Verify &amp; download now
                   </a>
                 </td>
               </tr>
