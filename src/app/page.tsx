@@ -40,7 +40,9 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-start md:items-center gap-12">
             <div className="flex-1 max-w-[720px]">
               <h1 className="font-serif text-[40px] md:text-[56px] leading-[1.1] tracking-[-1px] text-white">
-                Home of <span className="italic">Reciprocity For All</span>
+                Home of
+                <br />
+                <span className="italic">Reciprocity For All</span>
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/60 leading-relaxed max-w-[540px]">
                 A groundbreaking offering with 20% of net cash proceeds from
@@ -61,21 +63,17 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="w-full md:max-w-[320px] flex-shrink-0">
-              <div className="bg-forest-10 p-10 md:p-12 text-center">
-                <p className="font-serif lining-nums text-[64px] md:text-[72px] font-bold tracking-[-2px] text-deep-forest leading-none">
-                  {reciprocityByContract.stat}
-                </p>
-                <p className="mt-5 text-base font-bold text-deep-forest leading-relaxed max-w-[240px] mx-auto">
-                  {reciprocityByContract.statDescription}
-                </p>
-                <p className="mt-4 text-xs font-bold uppercase tracking-[0.1em] text-forest">
-                  {reciprocityByContract.statLabel}
-                </p>
-              </div>
+            <div className="w-full md:max-w-[320px] flex-shrink-0 flex flex-col items-center">
+              <Image
+                src="/images/logo-vertical-dark-transparent.png"
+                alt="Reciprocal Wealth"
+                width={1418}
+                height={1898}
+                className="h-64 w-auto object-contain"
+              />
               <Link
                 href="/why-reciprocal"
-                className="mt-4 flex items-center justify-center rounded-sm border border-white/35 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/55 hover:bg-white/5"
+                className="mt-4 w-full flex items-center justify-center rounded-sm border border-white/35 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/55 hover:bg-white/5"
               >
                 Learn More
               </Link>
