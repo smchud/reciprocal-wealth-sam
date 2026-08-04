@@ -45,8 +45,11 @@ export default function Home() {
                 <span className="italic">Reciprocity For All</span>
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/60 leading-relaxed max-w-[540px]">
-                A groundbreaking offering with 20% of net cash proceeds from
-                a sale of the firm reserved exclusively for clients.
+                An industry first:{" "}
+                <span className="font-bold">
+                  20% of net cash proceeds from a sale of the firm reserved
+                  exclusively for clients.
+                </span>
               </p>
               <div className="mt-10 inline-grid grid-cols-2 gap-4">
                 <Link
@@ -63,7 +66,7 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="w-full md:max-w-[320px] flex-shrink-0 flex flex-col items-center">
+            <div className="hidden md:block flex-shrink-0">
               <Image
                 src="/images/logo-vertical-dark-transparent.png"
                 alt="Reciprocal Wealth"
@@ -71,12 +74,6 @@ export default function Home() {
                 height={1898}
                 className="h-64 w-auto object-contain"
               />
-              <Link
-                href="/why-reciprocal"
-                className="mt-4 w-full flex items-center justify-center rounded-sm border border-white/35 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/55 hover:bg-white/5"
-              >
-                Learn More
-              </Link>
             </div>
           </div>
         </div>
