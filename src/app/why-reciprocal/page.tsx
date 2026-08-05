@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import FadeIn from "@/components/shared/FadeIn";
 import SectionLabel from "@/components/shared/SectionLabel";
 import WhitePaperForm from "@/components/shared/WhitePaperForm";
-import { differentiators, reciprocityByContract } from "@/data/differentiators";
+import {
+  differentiators,
+  participationRightSnapshot,
+  reciprocityByContract,
+} from "@/data/differentiators";
 
 const description =
   "Reciprocity For All is our unique way of sharing in the firm's success with clients — plus the other ways we believe wealth management should work.";
@@ -75,6 +79,34 @@ export default function WhyReciprocalB() {
               <div className="mt-6 text-left">
                 <WhitePaperForm />
               </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* More about Reciprocity For All — snapshot table from the white paper */}
+      <section className="pb-20 md:pb-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <FadeIn className="text-center mb-10">
+            <h2 className="font-serif text-2xl md:text-[28px] tracking-[-0.4px] text-near-black">
+              More about <span className="italic">Reciprocity For All</span>
+            </h2>
+          </FadeIn>
+          <FadeIn delay={100}>
+            <div className="mx-auto max-w-[840px] border border-near-black/8 bg-white shadow-sm divide-y divide-near-black/8">
+              {participationRightSnapshot.map((row) => (
+                <div
+                  key={row.label}
+                  className="grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-1 sm:gap-6 px-6 py-4 md:px-8"
+                >
+                  <p className="text-sm font-semibold text-deep-forest">
+                    {row.label}
+                  </p>
+                  <p className="text-sm text-stone leading-relaxed">
+                    {row.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </FadeIn>
         </div>
