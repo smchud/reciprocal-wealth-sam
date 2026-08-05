@@ -265,12 +265,12 @@ export default function Home() {
       <section className="bg-deep-forest py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
           {/* Reciprocity For All — lead differentiator */}
-          <FadeIn>
+          <FadeIn className="text-center md:text-left">
             <SectionLabel className="text-forest-50">How We Differ</SectionLabel>
             <h2 className="mt-4 font-serif text-2xl md:text-[32px] tracking-[-0.3px] text-white">
               {reciprocityByContract.label}
             </h2>
-            <p className="mt-3 text-sm md:text-base text-white/55 leading-relaxed max-w-[640px]">
+            <p className="mt-3 text-sm md:text-base text-white/55 leading-relaxed max-w-[640px] mx-auto md:mx-0">
               {reciprocityByContract.tagline}
             </p>
           </FadeIn>
