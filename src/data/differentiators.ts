@@ -44,20 +44,12 @@ export interface SnapshotRow {
  */
 export const participationRightSnapshot: SnapshotRow[] = [
   {
-    label: "What It Is",
-    description: "A contractual entitlement in your Wealth Management Agreement.",
-  },
-  {
     label: "When It Applies",
     description:
       "Only upon the closing of a Qualifying Event, meaning: a sale of all or materially all of the assets or equity of Reciprocal Wealth, LLC.",
   },
   {
-    label: "Assignment Pool",
-    description: "20% of the net cash proceeds, resulting from a sale transaction.",
-  },
-  {
-    label: "Your Allocation",
+    label: "Each Client's Allocation",
     description:
       "Determined by a formula, which factors in both your assets under management and the duration of your tenure with the firm.",
   },
@@ -68,11 +60,6 @@ export const participationRightSnapshot: SnapshotRow[] = [
   {
     label: "What You Must Do",
     description: "Nothing. No referral. No promotion. No additional commitment.",
-  },
-  {
-    label: "If You Decline Consent",
-    description:
-      "You still receive your share of proceeds, provided that you remain a client in good standing until the closing of the Qualifying Event.",
   },
   {
     label: "If You Leave the Firm",
