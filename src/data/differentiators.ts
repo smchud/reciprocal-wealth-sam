@@ -51,7 +51,7 @@ export const participationRightSnapshot: SnapshotRow[] = [
   {
     label: "Each Client's Allocation",
     description:
-      "Determined by a formula, which factors in both your assets under management and the duration of your tenure with the firm.",
+      "Determined by a formula, which factors in both assets under management and duration of tenure with the firm.",
   },
   {
     label: "What It Costs",
