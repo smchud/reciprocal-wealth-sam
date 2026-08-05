@@ -20,44 +20,46 @@ function arr(data: IntakeData, name: string): string[] {
 
 // ---------- Effort score (Section 5 & 7: services / involvement / contact frequency / account checking) ----------
 
-// Section7.tsx merged financial_planning+retirement_planning and
-// tax_planning+estate_planning into single combined options, and added
-// three new services (equity_comp, exit_planning, philanthropy) - points
-// below carry forward the sum of the merged pair's old values, and assign
-// the new services points in the same 6-10 range as the existing spread.
+// All four components are weighted equally at a 25-point maximum.
+//
+// Services: investment management is the baseline at 0; every other
+// selected service adds a flat 5 points, so the component climbs in even
+// increments of 5 per additional service, capped at 25.
 const SERVICES_EFFORT_POINTS: Record<string, number> = {
   investment_management: 0,
-  financial_retirement_planning: 16,
-  tax_estate_planning: 17,
-  equity_comp: 9,
-  exit_planning: 10,
-  philanthropy: 6,
-  other: 6,
+  financial_retirement_planning: 5,
+  tax_estate_planning: 5,
+  equity_comp: 5,
+  exit_planning: 5,
+  philanthropy: 5,
+  other: 5,
 };
-const SERVICES_CAP = 30;
+const SERVICES_CAP = 25;
 
 const INVOLVEMENT_EFFORT_POINTS: Record<string, number> = {
-  hands_off: 6,
-  informed: 12,
-  collaborative: 16,
-  hands_on: 30,
+  hands_off: 0,
+  informed: 10,
+  collaborative: 15,
+  hands_on: 25,
 };
 
+// Contact frequency and account checking keep their previous relative
+// spreads, rescaled from a 20-point to a 25-point maximum.
 const CONTACT_FREQUENCY_EFFORT_POINTS: Record<string, number> = {
   as_needed: 0,
-  annual: 4,
-  semi: 8,
-  quarterly: 10,
-  frequent: 20,
+  annual: 5,
+  semi: 10,
+  quarterly: 13,
+  frequent: 25,
 };
 
 const ACCOUNT_CHECKING_EFFORT_POINTS: Record<string, number> = {
   annually: 0,
-  quarterly: 3,
-  monthly: 9,
-  weekly: 12,
-  daily: 17,
-  multi_daily: 20,
+  quarterly: 4,
+  monthly: 11,
+  weekly: 15,
+  daily: 21,
+  multi_daily: 25,
 };
 
 const EFFORT_MAX = 100;

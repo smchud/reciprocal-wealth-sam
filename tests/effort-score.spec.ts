@@ -9,7 +9,7 @@ import {
 } from "../src/lib/get-started/effortScore";
 
 test.describe("effort score math", () => {
-  test("case 1: IM only + Hands-off + Once a year + Annually or less -> 10, Low-Effort", () => {
+  test("case 1: IM only + Hands-off + Once a year + Annually or less -> 5, Low-Effort", () => {
     const result = computeEffortScore({
       services_desired: ["investment_management"],
       involvement: "hands_off",
@@ -17,25 +17,25 @@ test.describe("effort score math", () => {
       checking_frequency: "annually",
     });
     expect(result.servicesScore).toBe(0);
-    expect(result.involvementScore).toBe(6);
-    expect(result.contactFrequencyScore).toBe(4);
+    expect(result.involvementScore).toBe(0);
+    expect(result.contactFrequencyScore).toBe(5);
     expect(result.accountCheckingScore).toBe(0);
-    expect(result.totalEffortScore).toBe(10);
+    expect(result.totalEffortScore).toBe(5);
     expect(result.effortTier).toBe("Low-Effort");
   });
 
-  test("case 2: IM + Financial/retirement planning + Philanthropy + Collaborative + Quarterly + Weekly -> 60, High-Effort", () => {
+  test("case 2: IM + Financial/retirement planning + Philanthropy + Collaborative + Quarterly + Weekly -> 53, High-Effort", () => {
     const result = computeEffortScore({
       services_desired: ["investment_management", "financial_retirement_planning", "philanthropy"],
       involvement: "collaborative",
       contact_frequency: "quarterly",
       checking_frequency: "weekly",
     });
-    expect(result.servicesScore).toBe(22);
-    expect(result.involvementScore).toBe(16);
-    expect(result.contactFrequencyScore).toBe(10);
-    expect(result.accountCheckingScore).toBe(12);
-    expect(result.totalEffortScore).toBe(60);
+    expect(result.servicesScore).toBe(10);
+    expect(result.involvementScore).toBe(15);
+    expect(result.contactFrequencyScore).toBe(13);
+    expect(result.accountCheckingScore).toBe(15);
+    expect(result.totalEffortScore).toBe(53);
     expect(result.effortTier).toBe("High-Effort");
   });
 
@@ -54,11 +54,11 @@ test.describe("effort score math", () => {
       contact_frequency: "frequent",
       checking_frequency: "multi_daily",
     });
-    // Raw services sum is 64 (0+16+17+9+10+6+6), capped at 30.
-    expect(result.servicesScore).toBe(30);
-    expect(result.involvementScore).toBe(30);
-    expect(result.contactFrequencyScore).toBe(20);
-    expect(result.accountCheckingScore).toBe(20);
+    // Raw services sum is 30 (0 + 5 x 6 non-IM services), capped at 25.
+    expect(result.servicesScore).toBe(25);
+    expect(result.involvementScore).toBe(25);
+    expect(result.contactFrequencyScore).toBe(25);
+    expect(result.accountCheckingScore).toBe(25);
     expect(result.totalEffortScore).toBe(100);
     expect(result.effortTier).toBe("High-Effort");
   });
