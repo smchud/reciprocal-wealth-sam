@@ -58,13 +58,13 @@ export const participationRightSnapshot: SnapshotRow[] = [
     description: "Nothing. Advisory fees are identical with or without this provision.",
   },
   {
-    label: "What You Must Do",
+    label: "What Clients Must Do",
     description: "Nothing. No referral. No promotion. No additional commitment.",
   },
   {
-    label: "If You Leave the Firm",
+    label: "If a Client Leaves the Firm",
     description:
-      "Your participation right ends when your advisory agreement ends. There is no penalty for leaving — and no lock-up or claw-back.",
+      "The client's participation right ends when the advisory agreement ends. There is no penalty for leaving — and no lock-up or claw-back.",
   },
   {
     label: "Timeline & Guarantee",
