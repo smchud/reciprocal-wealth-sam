@@ -93,7 +93,7 @@ test.describe("white paper form UI", () => {
     await page.goto("/why-reciprocal#white-paper");
     await expect(
       page.getByText(
-        "Enter your email address to download a copy of our white paper explaining Reciprocity For All in detail."
+        "Enter your email address to download a copy of our white paper explaining Reciprocity for All in detail."
       )
     ).toBeVisible();
 

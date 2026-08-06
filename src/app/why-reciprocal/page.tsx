@@ -9,7 +9,7 @@ import {
 } from "@/data/differentiators";
 
 const description =
-  "Reciprocity For All is our unique way of sharing in the firm's success with clients — plus the other ways we believe wealth management should work.";
+  "Reciprocity for All is our unique way of sharing in the firm's success with clients — plus the other ways we believe wealth management should work.";
 
 export const metadata: Metadata = {
   title: "Why Reciprocal",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function WhyReciprocalB() {
   return (
     <>
-      {/* Reciprocity For All — dedicated section, page lead */}
+      {/* Reciprocity for All — dedicated section, page lead */}
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-[1200px] px-6">
           <FadeIn>
@@ -74,7 +74,7 @@ export default function WhyReciprocalB() {
               </h2>
               <p className="mt-3 text-sm md:text-base text-stone leading-relaxed">
                 Enter your email address to download a copy of our white paper
-                explaining Reciprocity For All in detail.
+                explaining Reciprocity for All in detail.
               </p>
               <div className="mt-6 text-left">
                 <WhitePaperForm />
@@ -84,12 +84,12 @@ export default function WhyReciprocalB() {
         </div>
       </section>
 
-      {/* More about Reciprocity For All — snapshot table from the white paper */}
+      {/* More about Reciprocity for All — snapshot table from the white paper */}
       <section className="pb-20 md:pb-24">
         <div className="mx-auto max-w-[1200px] px-6">
           <FadeIn className="text-center mb-10">
             <h2 className="font-serif text-2xl md:text-[28px] tracking-[-0.4px] text-near-black">
-              More about <span className="italic">Reciprocity For All</span>
+              More about <span className="italic">Reciprocity for All</span>
             </h2>
           </FadeIn>
           <FadeIn delay={100}>

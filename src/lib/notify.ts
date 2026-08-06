@@ -89,7 +89,7 @@ export async function sendSubmissionSummary(
 }
 
 /**
- * Emails the branded verify-and-download link for the Reciprocity For All
+ * Emails the branded verify-and-download link for the Reciprocity for All
  * white paper. Throws on failure - callers decide how to respond to the
  * visitor.
  */
@@ -103,7 +103,7 @@ export async function sendWhitePaperEmail(email: string, downloadUrl: string): P
   const text = [
     "Email Verification Request & White Paper Download",
     "",
-    "Thank you for your interest in Reciprocity For All. Use the link below to verify your email address and download our white paper:",
+    "Thank you for your interest in Reciprocity for All. Use the link below to verify your email address and download our white paper:",
     "",
     downloadUrl,
     "",
@@ -129,7 +129,7 @@ export async function sendWhitePaperEmail(email: string, downloadUrl: string): P
               Email Verification Request &amp; White Paper Download
             </h1>
             <p style="margin:0 0 24px;font-size:15px;line-height:1.6;color:#1A1A18;">
-              Thank you for your interest in Reciprocity For All. Click the button
+              Thank you for your interest in Reciprocity for All. Click the button
               below to verify your email address and download our white paper.
             </p>
             <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto;">

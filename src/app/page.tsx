@@ -42,7 +42,7 @@ export default function Home() {
               <h1 className="font-serif text-[40px] md:text-[56px] leading-[1.1] tracking-[-1px] text-white">
                 Home of
                 <br />
-                <span className="italic">Reciprocity For All</span>
+                <span className="italic">Reciprocity for All</span>
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/60 leading-relaxed max-w-[540px]">
                 An industry first:{" "}
@@ -264,7 +264,7 @@ export default function Home() {
       {/* How We Differ */}
       <section className="bg-deep-forest py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
-          {/* Reciprocity For All — lead differentiator */}
+          {/* Reciprocity for All — lead differentiator */}
           <FadeIn className="text-center md:text-left">
             <SectionLabel className="text-forest-50">How We Differ</SectionLabel>
             <h2 className="mt-4 font-serif text-2xl md:text-[32px] tracking-[-0.3px] text-white">

@@ -7,7 +7,7 @@ import { redeemWhitePaperToken } from "@/lib/white-paper";
 // through a verified email link. next.config.ts's outputFileTracingIncludes
 // ensures the file ships with this route's serverless bundle.
 const PDF_PATH = path.join(process.cwd(), "private", "white-paper.pdf");
-const DOWNLOAD_FILENAME = "Reciprocal Wealth - Reciprocity For All White Paper.pdf";
+const DOWNLOAD_FILENAME = "Reciprocal Wealth - Reciprocity for All White Paper.pdf";
 
 function logError(event: string, data: Record<string, unknown>) {
   console.error(JSON.stringify({ event, ts: new Date().toISOString(), ...data }));

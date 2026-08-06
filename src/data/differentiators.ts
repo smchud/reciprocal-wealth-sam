@@ -4,7 +4,7 @@ export interface Differentiator {
 }
 
 /**
- * The three "more ways we're different" boxes (excludes Reciprocity For
+ * The three "more ways we're different" boxes (excludes Reciprocity for
  * All, which has its own dedicated treatment via reciprocityByContract
  * below).
  */
@@ -39,7 +39,7 @@ export interface SnapshotRow {
 /**
  * The "Snapshot: Participation Right" table from page 3 of the Reciprocity
  * For All white paper (2026.08.04 version) - rendered in the "More about
- * Reciprocity For All" section of the Why Reciprocal page. Keep the wording
+ * Reciprocity for All" section of the Why Reciprocal page. Keep the wording
  * in sync with the white paper.
  */
 export const participationRightSnapshot: SnapshotRow[] = [
@@ -73,9 +73,9 @@ export const participationRightSnapshot: SnapshotRow[] = [
   },
 ];
 
-/** Shared content for the Reciprocity For All sections (home + Why Reciprocal). */
+/** Shared content for the Reciprocity for All sections (home + Why Reciprocal). */
 export const reciprocityByContract = {
-  label: "Reciprocity For All",
+  label: "Reciprocity for All",
   tagline: "The first framework of its kind in wealth management.",
   stat: "20%",
   statDescription: "of the net cash proceeds from a sale of the firm",

@@ -65,10 +65,11 @@ at display size — fine inline, wrong for a big standalone stat. Pair
 
 ## Approved terminology
 
-The firm's profit-sharing benefit for clients is **"Reciprocity For
-All"** (formerly "The Client Pool," then briefly "Reciprocity by
-Contract" — both retired, don't reintroduce either).
-- Always: "Reciprocity For All"
+The firm's profit-sharing benefit for clients is **"Reciprocity for
+All"** — lowercase "for", matching the white paper (formerly "The
+Client Pool," then briefly "Reciprocity by Contract" — both retired,
+don't reintroduce either).
+- Always: "Reciprocity for All" (never capitalize the "For")
 - Never: "The Client Pool" / "Reciprocity by Contract" / "assignment provision"
 
 Shared copy for this concept lives in `src/data/differentiators.ts`

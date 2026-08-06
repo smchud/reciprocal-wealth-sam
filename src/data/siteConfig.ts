@@ -30,4 +30,5 @@ export const footerLinks = [
   ...navLinks,
   { label: "Become a Client", href: "/get-started" },
   { label: "Client Login", href: siteConfig.altruistPortalUrl },
+  { label: "Fee schedule", href: "/fee-schedule" },
 ] as const;
