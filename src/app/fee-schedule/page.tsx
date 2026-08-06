@@ -14,7 +14,8 @@ const firstHeading = "text-lg font-medium text-near-black tracking-[-0.2px]";
 
 // Verbatim content from "Table of Fees for Services" (FeeTable_ReciprocalWealth_20260609),
 // the firm's supplemental disclosure to Form ADV Part 2A. The source document
-// uses "Advisor" for the firm throughout; that spelling is preserved here.
+// spells the firm "Advisor"; per the site's adviser/advisor convention it is
+// rendered as "Adviser" here.
 const AUM_TIERS = [
   { assets: "$0.01 to $312,500", annual: "1.20%", monthly: "0.10%" },
   { assets: "$312,500.01 to $625,000", annual: "1.08%", monthly: "0.09%" },
@@ -31,12 +32,12 @@ const ZERO_ADVISOR_FEES = [
   "Hourly Fee",
   "Subscription Fee",
   "Fixed Fee",
-  "Commissions to the Advisor",
+  "Commissions to the Adviser",
   "Performance-based fees",
   "Other",
 ];
 
-const ZERO_THIRD_PARTY_FEES = ["Third Party Money Management Fee", "Robo-Advisor Fee"];
+const ZERO_THIRD_PARTY_FEES = ["Third Party Money Management Fee", "Robo-Adviser Fee"];
 
 const ADDITIONAL_COSTS = [
   { cost: "Brokerage Fees", applies: "Yes", paidTo: "Custodian" },
@@ -75,18 +76,18 @@ export default function FeeSchedule() {
           <h2 className={firstHeading}>Table of Fees for Services</h2>
           <div className="mt-4 space-y-4">
             <p>
-              Reciprocal Wealth, LLC (CRD# 342207) (the &ldquo;Advisor&rdquo;)
+              Reciprocal Wealth, LLC (CRD# 342207) (the &ldquo;Adviser&rdquo;)
               provides this Table of Fees for Services as a supplemental
               disclosure to its Form ADV Part 2A (&ldquo;Disclosure
               Brochure&rdquo;). Please reference Items 4 and 5 of the
               Disclosure Brochure, which contains important details about the
-              Advisor&rsquo;s services and fees. Fees are negotiable at the
-              sole discretion of the Advisor. The fees below will only apply
+              Adviser&rsquo;s services and fees. Fees are negotiable at the
+              sole discretion of the Adviser. The fees below will only apply
               to you when you request the services listed.
             </p>
           </div>
 
-          <h2 className={heading}>Fees Charged by Advisor</h2>
+          <h2 className={heading}>Fees Charged by Adviser</h2>
           <div className="mt-4 space-y-4">
             <p>
               <strong className="text-near-black font-medium">
@@ -125,7 +126,7 @@ export default function FeeSchedule() {
             <table className="w-full border-collapse text-sm border border-near-black/8">
               <thead>
                 <tr className="bg-warm-gray text-left">
-                  <th className={thClass}>Fees Charged by Advisor</th>
+                  <th className={thClass}>Fees Charged by Adviser</th>
                   <th className={thClass}>Fee Amount</th>
                   <th className={thClass}>Frequency Fee is Charged</th>
                   <th className={thClass}>Services</th>
@@ -169,10 +170,10 @@ export default function FeeSchedule() {
           </div>
 
           <h2 className={heading}>
-            Talk with your Advisor about fees and costs applicable to you
+            Talk with your Adviser about fees and costs applicable to you
           </h2>
           <div className="mt-4 space-y-4">
-            <p>Additional fees and costs to discuss with your Advisor:</p>
+            <p>Additional fees and costs to discuss with your Adviser:</p>
           </div>
           <div className="mt-5 overflow-x-auto">
             <table className="w-full border-collapse text-sm border border-near-black/8">

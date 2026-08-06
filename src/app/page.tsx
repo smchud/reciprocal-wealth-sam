@@ -45,11 +45,8 @@ export default function Home() {
                 <span className="italic">Reciprocity for All</span>
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/60 leading-relaxed max-w-[540px]">
-                An industry first:{" "}
-                <span className="font-bold">
-                  20% of net cash proceeds from a sale of the firm reserved
-                  exclusively for clients.
-                </span>
+                An industry first: 20% of net cash proceeds from a sale of the
+                firm reserved exclusively for clients.
               </p>
               <div className="mt-10 inline-grid grid-cols-2 gap-4">
                 <Link
