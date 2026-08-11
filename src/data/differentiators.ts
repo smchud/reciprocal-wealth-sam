@@ -94,7 +94,7 @@ export const reciprocityByContract = {
     {
       title: "No Strings Attached",
       description:
-        "No additional investment. A benefit exclusively for clients.",
+        "No additional investment. Not contingent on referrals or promotion.",
     },
   ] as ReciprocityPoint[],
 };
