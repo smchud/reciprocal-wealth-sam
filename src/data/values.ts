@@ -7,7 +7,7 @@ export const values: Value[] = [
   {
     title: "Boring is Best",
     description:
-      "We apply time-tested investing principles and help you resist the \"siren's song.\" No trendy strategies, no chasing headlines — just disciplined, evidence-based investing that works over the long term.",
+      "We apply time-tested investing principles and help you resist the \"siren's song.\" No trendy strategies, no chasing headlines — just a disciplined, evidence-based investing approach.",
   },
   {
     title: "Customer First",
@@ -22,6 +22,6 @@ export const values: Value[] = [
   {
     title: "Never Settle",
     description:
-      "We never stop learning, growing, and building together. The financial world changes, and so do your needs. We stay ahead of both.",
+      "We never stop learning, growing, and building together. The financial world changes, and so do your needs. Our goal is to stay ahead of both.",
   },
 ];

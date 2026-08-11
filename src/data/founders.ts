@@ -7,6 +7,8 @@ export interface Founder {
   phone: string;
   image: string;
   bio: string;
+  /** Small-print citation rendered at the bottom of the bio card (e.g. the Barron's ranking methodology). */
+  bioFootnote?: string;
   education: string[];
 }
 
@@ -39,7 +41,9 @@ export const founders: Founder[] = [
     email: "jake@reciprocalwealth.com",
     phone: "774-403-5105",
     image: "/images/jake-lynch-portrait.png",
-    bio: "A decade plus in (or around) wealth management. Most recently, the Operating Partner at TRIA Capital, a niche private-equity firm backing fee-only wealth platforms — including Barron's Top 100 firms Modera, Pathstone and Plancorp. Previously, Partner and Chief Business Officer at RWA Wealth (~$20B AUM), leading strategy, analytics and M&A. Unitholder Representative in RWA's 2020 sale to Summit Partners.",
+    bio: "A decade plus in (or around) wealth management. Most recently, the Operating Partner at TRIA Capital, a niche private-equity firm backing fee-only wealth platforms — including Barron's Top 100* firms Modera, Pathstone and Plancorp. Previously, Partner and Chief Business Officer at RWA Wealth (~$20B AUM), leading strategy, analytics and M&A. Unitholder Representative in RWA's 2020 sale to Summit Partners.",
+    bioFootnote:
+      "*Barron's 2025 Top 100 RIA Firms based on assets managed by the firms, growth, technology spending, succession planning, and other metrics.",
     education: [
       "University of Virginia, Darden — MBA, Asset Management",
       "Bowdoin College — BA, Government & Legal Studies",

@@ -17,12 +17,12 @@ export const differentiators: Differentiator[] = [
   {
     title: "Modern Technology",
     description:
-      "Many established firms have your information scattered across legacy platforms. We've adopted a modern client platform — a one-stop shop for your financial information that reduces errors and saves your time.",
+      "We've adopted a modern client platform — a one-stop shop for your financial information that reduces errors and saves your time.",
   },
   {
     title: "Fair & Transparent Fees",
     description:
-      "Many of our competitors rely on opaque, convoluted fee structures. We keep things transparent and simple: you pay one fee to cover all services.",
+      "We keep our fee structure transparent and simple: you pay one fee to cover all services.",
   },
 ];
 
@@ -94,7 +94,15 @@ export const reciprocityByContract = {
     {
       title: "No Strings Attached",
       description:
-        "No additional investment. No minimum AUM or account size. A benefit exclusively for clients.",
+        "No additional investment. A benefit exclusively for clients.",
     },
   ] as ReciprocityPoint[],
 };
+
+/**
+ * Eligibility criteria disclosure (verbatim from the white paper's
+ * "Eligibility Criteria" section) — rendered in small text wherever the
+ * Reciprocity for All benefit is described.
+ */
+export const eligibilityDisclosure =
+  "A client qualifies as an Eligible Participant if, through the closing of the Qualifying Event, the client: (i) has been with the firm for at least three (3) monthly billing periods; (ii) maintains more than $25,000 in assets under management with the firm; and (iii) has no outstanding and unpaid invoices.";

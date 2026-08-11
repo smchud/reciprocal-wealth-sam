@@ -72,6 +72,11 @@ export default function WhoWeAreB() {
                       >
                         {founder.email}
                       </a>
+                      {founder.bioFootnote && (
+                        <p className="mt-3 text-[11px] text-stone/70 leading-relaxed max-w-[65ch]">
+                          {founder.bioFootnote}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>

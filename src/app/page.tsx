@@ -5,7 +5,11 @@ import SectionLabel from "@/components/shared/SectionLabel";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import ContactForm from "@/components/shared/ContactForm";
 import { values } from "@/data/values";
-import { differentiators, reciprocityByContract } from "@/data/differentiators";
+import {
+  differentiators,
+  eligibilityDisclosure,
+  reciprocityByContract,
+} from "@/data/differentiators";
 import { founders } from "@/data/founders";
 import { faqs } from "@/data/faqs";
 import { siteConfig } from "@/data/siteConfig";
@@ -45,8 +49,10 @@ export default function Home() {
                 <span className="italic">Reciprocity for All</span>
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/60 leading-relaxed max-w-[540px]">
-                An industry first: 20% of net cash proceeds from a sale of the
-                firm reserved exclusively for clients.
+                <span className="font-bold">
+                  20% of net cash proceeds from a sale of the firm reserved
+                  exclusively for clients.
+                </span>
               </p>
               <div className="mt-10 inline-grid grid-cols-2 gap-4">
                 <Link
@@ -90,7 +96,7 @@ export default function Home() {
               {
                 title: "Fiduciary, First",
                 description:
-                  "Reciprocal Wealth is a fiduciary, electing to be held to the highest regulatory standard in financial services. We are legally obligated to prioritize clients' financial interests ahead of our own — without exception.",
+                  "Reciprocal Wealth serves as a fiduciary where we are legally obligated to prioritize clients' financial interests ahead of our own — without exception.",
               },
               {
                 title: "Who We Help",
@@ -249,6 +255,11 @@ export default function Home() {
                       >
                         {founder.email}
                       </a>
+                      {founder.bioFootnote && (
+                        <p className="mt-3 text-[11px] text-stone/70 leading-relaxed max-w-[65ch]">
+                          {founder.bioFootnote}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -284,6 +295,9 @@ export default function Home() {
                     </p>
                   </div>
                 ))}
+                <p className="text-[11px] text-white/40 leading-relaxed">
+                  {eligibilityDisclosure}
+                </p>
               </div>
             </FadeIn>
             <FadeIn delay={150}>

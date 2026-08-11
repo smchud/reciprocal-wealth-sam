@@ -17,7 +17,7 @@ export const faqs: FAQ[] = [
   {
     question: "What do you mean by Reciprocity for All?",
     answer:
-      "Reciprocity for All is a codified, contractual entitlement awarded to each client that sticks with Reciprocal until a sale. If the firm is ever sold, 20% of net cash proceeds is reserved exclusively for clients — no additional investment, no minimum AUM or account size required.",
+      "Reciprocity for All is a codified, contractual entitlement awarded to each client that sticks with Reciprocal until a sale. If the firm is ever sold, 20% of net cash proceeds is reserved exclusively for clients — no additional investment needed.",
     answerLink: {
       prefix: "For more information, download our white paper",
       label: "here",

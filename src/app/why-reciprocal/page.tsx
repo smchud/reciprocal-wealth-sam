@@ -4,6 +4,7 @@ import SectionLabel from "@/components/shared/SectionLabel";
 import WhitePaperForm from "@/components/shared/WhitePaperForm";
 import {
   differentiators,
+  eligibilityDisclosure,
   participationRightSnapshot,
   reciprocityByContract,
 } from "@/data/differentiators";
@@ -67,6 +68,11 @@ export default function WhyReciprocalB() {
       {/* White paper download — email verification flow */}
       <section id="white-paper" className="scroll-mt-24 pb-20 md:pb-24">
         <div className="mx-auto max-w-[1200px] px-6">
+          <FadeIn>
+            <p className="mx-auto max-w-[840px] mb-10 text-[11px] text-stone/80 leading-relaxed">
+              {eligibilityDisclosure}
+            </p>
+          </FadeIn>
           <FadeIn>
             <div className="mx-auto max-w-[640px] border border-near-black/8 bg-white shadow-sm p-8 md:p-10 text-center">
               <h2 className="font-serif text-xl md:text-2xl tracking-[-0.3px] text-near-black">
