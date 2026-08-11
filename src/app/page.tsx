@@ -256,7 +256,7 @@ export default function Home() {
                         {founder.email}
                       </a>
                       {founder.bioFootnote && (
-                        <p className="mt-3 text-[11px] text-stone/70 leading-relaxed max-w-[65ch]">
+                        <p className="mt-3 text-[10px] text-stone/70 leading-relaxed max-w-[65ch]">
                           {founder.bioFootnote}
                         </p>
                       )}
@@ -289,14 +289,15 @@ export default function Home() {
                   <div key={point.title} className="border border-white/10 bg-white/[0.04] p-6">
                     <h4 className="text-base font-medium text-white">
                       {point.title}
+                      {point.title === "Participation Right" && "²"}
                     </h4>
                     <p className="mt-1.5 text-sm text-white/55 leading-relaxed">
                       {point.description}
                     </p>
                   </div>
                 ))}
-                <p className="text-[11px] text-white/40 leading-relaxed">
-                  {eligibilityDisclosure}
+                <p className="text-[10px] text-white/40 leading-relaxed">
+                  ² {eligibilityDisclosure}
                 </p>
               </div>
             </FadeIn>

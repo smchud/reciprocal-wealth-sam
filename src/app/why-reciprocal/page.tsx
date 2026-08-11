@@ -40,12 +40,16 @@ export default function WhyReciprocalB() {
                   <div key={point.title} className="bg-forest-10 p-6">
                     <h3 className="text-base font-medium text-deep-forest">
                       {point.title}
+                      {point.title === "Participation Right" && "¹"}
                     </h3>
                     <p className="mt-1.5 text-sm text-near-black/70 leading-relaxed">
                       {point.description}
                     </p>
                   </div>
                 ))}
+                <p className="text-[10px] text-stone/80 leading-relaxed text-left">
+                  ¹ {eligibilityDisclosure}
+                </p>
               </div>
             </FadeIn>
             <FadeIn delay={150}>
@@ -68,11 +72,6 @@ export default function WhyReciprocalB() {
       {/* White paper download — email verification flow */}
       <section id="white-paper" className="scroll-mt-24 pb-20 md:pb-24">
         <div className="mx-auto max-w-[1200px] px-6">
-          <FadeIn>
-            <p className="mx-auto max-w-[840px] mb-10 text-[11px] text-stone/80 leading-relaxed">
-              {eligibilityDisclosure}
-            </p>
-          </FadeIn>
           <FadeIn>
             <div className="mx-auto max-w-[640px] border border-near-black/8 bg-white shadow-sm p-8 md:p-10 text-center">
               <h2 className="font-serif text-xl md:text-2xl tracking-[-0.3px] text-near-black">
