@@ -159,8 +159,45 @@ After changing one, redeploy — env vars are read at build/boot time.
 
 ```bash
 vercel env pull .env.local
-node scripts/migrate.mjs        # applies anything new in migrations/
+node scripts/migrate.mjs           # DATABASE_URL      -> neondb (production)
+node scripts/migrate.mjs --test    # TEST_DATABASE_URL -> reciprocalwealth_test
 ```
 
+The runner prints which database it's targeting before it does anything.
 Migrations are append-only and tracked in the `schema_migrations` table.
 Never edit an applied migration; add a new numbered file instead.
+
+**Apply every migration to both databases.** If the test database drifts
+from production, the suite starts passing or failing for reasons that have
+nothing to do with the code.
+
+## 10. Test database (don't run tests against production)
+
+The suite creates draft sessions, submits questionnaires, and requests white
+papers — all real writes. There are two databases in the same Neon project:
+
+| Database | Used by | Connection string |
+|---|---|---|
+| `neondb` | production, and previews | `DATABASE_URL` |
+| `reciprocalwealth_test` | Playwright, local dev | `TEST_DATABASE_URL` |
+
+`playwright.config.ts` reads `TEST_DATABASE_URL` from `.env.local` and passes
+it to the dev server it launches, so `npm run test:e2e` never touches
+production. It **throws on startup if that variable is missing** rather than
+silently falling back — a passing suite that quietly wrote to production is
+worse than a failing one.
+
+Two things to know:
+
+- `reuseExistingServer` is off. If something is already listening on :3000,
+  Playwright fails instead of reusing it — a server you started by hand has
+  neither the test database nor the token env vars, which used to produce
+  confusing failures and stray production rows.
+- If you re-pull env vars with `vercel env pull .env.local`, that file is
+  overwritten and `TEST_DATABASE_URL` disappears. Re-add it: same value as
+  `DATABASE_URL` with the database name changed to `reciprocalwealth_test`.
+
+**Preview deployments still use the production database.** Fixing that means
+setting a separate `DATABASE_URL` for the Preview environment in Vercel
+(same string, `/neondb` → `/reciprocalwealth_test`), or creating a proper
+Neon branch via the Neon console.

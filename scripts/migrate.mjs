@@ -1,5 +1,9 @@
-// One-off migration runner. Usage: node scripts/migrate.mjs
-// Reads DATABASE_URL from the environment (populate .env.local via
+// One-off migration runner.
+//
+//   node scripts/migrate.mjs          # DATABASE_URL (production)
+//   node scripts/migrate.mjs --test   # TEST_DATABASE_URL (test database)
+//
+// Reads the connection string from the environment (populate .env.local via
 // `vercel env pull` first, or export it inline for prod/preview branches).
 import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
@@ -25,11 +29,16 @@ async function loadDotEnvLocal() {
 
 async function main() {
   await loadDotEnvLocal();
-  const connectionString = process.env.DATABASE_URL;
+  const useTest = process.argv.includes("--test");
+  const varName = useTest ? "TEST_DATABASE_URL" : "DATABASE_URL";
+  const connectionString = process.env[varName];
   if (!connectionString) {
-    console.error("DATABASE_URL is not set. Run `vercel env pull .env.local` first.");
+    console.error(`${varName} is not set. Run \`vercel env pull .env.local\` first.`);
     process.exit(1);
   }
+  // Print which database is being touched - migrating the wrong one is the
+  // expensive mistake this script can make.
+  console.log(`target: ${varName} -> ${new URL(connectionString).pathname.replace(/^\//, "")}\n`);
 
   const client = new Client({ connectionString });
   await client.connect();
