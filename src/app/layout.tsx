@@ -52,12 +52,6 @@ export const metadata: Metadata = {
     description: defaultDescription,
     images: ["/images/og-default.png"],
   },
-  // Intentional sitewide noindex until compliance review clears the site for
-  // launch. See the CLAUDE.md warning before removing this.
-  robots: {
-    index: false,
-    follow: false,
-  },
 };
 
 export default function RootLayout({

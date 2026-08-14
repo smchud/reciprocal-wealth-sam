@@ -2,18 +2,18 @@
 
 # Reciprocal Wealth — Brand & Content Guardrails
 
-## ⚠️ SITE IS NOINDEXED — DO NOT REMOVE WITHOUT SIGN-OFF
+## Site is live and publicly indexable
 
-The site is **intentionally blocked from search engine indexing** until
-compliance review clears it for public launch: `robots: { index: false,
-follow: false }` in `src/app/layout.tsx`, and `disallow: "/"` in
-`src/app/robots.ts`.
+Compliance review cleared the site for public launch on 2026-08-13 and the
+sitewide noindex was removed that day: `src/app/robots.ts` returns
+`allow: "/"`, and the `robots: { index: false, follow: false }` metadata
+block was deleted from `src/app/layout.tsx`.
 
-**This MUST be reversed before public launch** (metadata `robots` block
-removed, `robots.ts` reverted to `allow: "/"`) — and Google Search Console
-registration (skipped for now) completed at that time. Do not touch either
-of these as a "fix" or cleanup unless the launch has been explicitly
-approved.
+The site is now **public and indexed by search engines**. Treat every copy
+change as publicly visible on publish — there is no longer a noindex safety
+net. Do not reintroduce a sitewide noindex without explicit sign-off; if a
+single page needs to be excluded, scope `robots` to that page's metadata
+rather than the root layout.
 
 ## Legal entity
 
