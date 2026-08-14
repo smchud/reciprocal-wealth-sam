@@ -57,6 +57,7 @@ export default function Home() {
               <div className="mt-10 inline-grid grid-cols-2 gap-4">
                 <Link
                   href="/why-reciprocal"
+                  aria-label="Learn more about Reciprocity for All"
                   className="flex items-center justify-center rounded-sm bg-white px-7 py-3 text-sm font-medium text-deep-forest transition-colors hover:bg-warm-gray"
                 >
                   Learn More
@@ -287,10 +288,10 @@ export default function Home() {
               <div className="space-y-4">
                 {reciprocityByContract.points.map((point) => (
                   <div key={point.title} className="border border-white/10 bg-white/[0.04] p-6">
-                    <h4 className="text-base font-medium text-white">
+                    <h3 className="text-base font-medium text-white">
                       {point.title}
                       {point.title === "Participation Right" && "²"}
-                    </h4>
+                    </h3>
                     <p className="mt-1.5 text-sm text-white/55 leading-relaxed">
                       {point.description}
                     </p>

@@ -12,7 +12,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/40 mb-4">
+            <h4 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/60 mb-4">
               Navigation
             </h4>
             <nav className="flex flex-col">
@@ -46,7 +46,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/40 mb-4">
+            <h4 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/60 mb-4">
               Contact
             </h4>
             <div className="text-sm text-white/65">
@@ -68,22 +68,27 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 pt-6 border-t border-white/10">
-          <p className="text-xs font-medium text-white/40">
+          <p className="text-xs font-medium text-white/60">
             Reciprocal Wealth, LLC · Registered Investment Adviser
           </p>
-          <p className="mt-2 text-xs text-white/30 leading-relaxed">
+          {/* Regulatory disclosure text and the links to the Disclosures and
+              Privacy Policy pages. Opacity here is a legibility floor, not a
+              styling choice: below roughly white/50 these drop under the 4.5:1
+              contrast ratio on deep forest, which is hard to defend for
+              required disclosures. Don't lighten these without re-checking. */}
+          <p className="mt-2 text-xs text-white/55 leading-relaxed">
             {siteConfig.disclosure} Registration as an investment adviser
             does not imply any certain level of skill or training. See our{" "}
-            <Link href="/disclosures" className="underline hover:text-white/50 transition-colors">
+            <Link href="/disclosures" className="underline hover:text-white transition-colors">
               Disclosures
             </Link>{" "}
             and{" "}
-            <Link href="/privacy-policy" className="underline hover:text-white/50 transition-colors">
+            <Link href="/privacy-policy" className="underline hover:text-white transition-colors">
               Privacy Policy
             </Link>{" "}
             for more information.
           </p>
-          <p className="mt-3 text-xs text-white/25">{siteConfig.copyright}</p>
+          <p className="mt-3 text-xs text-white/55">{siteConfig.copyright}</p>
         </div>
       </div>
     </footer>
