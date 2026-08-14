@@ -38,10 +38,10 @@ export default function WhyReciprocalB() {
               <div className="grid grid-cols-1 gap-4">
                 {reciprocityByContract.points.map((point) => (
                   <div key={point.title} className="bg-forest-10 p-6">
-                    <h3 className="text-base font-medium text-deep-forest">
+                    <h2 className="text-base font-medium text-deep-forest">
                       {point.title}
                       {point.title === "Participation Right" && "¹"}
-                    </h3>
+                    </h2>
                     <p className="mt-1.5 text-sm text-near-black/70 leading-relaxed">
                       {point.description}
                     </p>

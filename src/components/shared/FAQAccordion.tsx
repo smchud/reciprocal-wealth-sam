@@ -71,6 +71,9 @@ export default function FAQAccordion({
                       className="text-forest hover:text-deep-forest underline transition-colors"
                     >
                       {faq.answerLink.label}
+                      {faq.answerLink.srText && (
+                        <span className="sr-only">{faq.answerLink.srText}</span>
+                      )}
                     </a>
                     {faq.answerLink.suffix}
                   </>

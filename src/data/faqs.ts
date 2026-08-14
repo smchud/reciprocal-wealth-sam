@@ -3,8 +3,19 @@ export interface FAQ {
   /** A single paragraph, or an array rendered as separate paragraphs. */
   answer: string | string[];
   cta?: { label: string; href: string };
-  /** Inline link appended to the end of the answer paragraph (e.g. "...download our white paper here."). */
-  answerLink?: { prefix: string; label: string; href: string; suffix?: string };
+  /**
+   * Inline link appended to the end of the answer paragraph (e.g.
+   * "...download our white paper here."). `srText` is visually hidden text
+   * appended inside the anchor so a short label like "here" still has a
+   * descriptive link name for crawlers and screen readers.
+   */
+  answerLink?: {
+    prefix: string;
+    label: string;
+    href: string;
+    suffix?: string;
+    srText?: string;
+  };
 }
 
 export const faqs: FAQ[] = [
@@ -23,6 +34,7 @@ export const faqs: FAQ[] = [
       label: "here",
       href: "/why-reciprocal#white-paper",
       suffix: ".",
+      srText: " — download the Reciprocity for All white paper",
     },
   },
   {

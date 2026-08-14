@@ -59,7 +59,13 @@ export default function Home() {
                   href="/why-reciprocal"
                   className="flex items-center justify-center rounded-sm bg-white px-7 py-3 text-sm font-medium text-deep-forest transition-colors hover:bg-warm-gray"
                 >
+                  {/* The sr-only half keeps the button reading "Learn More"
+                      while giving crawlers and screen readers a link name
+                      that actually describes the destination. An aria-label
+                      would not work here: Lighthouse's link-text SEO audit
+                      reads the visible anchor text, not the accessible name. */}
                   Learn More
+                  <span className="sr-only"> about Reciprocity for All</span>
                 </Link>
                 <Link
                   href="/get-started"
@@ -287,10 +293,10 @@ export default function Home() {
               <div className="space-y-4">
                 {reciprocityByContract.points.map((point) => (
                   <div key={point.title} className="border border-white/10 bg-white/[0.04] p-6">
-                    <h4 className="text-base font-medium text-white">
+                    <h3 className="text-base font-medium text-white">
                       {point.title}
                       {point.title === "Participation Right" && "²"}
-                    </h4>
+                    </h3>
                     <p className="mt-1.5 text-sm text-white/55 leading-relaxed">
                       {point.description}
                     </p>
