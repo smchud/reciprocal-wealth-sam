@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { syncContact } from "@/lib/wealthbox";
 import { notifyFounders } from "@/lib/notify";
+import { reportError } from "@/lib/observability";
 
 // Minimum time (ms) between the form rendering and a submission being
 // accepted as human. Bots that fill and submit instantly get caught here.
@@ -21,10 +22,6 @@ interface ContactRequestBody {
 
 function log(event: string, data: Record<string, unknown>) {
   console.log(JSON.stringify({ event, ts: new Date().toISOString(), ...data }));
-}
-
-function logError(event: string, data: Record<string, unknown>) {
-  console.error(JSON.stringify({ event, ts: new Date().toISOString(), ...data }));
 }
 
 function badRequest(message: string) {
@@ -75,14 +72,14 @@ export async function POST(req: NextRequest) {
   // Wealthbox sync is best-effort: log and continue. The visitor's message
   // still gets through via email even if CRM sync fails.
   const wealthbox = await syncContact(submission).catch((err) => {
-    logError("contact_wealthbox_failed", { message: String(err), email });
+    reportError("contact_wealthbox_failed", { message: String(err), email }, err);
     return null;
   });
 
   try {
     await notifyFounders(submission);
   } catch (err) {
-    logError("contact_email_failed", { message: String(err), email });
+    reportError("contact_email_failed", { message: String(err), email }, err);
     // Both the CRM sync and the email failed - the message may not have
     // reached anyone. Be honest with the visitor rather than claim success.
     if (!wealthbox) {

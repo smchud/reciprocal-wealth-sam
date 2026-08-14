@@ -9,13 +9,10 @@ import { buildCrmNote } from "@/lib/get-started/crmNote";
 import { buildWealthboxCustomFieldValues } from "@/lib/get-started/wealthboxCustomFields";
 import { sendSubmissionSummary } from "@/lib/notify";
 import { syncQuestionnaireContact } from "@/lib/wealthbox";
+import { reportError } from "@/lib/observability";
 
 function log(event: string, data: Record<string, unknown>) {
   console.log(JSON.stringify({ event, ts: new Date().toISOString(), ...data }));
-}
-
-function logError(event: string, data: Record<string, unknown>) {
-  console.error(JSON.stringify({ event, ts: new Date().toISOString(), ...data }));
 }
 
 function clientName(data: Record<string, unknown>): string {
@@ -58,7 +55,7 @@ export async function POST() {
     submission = await finalizeSubmission(draft.id, draft.data, scoring, priorityMatrix);
     log("get_started_submitted", { draftId: draft.id, submissionId: submission?.id ?? null });
   } catch (err) {
-    logError("get_started_submit_failed", { draftId: draft.id, message: String(err) });
+    reportError("get_started_submit_failed", { draftId: draft.id, message: String(err) }, err);
     return NextResponse.json(
       {
         ok: false,
@@ -80,7 +77,7 @@ export async function POST() {
       await sendSubmissionSummary(name, pdfBuffer);
       await markPdfEmailed(submission.id);
     } catch (err) {
-      logError("get_started_pdf_email_failed", { draftId: draft.id, message: String(err) });
+      reportError("get_started_pdf_email_failed", { draftId: draft.id, message: String(err) }, err);
     }
 
     try {
@@ -111,7 +108,7 @@ export async function POST() {
         await markWealthboxSynced(submission.id, String(wb.id));
       }
     } catch (err) {
-      logError("get_started_wealthbox_failed", { draftId: draft.id, message: String(err) });
+      reportError("get_started_wealthbox_failed", { draftId: draft.id, message: String(err) }, err);
     }
   }
 

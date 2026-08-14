@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createWhitePaperRequest, whitePaperRecentlyRequested } from "@/lib/white-paper";
 import { sendWhitePaperEmail } from "@/lib/notify";
 import { getSiteUrl } from "@/lib/site-url";
+import { reportError } from "@/lib/observability";
 
 // Minimum time (ms) between the form rendering and a submission being
 // accepted as human - same bot check as the contact form.
@@ -17,10 +18,6 @@ interface Body {
 
 function log(event: string, data: Record<string, unknown>) {
   console.log(JSON.stringify({ event, ts: new Date().toISOString(), ...data }));
-}
-
-function logError(event: string, data: Record<string, unknown>) {
-  console.error(JSON.stringify({ event, ts: new Date().toISOString(), ...data }));
 }
 
 function badRequest(message: string) {
@@ -73,7 +70,7 @@ export async function POST(req: NextRequest) {
     log("white_paper_requested", { email });
     return NextResponse.json({ ok: true, ...(e2eExposeToken ? { token: rawToken } : {}) });
   } catch (err) {
-    logError("white_paper_request_failed", { message: String(err), email });
+    reportError("white_paper_request_failed", { message: String(err), email }, err);
     return NextResponse.json(
       { ok: false, error: "Something went wrong sending your email. Please try again." },
       { status: 500 }

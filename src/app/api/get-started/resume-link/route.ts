@@ -6,16 +6,13 @@ import {
 } from "@/lib/get-started/session";
 import { sendResumeLink } from "@/lib/notify";
 import { getSiteUrl } from "@/lib/site-url";
+import { reportError } from "@/lib/observability";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const RESEND_COOLDOWN_MS = 60_000;
 
 function badRequest(message: string) {
   return NextResponse.json({ ok: false, error: message }, { status: 400 });
-}
-
-function logError(event: string, data: Record<string, unknown>) {
-  console.error(JSON.stringify({ event, ts: new Date().toISOString(), ...data }));
 }
 
 interface Body {
@@ -69,7 +66,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ ok: true, ...(e2eExposeToken ? { token: rawToken } : {}) });
   } catch (err) {
-    logError("get_started_resume_link_failed", { message: String(err) });
+    reportError("get_started_resume_link_failed", { message: String(err) }, err);
     return NextResponse.json(
       { ok: false, error: "Something went wrong sending your link. Please try again." },
       { status: 500 }

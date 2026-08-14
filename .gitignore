@@ -43,3 +43,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Generated site-capture PDFs (see scripts/capture-site.mjs)
+/captures
+
+# Questionnaire exports contain client PII - never commit them
+/exports

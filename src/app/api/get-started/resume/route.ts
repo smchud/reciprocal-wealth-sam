@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redeemResumeToken, setSessionCookie } from "@/lib/get-started/session";
-
-function logError(event: string, data: Record<string, unknown>) {
-  console.error(JSON.stringify({ event, ts: new Date().toISOString(), ...data }));
-}
+import { reportError } from "@/lib/observability";
 
 export async function GET(req: NextRequest) {
   const token = req.nextUrl.searchParams.get("token") ?? "";
@@ -21,7 +18,7 @@ export async function GET(req: NextRequest) {
     await setSessionCookie(redeemed.sessionToken);
     return NextResponse.redirect(`${origin}/get-started?resumed=1`);
   } catch (err) {
-    logError("get_started_resume_redeem_failed", { message: String(err) });
+    reportError("get_started_resume_redeem_failed", { message: String(err) }, err);
     return NextResponse.redirect(`${origin}/get-started?resume_error=1`);
   }
 }

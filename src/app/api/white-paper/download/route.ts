@@ -2,16 +2,13 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { NextRequest, NextResponse } from "next/server";
 import { redeemWhitePaperToken } from "@/lib/white-paper";
+import { reportError } from "@/lib/observability";
 
 // The PDF lives outside public/ on purpose: the only way to download it is
 // through a verified email link. next.config.ts's outputFileTracingIncludes
 // ensures the file ships with this route's serverless bundle.
 const PDF_PATH = path.join(process.cwd(), "private", "white-paper.pdf");
 const DOWNLOAD_FILENAME = "Reciprocal Wealth - Reciprocity for All White Paper.pdf";
-
-function logError(event: string, data: Record<string, unknown>) {
-  console.error(JSON.stringify({ event, ts: new Date().toISOString(), ...data }));
-}
 
 export async function GET(req: NextRequest) {
   const token = req.nextUrl.searchParams.get("token") ?? "";
@@ -23,7 +20,7 @@ export async function GET(req: NextRequest) {
   try {
     email = await redeemWhitePaperToken(token);
   } catch (err) {
-    logError("white_paper_download_failed", { message: String(err) });
+    reportError("white_paper_download_failed", { message: String(err) }, err);
     return new NextResponse("Something went wrong. Please try again.", { status: 500 });
   }
 
@@ -45,7 +42,7 @@ export async function GET(req: NextRequest) {
       },
     });
   } catch (err) {
-    logError("white_paper_pdf_read_failed", { message: String(err) });
+    reportError("white_paper_pdf_read_failed", { message: String(err) }, err);
     return new NextResponse("Something went wrong. Please try again.", { status: 500 });
   }
 }

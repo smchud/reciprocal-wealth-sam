@@ -6,6 +6,7 @@ import {
   setSessionCookie,
 } from "@/lib/get-started/session";
 import { SECTION_IDS, type SectionId } from "@/data/intakeFields";
+import { reportError } from "@/lib/observability";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -15,10 +16,6 @@ function badRequest(message: string) {
 
 function log(event: string, data: Record<string, unknown>) {
   console.log(JSON.stringify({ event, ts: new Date().toISOString(), ...data }));
-}
-
-function logError(event: string, data: Record<string, unknown>) {
-  console.error(JSON.stringify({ event, ts: new Date().toISOString(), ...data }));
 }
 
 export async function GET() {
@@ -34,7 +31,7 @@ export async function GET() {
       },
     });
   } catch (err) {
-    logError("get_started_session_read_failed", { message: String(err) });
+    reportError("get_started_session_read_failed", { message: String(err) }, err);
     return NextResponse.json(
       { ok: false, error: "Something went wrong loading your progress." },
       { status: 500 }
@@ -73,7 +70,7 @@ export async function POST(req: NextRequest) {
     log("get_started_draft_created", { draftId });
     return NextResponse.json({ ok: true, draft: { data: {}, currentStep: "welcome", submittedAt: null } });
   } catch (err) {
-    logError("get_started_draft_create_failed", { message: String(err) });
+    reportError("get_started_draft_create_failed", { message: String(err) }, err);
     return NextResponse.json(
       { ok: false, error: "Something went wrong starting your questionnaire. Please try again." },
       { status: 500 }
@@ -117,7 +114,7 @@ export async function PATCH(req: NextRequest) {
     await saveDraftStep(draft.id, step as SectionId, data, email);
     return NextResponse.json({ ok: true });
   } catch (err) {
-    logError("get_started_autosave_failed", { message: String(err) });
+    reportError("get_started_autosave_failed", { message: String(err) }, err);
     return NextResponse.json(
       { ok: false, error: "Your progress couldn't be saved just now." },
       { status: 500 }
