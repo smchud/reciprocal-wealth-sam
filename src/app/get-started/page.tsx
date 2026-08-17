@@ -7,6 +7,7 @@ const description =
 
 export const metadata: Metadata = {
   title: "Become a Client",
+  alternates: { canonical: "/get-started" },
   description,
   openGraph: { title: "Become a Client", description, images: ["/images/og-default.png"] },
 };

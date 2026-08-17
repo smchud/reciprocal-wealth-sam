@@ -5,6 +5,7 @@ const description =
 
 export const metadata: Metadata = {
   title: "Fee Schedule",
+  alternates: { canonical: "/fee-schedule" },
   description,
   openGraph: { title: "Fee Schedule", description, images: ["/images/og-default.png"] },
 };

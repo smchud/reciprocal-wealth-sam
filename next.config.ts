@@ -70,6 +70,10 @@ const nextConfig: NextConfig = {
         destination: "https://reciprocalwealth.com/:path*",
         permanent: true,
       },
+      // Next serves /index as a 200 alias of /, which Google sees as a second
+      // copy of the homepage. The canonical tag on / covers it, but redirect
+      // as well so the duplicate URL stops resolving at all.
+      { source: "/index", destination: "/", permanent: true },
       { source: "/concept-b", destination: "/", permanent: true },
       { source: "/concept-b/:path*", destination: "/:path*", permanent: true },
       { source: "/concept-a/:path*", destination: "/", permanent: true },

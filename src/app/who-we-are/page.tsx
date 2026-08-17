@@ -9,6 +9,7 @@ const description =
 
 export const metadata: Metadata = {
   title: "Who We Are",
+  alternates: { canonical: "/who-we-are" },
   description,
   openGraph: { title: "Who We Are", description, images: ["/images/og-default.png"] },
 };

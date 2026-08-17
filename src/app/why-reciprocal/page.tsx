@@ -14,6 +14,7 @@ const description =
 
 export const metadata: Metadata = {
   title: "Why Reciprocal",
+  alternates: { canonical: "/why-reciprocal" },
   description,
   openGraph: { title: "Why Reciprocal", description, images: ["/images/og-default.png"] },
 };

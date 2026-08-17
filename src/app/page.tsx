@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import FadeIn from "@/components/shared/FadeIn";
@@ -13,6 +14,14 @@ import {
 import { founders } from "@/data/founders";
 import { faqs } from "@/data/faqs";
 import { siteConfig } from "@/data/siteConfig";
+
+// Title and description are inherited from the root layout; this exists so the
+// home page emits its own canonical. Without it, /index (which Next serves as
+// a 200 alias of /) looks to Google like a second, separate copy of the
+// homepage with no declared preference between them.
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const investmentPillars = [
   {
