@@ -7,7 +7,7 @@ export const values: Value[] = [
   {
     title: "Boring is Best",
     description:
-      "We apply time-tested investing principles and help you resist the \"siren's song.\" No trendy strategies, no chasing headlines — just a disciplined, evidence-based investing approach.",
+      "We apply time-tested investing principles and help you resist the \"siren's song.\" No trendy strategies, no chasing headlines — just disciplined, evidence-based investing.",
   },
   {
     title: "Customer First",

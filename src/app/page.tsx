@@ -111,7 +111,7 @@ export default function Home() {
               {
                 title: "Fiduciary, First",
                 description:
-                  "Reciprocal Wealth serves as a fiduciary where we are legally obligated to prioritize clients' financial interests ahead of our own — without exception.",
+                  "Reciprocal Wealth serves as a fiduciary to its clients. We are legally obligated to prioritize clients' financial interests ahead of our own — without exception.",
               },
               {
                 title: "Who We Help",
