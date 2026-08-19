@@ -53,15 +53,16 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-start md:items-center gap-12">
             <div className="flex-1 max-w-[720px]">
               <h1 className="font-serif text-[40px] md:text-[56px] leading-[1.1] tracking-[-1px] text-white">
-                Home of
-                <br />
-                <span className="italic">Reciprocity for All</span>
+                Invested <span className="italic">Together.</span>
               </h1>
-              <p className="mt-6 text-base md:text-lg text-white/60 leading-relaxed max-w-[540px]">
-                <span className="font-bold">
-                  20% of net cash proceeds from a sale of the firm reserved
-                  exclusively for clients.
-                </span>
+              <p className="mt-6 text-base md:text-lg text-white/75 leading-relaxed max-w-[560px]">
+                Independent, fee-only wealth management from founders who are
+                clients one and two.
+              </p>
+              <p className="mt-4 text-sm md:text-base text-white/55 leading-relaxed max-w-[560px]">
+                Concierge service, personalized portfolios, &amp; one
+                transparent fee backed by true reciprocity: clients participate
+                if we ever sell the business.
               </p>
               <div className="mt-10 inline-grid grid-cols-2 gap-4">
                 <Link
