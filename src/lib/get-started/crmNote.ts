@@ -53,7 +53,6 @@ const NOTE_SECTIONS: NoteSection[] = [
       "advisor_qualities",
       "investing_values",
       "referral_source",
-      "prompt",
     ],
   },
 ];

@@ -257,7 +257,12 @@ test.describe("/get-started full completion (real local server)", () => {
 
     await expect(page.getByText("Thank you, Jamie.")).toBeVisible();
     await expect(page.getByText("What happens next")).toBeVisible();
-    await expect(page.getByText(/reach out.*to begin onboarding/)).toBeVisible();
+    // Submitting the questionnaire is not acceptance as a client: the screen
+    // must say we review for fit first, and commit to a reply either way.
+    await expect(page.getByText(/review your responses.*good fit/)).toBeVisible();
+    await expect(page.getByText(/either way within two business days/)).toBeVisible();
+    // Onboarding is conditional on that review, not promised outright.
+    await expect(page.getByText(/If it looks like a fit/)).toBeVisible();
     await expect(page.getByText(/account-opening invitation.*wealth management agreement/)).toBeVisible();
     // No instant/single-click onboarding path - no link straight into Altruist.
     await expect(page.getByText("proceed to onboarding")).toHaveCount(0);

@@ -84,7 +84,12 @@ export const FIELD_META: Record<string, FieldMeta> = {
   },
   has_children: {
     label: "Children or other dependents",
-    options: { none: "None", yes: "Yes", planning: "Planning to in the next few years" },
+    options: {
+      none: "None and no plans to have any in the next few years",
+      planning: "None, but plan to have in the next few years",
+      yes_private: "Yes, but do not want to share their details",
+      yes: "Yes and I'd like to share their details",
+    },
   },
   hobbies: {
     label: "Hobbies & passions",
@@ -431,17 +436,6 @@ export const FIELD_META: Record<string, FieldMeta> = {
     },
   },
   values_notes: { label: "Investing values — notes" },
-  prompt: {
-    label: "What prompted looking for an advisor now",
-    options: {
-      unhappy_advisor: "Unhappy with current advisor",
-      time_to_hire_help: "Time to get serious and hire help",
-      no_time_or_interest: "No longer have time or interest in doing it myself",
-      enough_liquid: "Finally have enough liquid to start investing",
-      other: "Other",
-    },
-  },
-  prompt_other: { label: "Prompt — other, specified" },
   referral_source: {
     label: "How they heard about Reciprocal Wealth",
     options: {

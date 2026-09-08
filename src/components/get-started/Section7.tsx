@@ -71,14 +71,6 @@ const INVESTING_VALUES_OPTIONS = [
   { value: "none", label: "None — invest for the best risk-adjusted return" },
 ];
 
-const PROMPT_OPTIONS = [
-  { value: "unhappy_advisor", label: "Unhappy with current advisor" },
-  { value: "time_to_hire_help", label: "Time to get serious and hire help" },
-  { value: "no_time_or_interest", label: "No longer have time or interest in doing it myself" },
-  { value: "enough_liquid", label: "Finally have enough liquid to start investing" },
-  { value: "other", label: "Other" },
-];
-
 const REFERRAL_SOURCE_OPTIONS = [
   { value: "personal", label: "Referral from a friend, family member, or colleague" },
   { value: "professional", label: "Referral from another professional (CPA, attorney, etc.)" },
@@ -99,7 +91,6 @@ export default function Section7({ data, setField }: SectionProps) {
   const rankedAdvisorQualities: Option[] = advisorQualities
     .map((v) => ADVISOR_QUALITIES_OPTIONS.find((o) => o.value === v))
     .filter((o): o is Option => Boolean(o));
-  const prompt = getArr(data, "prompt");
   const referralSource = getStr(data, "referral_source");
 
   return (
@@ -190,25 +181,6 @@ export default function Section7({ data, setField }: SectionProps) {
             placeholder="Notes (optional)"
           />
         </div>
-      </QuestionBlock>
-
-      <QuestionBlock>
-        <CheckboxGroup
-          name="prompt"
-          label="What prompted you to look for an advisor right now?"
-          help="Select all that apply."
-          value={prompt}
-          onChange={setField}
-          options={PROMPT_OPTIONS}
-        />
-        <Conditional show={prompt.includes("other")}>
-          <TextField
-            name="prompt_other"
-            label="Please specify"
-            value={getStr(data, "prompt_other")}
-            onChange={setField}
-          />
-        </Conditional>
       </QuestionBlock>
 
       <QuestionBlock>

@@ -109,8 +109,6 @@ const SECTION_FIELDS: { title: string; fields: string[] }[] = [
       "advisor_qualities",
       "investing_values",
       "values_notes",
-      "prompt",
-      "prompt_other",
       "referral_source",
       "referral_name",
       "referral_other",

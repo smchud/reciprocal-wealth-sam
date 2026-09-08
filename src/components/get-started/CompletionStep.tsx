@@ -50,12 +50,13 @@ export default function CompletionStep({ data }: { data: IntakeData }) {
       <h3 className="mt-8 text-base font-medium text-near-black">What happens next</h3>
       <div className="mt-4 space-y-3 text-sm text-near-black leading-relaxed max-w-[56ch]">
         <p>
-          After we review your questionnaire, we&rsquo;ll reach out — usually within two business days — to begin
-          onboarding.
+          We&rsquo;ll review your responses to determine whether we&rsquo;re likely to be a good fit for one
+          another. You&rsquo;ll hear from us either way within two business days.
         </p>
         <p>
-          From there, you&rsquo;ll receive two separate items from us: an account-opening invitation, and the
-          wealth management agreement to review and e-sign.
+          If it looks like a fit, we&rsquo;ll be in touch to begin onboarding. From there, you&rsquo;d receive two
+          separate items from us: an account-opening invitation, and the wealth management agreement to review
+          and e-sign.
         </p>
         <p>Our Form ADV brochure is provided and acknowledged as part of account opening.</p>
       </div>

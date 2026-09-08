@@ -68,7 +68,6 @@ export const STATIC_FIELD_NAMES = [
   "contact_frequency", "contact_channel",
   "advisor_qualities",
   "investing_values", "values_notes",
-  "prompt", "prompt_other",
   "referral_source", "referral_name", "referral_other",
   "other_notes",
 ] as const;
@@ -102,7 +101,6 @@ export const MULTI_VALUE_FIELD_NAMES: readonly StaticFieldName[] = [
   "advisor_qualities",
   "investing_values",
   "services_desired",
-  "prompt",
 ];
 
 export const SECTION_IDS = ["consent", "welcome", "1", "2", "3", "4", "5", "6", "7"] as const;

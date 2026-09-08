@@ -33,10 +33,14 @@ const MARITAL_OPTIONS = [
   { value: "no_say", label: "Prefer not to say" },
 ];
 
+// Only "yes" reveals the child name/DOB fields below - "yes_private" is for
+// clients who have children but would rather not list them. Existing value
+// codes are kept so answers already stored against them still resolve.
 const HAS_CHILDREN_OPTIONS = [
-  { value: "none", label: "None" },
-  { value: "yes", label: "Yes — I'd like to share their details" },
-  { value: "planning", label: "Planning to in the next few years" },
+  { value: "none", label: "None and no plans to have any in the next few years" },
+  { value: "planning", label: "None, but plan to have in the next few years" },
+  { value: "yes_private", label: "Yes, but do not want to share their details" },
+  { value: "yes", label: "Yes and I'd like to share their details" },
 ];
 
 const HOBBIES_OPTIONS = [
