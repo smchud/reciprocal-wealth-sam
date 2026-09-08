@@ -56,13 +56,13 @@ export default function Home() {
                 Invested <span className="italic">Together.</span>
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/75 leading-relaxed max-w-[560px]">
-                Independent, fee-only wealth management from founders who are
-                clients one and two.
+                Independent, fee-only wealth management and more from founders
+                who are clients one and two.
               </p>
               <p className="mt-4 text-sm md:text-base text-white/55 leading-relaxed max-w-[560px]">
                 Concierge service, personalized portfolios, &amp; one
-                transparent fee backed by true reciprocity: clients participate
-                if we ever sell the business.
+                transparent fee backed by true reciprocity: clients receive a
+                share of proceeds if we ever sell the business.
               </p>
               <div className="mt-10 inline-grid grid-cols-2 gap-4">
                 <Link

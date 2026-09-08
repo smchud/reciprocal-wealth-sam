@@ -44,11 +44,11 @@ export const faqs: FAQ[] = [
   {
     question: "What is your fee structure?",
     answer:
-      "We have a transparent fee structure that bills monthly at a percentage of assets under management. For more information, please contact us at",
+      "We have a transparent fee structure that bills monthly at a percentage of assets under management. For more information, click here:",
     answerLink: {
       prefix: "",
-      label: "info@reciprocalwealth.com",
-      href: "mailto:info@reciprocalwealth.com",
+      label: "Fee Schedule",
+      href: "/fee-schedule",
       suffix: ".",
     },
   },
