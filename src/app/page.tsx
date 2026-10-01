@@ -56,8 +56,9 @@ export default function Home() {
                 Invested <span className="italic">Together.</span>
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/75 leading-relaxed max-w-[560px]">
-                Independent, fee-only wealth management and more from founders
-                who are clients one and two.
+                Wealth management, financial planning, and more for time-pressed
+                professionals who want an ally to look out for their total
+                financial wellbeing.
               </p>
               <p className="mt-4 text-sm md:text-base text-white/55 leading-relaxed max-w-[560px]">
                 Concierge service, personalized portfolios, &amp; one
