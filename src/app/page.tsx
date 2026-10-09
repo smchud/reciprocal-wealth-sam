@@ -56,15 +56,20 @@ export default function Home() {
                 Invested <span className="italic">Together.</span>
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/75 leading-relaxed max-w-[560px]">
-                Wealth management, financial planning, and more for time-pressed
-                professionals who want an ally to look out for their total
-                financial wellbeing.
+                Investment management, financial planning, and more for
+                time-pressed professionals and families who want their total
+                financial wellbeing looked after with thought and care.
               </p>
-              <p className="mt-4 text-sm md:text-base text-white/55 leading-relaxed max-w-[560px]">
-                Concierge service, personalized portfolios, &amp; one
-                transparent fee backed by true reciprocity: clients receive a
-                share of proceeds if we ever sell the business.
-              </p>
+              <ul className="mt-5 max-w-[560px] list-disc pl-5 space-y-1.5 text-sm md:text-base text-white/60 leading-relaxed marker:text-forest-50">
+                <li>Concierge service directly from the principals</li>
+                <li>Modern, streamlined technology platform</li>
+                <li>Personalized, diversified portfolios &amp; tax-loss harvesting</li>
+                <li>One transparent fee to cover all services</li>
+                <li>
+                  Participation Right: clients receive a share of proceeds if we
+                  sell the business
+                </li>
+              </ul>
               <div className="mt-10 inline-grid grid-cols-2 gap-4">
                 <Link
                   href="/why-reciprocal"
