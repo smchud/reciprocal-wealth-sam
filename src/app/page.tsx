@@ -51,19 +51,19 @@ const heroPromises = [
       "Before anything else, we learn how you think about money — your situation, your priorities, and your preferences.",
   },
   {
-    lead: "We build and refresh a plan around your real life.",
+    lead: "We maintain a plan around your real life.",
     detail:
-      "Not a generic model, but a plan that reflects where you are today and prepares you for the decisions ahead: equity comp, homes, kids’ education, career moves, retirement.",
+      "Reflects where you are today and prepares you for the decisions ahead: equity comp, homes, kids’ education, career moves, retirement.",
   },
   {
     lead: "We invest your money to match that plan.",
     detail:
-      "Your portfolio is built for you and your preferences, and it stays aligned as your plan evolves.",
+      "A proprietary portfolio for you that stays aligned as your plan evolves.",
   },
   {
     lead: "We’re there when life happens.",
     detail:
-      "A new job offer. An inheritance. An equity vest. When you need to understand your options and what they mean financially, you have a direct dial to an expert you know and trust.",
+      "A new job offer. An inheritance. An equity vest. When you need to understand your options and what they mean financially, you have a direct dial to experts you know and trust.",
   },
 ];
 
@@ -76,17 +76,16 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-start md:items-center gap-12">
             <div className="flex-1 max-w-[720px]">
               <h1 className="font-serif text-[40px] md:text-[56px] leading-[1.1] tracking-[-1px] text-white">
-                Caring for your financial{" "}
-                <span className="italic">wellbeing</span>
+                Caring for your
+                <span className="block italic">financial wellbeing</span>
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/75 leading-relaxed max-w-[600px]">
-                Financial wellbeing is knowing you’re living within your means,
-                that your investments support the life you want, and that you
-                can rest easy — because you understand the logic behind the
-                decisions and trust the people responsible for them.
+                Rest easy by living within your means, investing to support
+                your life, understanding the logic, and trusting the people
+                responsible.
               </p>
               <h2 className="mt-8 font-serif text-xl md:text-2xl tracking-[-0.3px] text-white">
-                How Reciprocal Wealth looks after yours
+                How Reciprocal Wealth looks after your financial wellbeing
               </h2>
               <ul className="mt-4 max-w-[600px] list-disc pl-5 space-y-3 text-sm md:text-base text-white/60 leading-relaxed marker:text-forest-50">
                 {heroPromises.map((promise) => (

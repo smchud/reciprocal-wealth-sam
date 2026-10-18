@@ -17,12 +17,12 @@ export const differentiators: Differentiator[] = [
   {
     title: "You learn and understand.",
     description:
-      "Our clients are smart, accomplished people who want to understand what’s happening with their money even if they don’t have time to manage it. So we don’t make decisions for you and tell you later. We explain the thinking, lay out the options with their trade-offs, and then make a recommendation. This not only builds your financial acumen but also your confidence in the actions being taken.",
+      "Our clients are smart, accomplished people who want to understand what’s happening with their money even if they don’t have time to manage it. So we don’t make decisions for you and tell you later. We lay out the options with their trade-offs and explain the thinking. This not only builds your financial acumen but also your confidence in the actions being taken.",
   },
   {
     title: "You won’t get handed off.",
     description:
-      "You work with the principals from day one. The people you meet at the start are the people who work with you for the duration. No junior team, no rotating “relationship manager,” no surprise introductions after a merger. We’ve deliberately built the firm so that as it grows, every client keeps the same dedicated time and attention.",
+      "You work with the principals from day one. No junior team, no rotating “relationship manager,” no surprise introductions after a merger. We’ve deliberately built the firm so that as it grows, every client keeps the same dedicated time and attention.",
   },
   {
     title: "You share in our success.",
