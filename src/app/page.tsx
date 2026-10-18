@@ -51,14 +51,14 @@ const heroPromises = [
       "Before anything else, we learn how you think about money — your situation, your priorities, and your preferences.",
   },
   {
-    lead: "We maintain a plan around your real life.",
+    lead: "We craft and refresh a plan around your life.",
     detail:
       "Reflects where you are today and prepares you for the decisions ahead: equity comp, homes, kids’ education, career moves, retirement.",
   },
   {
     lead: "We invest your money to match that plan.",
     detail:
-      "A proprietary portfolio for you that stays aligned as your plan evolves.",
+      "Your proprietary portfolio stays aligned as your plan evolves.",
   },
   {
     lead: "We’re there when life happens.",
@@ -81,8 +81,8 @@ export default function Home() {
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/75 leading-relaxed max-w-[600px]">
                 Rest easy by living within your means, investing to support
-                your life, understanding the logic, and trusting the people
-                responsible.
+                your life, understanding the choices, and trusting the people
+                responsible for making them.
               </p>
               <h2 className="mt-8 font-serif text-xl md:text-2xl tracking-[-0.3px] text-white">
                 How Reciprocal Wealth looks after your financial wellbeing

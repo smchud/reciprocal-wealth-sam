@@ -22,7 +22,7 @@ export const differentiators: Differentiator[] = [
   {
     title: "You won’t get handed off.",
     description:
-      "You work with the principals from day one. No junior team, no rotating “relationship manager,” no surprise introductions after a merger. We’ve deliberately built the firm so that as it grows, every client keeps the same dedicated time and attention.",
+      "You work with the principals from day one. The people you meet at the start are the people who work with you for the duration. We’ve deliberately built the firm so that as it grows, every client keeps the same dedicated time and attention.",
   },
   {
     title: "You share in our success.",
