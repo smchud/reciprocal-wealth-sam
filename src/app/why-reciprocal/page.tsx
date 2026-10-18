@@ -10,7 +10,7 @@ import {
 } from "@/data/differentiators";
 
 const description =
-  "Reciprocity for All is our unique way of sharing in the firm's success with clients — plus the other ways we believe wealth management should work.";
+  "You learn and understand, you won't get handed off, and you share in our success. How Reciprocal Wealth differs — including Reciprocity for All, our way of sharing the firm's success with clients.";
 
 export const metadata: Metadata = {
   title: "Why Reciprocal",
@@ -22,14 +22,42 @@ export const metadata: Metadata = {
 export default function WhyReciprocalB() {
   return (
     <>
-      {/* Reciprocity for All — dedicated section, page lead */}
+      {/* How We Differ — the three lead items */}
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-[1200px] px-6">
           <FadeIn>
             <SectionLabel className="text-[11px] md:text-[11px]">How We Differ</SectionLabel>
             <h1 className="mt-4 font-serif text-[32px] md:text-[36px] tracking-[-0.5px] text-near-black leading-tight">
-              {reciprocityByContract.label}
+              Why <span className="italic">Reciprocal</span>
             </h1>
+          </FadeIn>
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {differentiators.map((diff, i) => (
+              <FadeIn
+                key={diff.title}
+                delay={i * 80}
+                className="bg-white border border-near-black/8 shadow-sm p-8 md:p-10"
+              >
+                <h2 className="font-serif text-xl md:text-2xl tracking-[-0.3px] text-near-black mb-4">
+                  {diff.title}
+                  {diff.footnote && "¹"}
+                </h2>
+                <p className="text-sm text-stone leading-relaxed">
+                  {diff.description}
+                </p>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reciprocity for All — dedicated section */}
+      <section className="bg-warm-gray py-20 md:py-24">
+        <div className="mx-auto max-w-[1200px] px-6">
+          <FadeIn>
+            <h2 className="font-serif text-[28px] md:text-[32px] tracking-[-0.5px] text-near-black leading-tight">
+              {reciprocityByContract.label}
+            </h2>
             <p className="mt-4 text-sm md:text-base text-stone leading-relaxed max-w-[640px]">
               {reciprocityByContract.tagline}
             </p>
@@ -38,11 +66,11 @@ export default function WhyReciprocalB() {
             <FadeIn>
               <div className="grid grid-cols-1 gap-4">
                 {reciprocityByContract.points.map((point) => (
-                  <div key={point.title} className="bg-forest-10 p-6">
-                    <h2 className="text-base font-medium text-deep-forest">
+                  <div key={point.title} className="bg-white border border-near-black/8 p-6">
+                    <h3 className="text-base font-medium text-deep-forest">
                       {point.title}
                       {point.title === "Participation Right" && "¹"}
-                    </h2>
+                    </h3>
                     <p className="mt-1.5 text-sm text-near-black/70 leading-relaxed">
                       {point.description}
                     </p>
@@ -71,7 +99,7 @@ export default function WhyReciprocalB() {
       </section>
 
       {/* White paper download — email verification flow */}
-      <section id="white-paper" className="scroll-mt-24 pb-20 md:pb-24">
+      <section id="white-paper" className="scroll-mt-24 py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
           <FadeIn>
             <div className="mx-auto max-w-[640px] border border-near-black/8 bg-white shadow-sm p-8 md:p-10 text-center">
@@ -115,33 +143,6 @@ export default function WhyReciprocalB() {
               ))}
             </div>
           </FadeIn>
-        </div>
-      </section>
-
-      {/* Remaining differentiators */}
-      <section className="bg-warm-gray py-20 md:py-24">
-        <div className="mx-auto max-w-[1200px] px-6">
-          <FadeIn className="text-center mb-12">
-            <h2 className="font-serif text-2xl md:text-[28px] tracking-[-0.4px] text-near-black">
-              More ways we&rsquo;re different
-            </h2>
-          </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {differentiators.map((diff, i) => (
-              <FadeIn
-                key={diff.title}
-                delay={i * 80}
-                className="bg-white border border-near-black/8 shadow-sm p-8 md:p-10"
-              >
-                <h3 className="text-lg font-medium text-near-black mb-3">
-                  {diff.title}
-                </h3>
-                <p className="text-sm text-stone leading-relaxed">
-                  {diff.description}
-                </p>
-              </FadeIn>
-            ))}
-          </div>
         </div>
       </section>
     </>

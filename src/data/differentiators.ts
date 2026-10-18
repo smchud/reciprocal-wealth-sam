@@ -1,28 +1,34 @@
 export interface Differentiator {
   title: string;
   description: string;
+  /**
+   * True when the card states the 20% figure and therefore needs the
+   * eligibility-criteria footnote marker next to its title.
+   */
+  footnote?: boolean;
 }
 
 /**
- * The three "more ways we're different" boxes (excludes Reciprocity for
- * All, which has its own dedicated treatment via reciprocityByContract
- * below).
+ * The three "How We Differ" items that lead the home-page section and the
+ * Why Reciprocal page. Reciprocity for All (reciprocityByContract below)
+ * follows them, since the third item introduces it.
  */
 export const differentiators: Differentiator[] = [
   {
-    title: "Invested Together",
+    title: "You learn and understand.",
     description:
-      "Our founders are clients number one and two. Their assets are managed by the firm with the same duty, thought, and care as your own and they pay fees like everyone else.",
+      "Our clients are smart, accomplished people who want to understand what’s happening with their money even if they don’t have time to manage it. So we don’t make decisions for you and tell you later. We explain the thinking, lay out the options with their trade-offs, and then make a recommendation. This not only builds your financial acumen but also your confidence in the actions being taken.",
   },
   {
-    title: "Modern Technology",
+    title: "You won’t get handed off.",
     description:
-      "We've adopted a modern client platform — a one-stop shop for your financial information that reduces errors and saves your time.",
+      "You work with the principals from day one. The people you meet at the start are the people who work with you for the duration. No junior team, no rotating “relationship manager,” no surprise introductions after a merger. We’ve deliberately built the firm so that as it grows, every client keeps the same dedicated time and attention.",
   },
   {
-    title: "Fair & Transparent Fees",
+    title: "You share in our success.",
     description:
-      "We keep our fee structure transparent and simple: you pay one fee to cover all services.",
+      "If we ever sell the firm — at retirement or otherwise — 20% of the net cash proceeds go to our clients. Each client’s share reflects both assets with the firm and years with the firm, so the people who helped us grow and stayed with us are recognized for it. This is written into every client agreement. It costs you nothing and asks nothing of you.",
+    footnote: true,
   },
 ];
 

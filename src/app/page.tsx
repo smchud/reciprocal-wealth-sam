@@ -44,31 +44,59 @@ const investmentPillars = [
   },
 ];
 
+const heroPromises = [
+  {
+    lead: "We listen.",
+    detail:
+      "Before anything else, we learn how you think about money — your situation, your priorities, and your preferences.",
+  },
+  {
+    lead: "We build and refresh a plan around your real life.",
+    detail:
+      "Not a generic model, but a plan that reflects where you are today and prepares you for the decisions ahead: equity comp, homes, kids’ education, career moves, retirement.",
+  },
+  {
+    lead: "We invest your money to match that plan.",
+    detail:
+      "Your portfolio is built for you and your preferences, and it stays aligned as your plan evolves.",
+  },
+  {
+    lead: "We’re there when life happens.",
+    detail:
+      "A new job offer. An inheritance. An equity vest. When you need to understand your options and what they mean financially, you have a direct dial to an expert you know and trust.",
+  },
+];
+
 export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-deep-forest py-16 md:py-32 lg:py-40 overflow-hidden">
+      <section className="relative bg-deep-forest py-16 md:py-28 lg:py-32 overflow-hidden">
         <div className="relative mx-auto max-w-[1200px] px-6">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-12">
             <div className="flex-1 max-w-[720px]">
               <h1 className="font-serif text-[40px] md:text-[56px] leading-[1.1] tracking-[-1px] text-white">
-                Invested <span className="italic">Together.</span>
+                Caring for your financial{" "}
+                <span className="italic">wellbeing</span>
               </h1>
-              <p className="mt-6 text-base md:text-lg text-white/75 leading-relaxed max-w-[560px]">
-                Investment management, financial planning, and more for
-                time-pressed professionals and families who want their total
-                financial wellbeing looked after with thought and care.
+              <p className="mt-6 text-base md:text-lg text-white/75 leading-relaxed max-w-[600px]">
+                Financial wellbeing is knowing you’re living within your means,
+                that your investments support the life you want, and that you
+                can rest easy — because you understand the logic behind the
+                decisions and trust the people responsible for them.
               </p>
-              <ul className="mt-5 max-w-[560px] list-disc pl-5 space-y-1.5 text-sm md:text-base text-white/60 leading-relaxed marker:text-forest-50">
-                <li>Concierge service directly from the principals</li>
-                <li>Modern, streamlined technology platform</li>
-                <li>Personalized, diversified portfolios &amp; tax-loss harvesting</li>
-                <li>One transparent fee to cover all services</li>
-                <li>
-                  Participation Right: clients receive a share of proceeds if we
-                  sell the business
-                </li>
+              <h2 className="mt-8 font-serif text-xl md:text-2xl tracking-[-0.3px] text-white">
+                How Reciprocal Wealth looks after yours
+              </h2>
+              <ul className="mt-4 max-w-[600px] list-disc pl-5 space-y-3 text-sm md:text-base text-white/60 leading-relaxed marker:text-forest-50">
+                {heroPromises.map((promise) => (
+                  <li key={promise.lead}>
+                    <strong className="font-medium text-white">
+                      {promise.lead}
+                    </strong>{" "}
+                    {promise.detail}
+                  </li>
+                ))}
               </ul>
               <div className="mt-10 inline-grid grid-cols-2 gap-4">
                 <Link
@@ -81,7 +109,7 @@ export default function Home() {
                       would not work here: Lighthouse's link-text SEO audit
                       reads the visible anchor text, not the accessible name. */}
                   Learn More
-                  <span className="sr-only"> about Reciprocity for All</span>
+                  <span className="sr-only"> about why Reciprocal</span>
                 </Link>
                 <Link
                   href="/get-started"
@@ -294,77 +322,78 @@ export default function Home() {
       {/* How We Differ */}
       <section className="bg-deep-forest py-20 md:py-24">
         <div className="mx-auto max-w-[1200px] px-6">
-          {/* Reciprocity for All — lead differentiator */}
-          <FadeIn className="text-center md:text-left">
+          <FadeIn className="text-center max-w-[640px] mx-auto">
             <SectionLabel className="text-forest-50">How We Differ</SectionLabel>
             <h2 className="mt-4 font-serif text-2xl md:text-[32px] tracking-[-0.3px] text-white">
-              {reciprocityByContract.label}
+              Built around <span className="italic">you.</span>
             </h2>
-            <p className="mt-3 text-sm md:text-base text-white/55 leading-relaxed max-w-[640px] mx-auto md:mx-0">
-              {reciprocityByContract.tagline}
-            </p>
           </FadeIn>
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-14 items-center">
-            <FadeIn>
-              <div className="space-y-4">
-                {reciprocityByContract.points.map((point) => (
-                  <div key={point.title} className="border border-white/10 bg-white/[0.04] p-6">
-                    <h3 className="text-base font-medium text-white">
-                      {point.title}
-                      {point.title === "Participation Right" && "²"}
-                    </h3>
-                    <p className="mt-1.5 text-sm text-white/55 leading-relaxed">
-                      {point.description}
-                    </p>
-                  </div>
-                ))}
-                <p className="text-[10px] text-white/40 leading-relaxed">
-                  ² {eligibilityDisclosure}
-                </p>
-              </div>
-            </FadeIn>
-            <FadeIn delay={150}>
-              <Link
-                href="/why-reciprocal#white-paper"
-                className="mb-4 flex w-full items-center justify-center rounded-sm bg-forest px-5 py-3 text-sm font-medium text-white text-center transition-colors hover:bg-forest-75"
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {differentiators.map((diff, i) => (
+              <FadeIn
+                key={diff.title}
+                delay={i * 80}
+                className="border border-white/10 bg-white/[0.04] p-8"
               >
-                Download our white paper
-              </Link>
-              <div className="bg-forest-10 p-10 md:p-12 text-center">
-                <p className="font-serif lining-nums text-[64px] md:text-[72px] font-bold tracking-[-2px] text-deep-forest leading-none">
-                  {reciprocityByContract.stat}
+                <h3 className="font-serif text-xl tracking-[-0.3px] text-white mb-3">
+                  {diff.title}
+                  {diff.footnote && "²"}
+                </h3>
+                <p className="text-sm text-white/55 leading-relaxed">
+                  {diff.description}
                 </p>
-                <p className="mt-5 text-base font-bold text-deep-forest leading-relaxed max-w-[240px] mx-auto">
-                  {reciprocityByContract.statDescription}
-                </p>
-                <p className="mt-4 text-xs font-bold uppercase tracking-[0.1em] text-forest">
-                  {reciprocityByContract.statLabel}
-                </p>
-              </div>
-            </FadeIn>
+              </FadeIn>
+            ))}
           </div>
 
+          {/* Reciprocity for All — introduced by the third item above */}
           <div className="mt-14 pt-12 border-t border-white/10">
-            <FadeIn className="text-center mb-10">
+            <FadeIn className="text-center md:text-left">
               <h3 className="font-serif text-2xl md:text-[28px] tracking-[-0.4px] text-white">
-                More ways we&rsquo;re different
+                {reciprocityByContract.label}
               </h3>
+              <p className="mt-3 text-sm md:text-base text-white/55 leading-relaxed max-w-[640px] mx-auto md:mx-0">
+                {reciprocityByContract.tagline}
+              </p>
             </FadeIn>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {differentiators.map((diff, i) => (
-                <FadeIn
-                  key={diff.title}
-                  delay={i * 80}
-                  className="border border-white/10 p-8"
-                >
-                  <h3 className="text-base font-medium text-white mb-3">
-                    {diff.title}
-                  </h3>
-                  <p className="text-sm text-white/55 leading-relaxed">
-                    {diff.description}
+            <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-14 items-center">
+              <FadeIn>
+                <div className="space-y-4">
+                  {reciprocityByContract.points.map((point) => (
+                    <div key={point.title} className="border border-white/10 bg-white/[0.04] p-6">
+                      <h4 className="text-base font-medium text-white">
+                        {point.title}
+                        {point.title === "Participation Right" && "²"}
+                      </h4>
+                      <p className="mt-1.5 text-sm text-white/55 leading-relaxed">
+                        {point.description}
+                      </p>
+                    </div>
+                  ))}
+                  <p className="text-[10px] text-white/40 leading-relaxed">
+                    ² {eligibilityDisclosure}
                   </p>
-                </FadeIn>
-              ))}
+                </div>
+              </FadeIn>
+              <FadeIn delay={150}>
+                <Link
+                  href="/why-reciprocal#white-paper"
+                  className="mb-4 flex w-full items-center justify-center rounded-sm bg-forest px-5 py-3 text-sm font-medium text-white text-center transition-colors hover:bg-forest-75"
+                >
+                  Download our white paper
+                </Link>
+                <div className="bg-forest-10 p-10 md:p-12 text-center">
+                  <p className="font-serif lining-nums text-[64px] md:text-[72px] font-bold tracking-[-2px] text-deep-forest leading-none">
+                    {reciprocityByContract.stat}
+                  </p>
+                  <p className="mt-5 text-base font-bold text-deep-forest leading-relaxed max-w-[240px] mx-auto">
+                    {reciprocityByContract.statDescription}
+                  </p>
+                  <p className="mt-4 text-xs font-bold uppercase tracking-[0.1em] text-forest">
+                    {reciprocityByContract.statLabel}
+                  </p>
+                </div>
+              </FadeIn>
             </div>
           </div>
         </div>
