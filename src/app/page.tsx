@@ -80,7 +80,7 @@ export default function Home() {
                 <span className="block italic">financial wellbeing</span>
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/75 leading-relaxed max-w-[600px]">
-                Rest easy by living within your means, investing to support
+                You rest easy by living within your means, investing to support
                 your life, understanding your choices, and trusting the people
                 responsible for making them with you.
               </p>
