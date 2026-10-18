@@ -15,7 +15,7 @@ export interface Differentiator {
  */
 export const differentiators: Differentiator[] = [
   {
-    title: "You learn and understand.",
+    title: "You learn.",
     description:
       "Our clients are smart, accomplished people who want to understand what’s happening with their money even if they don’t have time to manage it. So we don’t make decisions for you and tell you later. We lay out the options with their trade-offs and explain the thinking. This not only builds your financial acumen but also your confidence in our actions.",
   },

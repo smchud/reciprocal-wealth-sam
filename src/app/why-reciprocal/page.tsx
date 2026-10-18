@@ -10,7 +10,7 @@ import {
 } from "@/data/differentiators";
 
 const description =
-  "You learn and understand, you won't get handed off, and you share in our success. How Reciprocal Wealth differs — including Reciprocity for All, our way of sharing the firm's success with clients.";
+  "You learn, you won't get handed off, and you share in our success. How Reciprocal Wealth differs — including Reciprocity for All, our way of sharing the firm's success with clients.";
 
 export const metadata: Metadata = {
   title: "Why Reciprocal",
