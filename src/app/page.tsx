@@ -81,7 +81,7 @@ export default function Home() {
               </h1>
               <p className="mt-6 text-base md:text-lg text-white/75 leading-relaxed max-w-[600px]">
                 Rest easy by living within your means, investing to support
-                your life, understanding the choices, and trusting the people
+                your life, understanding your choices, and trusting the people
                 responsible for making them with you.
               </p>
               <h2 className="mt-8 font-serif text-xl md:text-2xl tracking-[-0.3px] text-white">
